@@ -1,0 +1,24 @@
+{
+  "version": "0.1.2-dev",
+  "date": "2026-09-09",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "unittest_total": 117,
+  "new_rotation_tests": 28,
+  "base_tests": 89,
+  "base_test_adjustment": "One toolbar-count assertion updated from 15 to 16.",
+  "unittest": "PASS",
+  "self_test": "PASS",
+  "check_project": "PASS",
+  "python_3_10_syntax": "PASS; not tested on a 3.10 runtime",
+  "world_ast_unchanged": true,
+  "changed_top_level_definitions": [
+    "make_scene_class"
+  ],
+  "java_fixture_cases": 1504,
+  "java_fixtures": "Reused existing extracted-kernel fixtures; Java not rerun this turn.",
+  "device_test_012": "NOT RUN",
+  "device_report_011": "User reported startup without error, 2026-09-09.",
+  "layout_check": "HUD rectangles and text inspected with a Pillow mock. Not iOS rendering.",
+  "script_sha256": "953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a"
+}

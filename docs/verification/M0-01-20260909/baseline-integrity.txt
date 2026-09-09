@@ -1,0 +1,2 @@
+Handoff snapshot verified: 58 files. Additional files are not checked.
+This is an integrity check, not an authenticity or device-execution guarantee.

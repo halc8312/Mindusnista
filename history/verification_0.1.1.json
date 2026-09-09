@@ -1,0 +1,22 @@
+{
+  "version": "0.1.1-dev",
+  "date": "2026-09-09",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "unit_tests": 89,
+  "existing_tests": 68,
+  "new_startup_regression_tests": 21,
+  "unit_tests_result": "PASS",
+  "embedded_self_test": "PASS",
+  "python_3_10_ast_parse": "PASS; syntax only, not execution under Python 3.10",
+  "world_class_ast_unchanged": true,
+  "changed_existing_top_level_definitions": [
+    "data_directory",
+    "make_scene_class"
+  ],
+  "original_sha256": "b4647633f8dbd96fcc4651180db5549a0e950de7d7ac95f2e55979cc414088e2",
+  "patched_sha256": "b926787528f4cb4b28337ee7616f7533079c417f8c39f875f08e96fd0f335e08",
+  "runtime_test_scope": "CPython on Linux; injected scene/ui doubles, no Pythonista runtime",
+  "iphone_verified": false,
+  "reported_traceback_reproduced": "Synthetic update-before-setup and storage-exception-before-_failed cases reproduced the same AttributeError on 0.1.0. Actual device trigger not established."
+}

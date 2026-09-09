@@ -1,0 +1,23 @@
+{
+  "repository": "halc8312/Mindusnista",
+  "visibility": "public",
+  "default_branch": "main",
+  "main_commit": "0e4ff7dfb16eeeacd206c357e6bd89f563e1fe49",
+  "main_tree_sha": "d3289d26b0bdd3e79d6b6f877573277bc625b788",
+  "files": [
+    {
+      "path": "README.md",
+      "sha": "2899e4937fc5a0620eab5d48154c4c7b5dec6609",
+      "mode": "100644",
+      "size": 13
+    }
+  ],
+  "branches": [
+    {
+      "name": "main",
+      "sha": "0e4ff7dfb16eeeacd206c357e6bd89f563e1fe49"
+    }
+  ],
+  "open_pull_requests": [],
+  "note": "Account push permission is not evidence of a successful write."
+}

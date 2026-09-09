@@ -1,0 +1,366 @@
+--- 0.1.1/mindustry_pythonista.py
++++ 0.1.2/mindustry_pythonista.py
+@@ -5,7 +5,7 @@
+ # Modified work: Pythonista development port, NOT an official Mindustry release.
+ # License: GNU GPL version 3. This program comes WITHOUT ANY WARRANTY.
+ # See LICENSE and NOTICE.md in the accompanying source package.
+-"""Mindustry -> Pythonista: development port 0.1.1 (startup fix).
++"""Mindustry -> Pythonista: development port 0.1.2 (rotation controls).
+ 
+ Open this file in Pythonista 3 and press Run. No pip packages, JVM,
+ web view, original assets, or network connection are required at runtime.
+@@ -44,7 +44,7 @@
+ _SCRIPT_DIRECTORY = Path(os.path.abspath(
+     globals().get("__file__") or "mindustry_pythonista.py")).parent
+ 
+-VERSION = "0.1.1-dev"
++VERSION = "0.1.2-dev"
+ UPSTREAM = "v159.7"
+ SAVE_FORMAT = "mindustry-pythonista-dev"
+ SAVE_VERSION = 1
+@@ -1238,6 +1238,7 @@
+             self.sim_speed = 1
+             self.tool = "pan"
+             self.build_rotation = 0
++            self.preview_tile = None
+             self.selected_id = None
+             self.message = ""
+             self.message_until = 0.0
+@@ -1338,6 +1339,14 @@
+                                            z_position=15, alpha=0)
+             self.range_node = sc.SpriteNode(self.textures["range"], parent=self.root,
+                                             z_position=0, alpha=0)
++            self.ghost_node = sc.SpriteNode(self.textures["conveyor"], parent=self.root,
++                                             z_position=13, alpha=0)
++            self.direction_marker = sc.Node(parent=self.root, z_position=20, alpha=0)
++            sc.SpriteNode(color=(.04, .09, .12, .94), size=(34, 28),
++                          parent=self.direction_marker)
++            self.direction_label = sc.LabelNode("→", font=("Helvetica-Bold", 24),
++                                               color="#f5d385", parent=self.direction_marker)
++            self.preview_tile = None
+             self.sync_nodes()
+ 
+         def view_center(self):
+@@ -1350,6 +1359,8 @@
+             self.root.x_scale = self.root.y_scale = self.zoom
+             self.root.position = (cx-self.camera_x*TILE*self.zoom,
+                                   cy-self.camera_y*TILE*self.zoom)
++            if self.preview_tile is not None:
++                self.highlight(*self.preview_tile)
+ 
+         def screen_to_world(self, point):
+             cx, cy = self.view_center()
+@@ -1369,7 +1380,10 @@
+             x, y, w, h = box
+             bg = sc.SpriteNode(color="#273741", size=(w, h), position=(x+w/2, y+h/2),
+                                parent=parent)
+-            label = sc.LabelNode(title, font=("Helvetica", 13 if w < 85 else 15),
++            title_units = sum(1.0 if ord(c) > 255 else .6 for c in title)
++            font_size = max(10, min(13 if w < 85 else 15,
++                                    int((w-10)/max(1, title_units))))
++            label = sc.LabelNode(title, font=("Helvetica", font_size),
+                                  color="#eff0e5", position=(0, 5 if subtitle else 0), parent=bg)
+             if subtitle:
+                 sc.LabelNode(subtitle, font=("Helvetica", 10), color="#bfc2b7",
+@@ -1391,7 +1405,7 @@
+                           position=(self.size.w/2, self.bar_top/2), parent=self.hud)
+             sc.SpriteNode(color="#111c24", size=(self.size.w, self.header_height),
+                           position=(self.size.w/2, self.size.h-self.header_height/2), parent=self.hud)
+-            sc.LabelNode("MINDUSTRY / PYTHONISTA  ·  DEV 0.1.1", font=("Helvetica-Bold", 12),
++            sc.LabelNode("MINDUSTRY / PYTHONISTA  ·  DEV 0.1.2", font=("Helvetica-Bold", 12),
+                          color="#b6d4d5", position=(self.size.w/2, self.size.h-top), parent=self.hud)
+             self.stock_label = sc.LabelNode("", font=("Helvetica-Bold", 16), color="#f2d59b",
+                                            position=(self.size.w/2, self.size.h-top-23), parent=self.hud)
+@@ -1405,15 +1419,27 @@
+                 cost = "/".join(ITEM_LABELS[i]+str(n) for i, n in spec["cost"].items())
+                 self.add_button(self.hud, kind, spec["label"],
+                                 (edge+col*(width+5), bottom+102, width, 46), cost)
+-            for row, actions in enumerate((
+-                (("pause", "停止"), ("speed", "×1"), ("wave", "ウェーブ"),
+-                 ("home", "コアへ"), ("menu", "メニュー")),
+-                (("pan", "移動/調査"), ("erase", "撤去"), ("rotate", "回転 →"),
+-                 ("zoom-out", "縮小 −"), ("zoom-in", "拡大 ＋")),
++            # Keep the same three-row footprint, including in landscape.
++            # The entire middle row is now dedicated to direction controls.
++            for col, (action, title) in enumerate((
++                ("pan", "移動/調査"), ("erase", "撤去"), ("pause", "停止"),
++                ("wave", "ウェーブ"), ("menu", "メニュー"),
+             )):
+-                for col, (action, title) in enumerate(actions):
+-                    self.add_button(self.hud, action, title,
+-                                    (edge+col*(width+5), bottom+row*51, width, 46))
++                self.add_button(self.hud, action, title,
++                                (edge+col*(width+5), bottom, width, 46))
++            gap = 4
++            rotation_width = (self.size.w-edge*2-gap*5)/6
++            rotations = (("rotate", "↶", "左90°"),
++                         ("direction-2", "←", "左向き"),
++                         ("direction-1", "↑", "上向き"),
++                         ("direction-3", "↓", "下向き"),
++                         ("direction-0", "→", "右向き"),
++                         ("rotate-cw", "↷", "右90°"))
++            for col, (action, title, subtitle) in enumerate(rotations):
++                button = self.add_button(self.hud, action, title,
++                    (edge+col*(rotation_width+gap), bottom+51, rotation_width, 46),
++                    subtitle)
++                button["label"].font = ("Helvetica-Bold", 23)
+             self.update_camera()
+             self.refresh_hud()
+ 
+@@ -1447,8 +1473,12 @@
+                 w.wave, len(w.enemies), max(0, w.wave_timer//TPS), state)
+             if self._clock < self.message_until:
+                 text = self.message
++            elif self.tool == "conveyor":
++                text = "ベルト %s：中央の矢印で向き／同じベルトをタップで変更" % ARROWS[self.build_rotation]
++            elif self.rotation_target() is not None:
++                text = "選択ベルト %s：中央の矢印で向きを変更" % ARROWS[self.rotation_target().rotation]
+             elif self.tool in w.content:
+-                text = "%s：タップで設置　向き %s" % (w.content[self.tool]["label"], ARROWS[self.build_rotation])
++                text = "%s：タップで設置（方向指定なし）" % w.content[self.tool]["label"]
+             elif self.tool == "erase":
+                 text = "撤去：タップ／ドラッグ（建築費の半分を返却）"
+             else:
+@@ -1462,8 +1492,13 @@
+                     button["label"].text = "再開" if self.sim_paused else "停止"
+                 elif action == "speed":
+                     button["label"].text = "×%d" % self.sim_speed
+-                elif action == "rotate":
+-                    button["label"].text = "回転 " + ARROWS[self.build_rotation]
++                if action in ("rotate", "rotate-cw") or action.startswith("direction-"):
++                    enabled = self.tool == "conveyor" or self.rotation_target() is not None
++                    button["bg"].alpha = 1.0 if enabled else .38
++                    current = self.current_rotation()
++                    active = action == "direction-%d" % current
++                    button["bg"].color = ("#8b682f" if enabled and active else
++                                            "#334b5d" if enabled else "#273741")
+             self._last_hud = self._clock
+ 
+         def show_overlay(self, kind):
+@@ -1479,10 +1514,11 @@
+                          "採掘→コア、採掘→砲台の2系統を配置済み。",
+                          "移動：1本指ドラッグ。2本指で拡大・縮小。",
+                          "建物を選び、地面をタップすると建築します。",
+-                         "ベルトはドラッグで連続設置。向きは回転で変更。",
+-                         "移動モードで建物をタップすると状態を調査。",
++                         "ベルト：中央の←↑↓→で向き、↶↷で90°回転。",
++                         "地面で指を離すと設置。ベルトはドラッグも可。",
++                         "既設ベルト：移動/調査で選択→方向ボタン。",
+                          "ウェーブで敵出現。デュオは銅を弾薬にします。",
+-                         "保存・読込・研究用モードはメニュー内。",
++                         "保存・速度・コア移動・ズームはメニュー内。",
+                          "本家セーブ・MOD・通信・キャンペーンは未対応。"]
+                 font = 12
+                 maxchars = max(16, int((cw-30)/font))
+@@ -1492,7 +1528,7 @@
+                 x, y = (self.size.w-cw)/2, (self.size.h-ch)/2
+                 sc.SpriteNode(color="#1b2b36", size=(cw, ch),
+                               position=(self.size.w/2, self.size.h/2), parent=self.overlay)
+-                sc.LabelNode("PYTHONISTA PORT / 開発版 0.1.1", font=("Helvetica-Bold", 15),
++                sc.LabelNode("PYTHONISTA PORT / 開発版 0.1.2", font=("Helvetica-Bold", 15),
+                              color="#edcd8d", position=(self.size.w/2, y+ch-25), parent=self.overlay)
+                 for i, text in enumerate(wrapped):
+                     node = sc.LabelNode(text, font=("Helvetica", font), color="#dce3de",
+@@ -1501,24 +1537,33 @@
+                 self.add_button(self.overlay, "close", "ゲームへ", (x+15, y+12, cw-30, 38),
+                                 group=self.overlay_buttons)
+             else:
+-                ch = min(305, self.size.h-48)
++                # A separate controls page preserves large targets on small screens.
++                ch = min(325, self.size.h-48)
+                 x, y = (self.size.w-cw)/2, (self.size.h-ch)/2
+                 sc.SpriteNode(color="#1b2b36", size=(cw, ch),
+                               position=(self.size.w/2, self.size.h/2), parent=self.overlay)
+-                sc.LabelNode("開発版メニュー", font=("Helvetica-Bold", 18),
++                title = "表示・速度" if kind == "controls" else "開発版メニュー"
++                sc.LabelNode(title, font=("Helvetica-Bold", 18),
+                              color="#edcd8d", position=(self.size.w/2, y+ch-25), parent=self.overlay)
+-                actions = (("save", "手動保存"), ("load", "手動読込"),
+-                           ("sandbox", "研究用 " + ("ON" if self.world.sandbox else "OFF")),
+-                           ("new", "新規デモ"), ("help", "操作説明"), ("close", "戻る"))
++                if kind == "controls":
++                    actions = (("speed", "速度 ×%d" % self.sim_speed), ("home", "コアへ移動"),
++                               ("zoom-out", "縮小 −"), ("zoom-in", "拡大 ＋"),
++                               ("menu", "メニューへ"), ("close", "ゲームへ"))
++                else:
++                    actions = (("save", "手動保存"), ("load", "手動読込"),
++                               ("sandbox", "研究用 " + ("ON" if self.world.sandbox else "OFF")),
++                               ("new", "新規デモ"), ("help", "操作説明"),
++                               ("controls", "表示・速度"), ("close", "ゲームへ"))
+                 bw = (cw-42)/2
+                 for i, (action, title) in enumerate(actions):
+                     if self.confirm_action == action and self._clock < self.confirm_until:
+                         title = "もう一度：" + title
+                     self.add_button(self.overlay, action, title,
+-                                    (x+14+(i%2)*(bw+14), y+ch-100-(i//2)*56, bw, 44),
++                                    (x+14+(i%2)*(bw+14), y+ch-94-(i//2)*53, bw, 44),
+                                     group=self.overlay_buttons)
+-                sc.LabelNode("研究用＝建築無料・自動ウェーブ停止", font=("Helvetica", 11),
+-                             color="#aebbc0", position=(self.size.w/2, y+18), parent=self.overlay)
++                if kind == "controls":
++                    sc.LabelNode("2本指ピンチでも拡大・縮小できます", font=("Helvetica", 11),
++                                 color="#aebbc0", position=(self.size.w/2, y+18), parent=self.overlay)
+ 
+         def close_overlay(self):
+             clear(self.overlay)
+@@ -1556,17 +1601,54 @@
+                 self.notify("操作エラー：" + str(error), 8)
+                 traceback.print_exc()
+ 
++        def rotation_target(self):
++            """Only an explicitly inspected belt can be changed in pan mode."""
++            if self.tool != "pan":
++                return None
++            selected = self.world.buildings.get(self.selected_id)
++            return selected if selected and selected.kind == "conveyor" else None
++
++        def current_rotation(self):
++            selected = self.rotation_target()
++            return selected.rotation if selected is not None else self.build_rotation
++
++        def change_direction(self, rotation):
++            selected = self.rotation_target()
++            if self.tool != "conveyor" and selected is None:
++                self.notify("ベルトを選択すると向きを変更できます")
++                return
++            rotation = int(rotation) % 4
++            if selected is not None:
++                # Reorient in place. Never rebuild, refund, or discard cargo.
++                if selected.rotation != rotation:
++                    selected.rotation = rotation
++                    self.world.invalidated()
++                self.build_rotation = rotation
++                self.highlight(selected.x, selected.y)
++                self.notify("選択ベルトを %s 向きに変更" % ARROWS[rotation], 2)
++            else:
++                self.build_rotation = rotation
++                if self.preview_tile is not None:
++                    self.highlight(*self.preview_tile)
++                self.notify("設置方向 %s（次に置くベルト）" % ARROWS[rotation], 2)
++
+         def _perform(self, action):
+             if action in BUILD_TOOLS or action in ("pan", "erase"):
++                self.gestures.clear()
+                 self.tool = action
+                 self.selected_id = None
++                self.preview_tile = None
+                 self.selection.alpha = self.range_node.alpha = 0
+-            elif action == "rotate":
+-                self.build_rotation = (self.build_rotation+1) % 4
+-                selected = self.world.buildings.get(self.selected_id)
+-                if self.tool == "pan" and selected and selected.kind == "conveyor":
+-                    selected.rotation = (selected.rotation+1) % 4
+-                    self.world.invalidated()
++                self.ghost_node.alpha = self.direction_marker.alpha = 0
++                self.message_until = 0
++                if action in BUILD_TOOLS:
++                    wx, wy = self.screen_to_world(self.view_center())
++                    self.highlight(int(math.floor(wx)), int(math.floor(wy)))
++            elif action in ("rotate", "rotate-cw"):
++                # World axes: +1 is counterclockwise, -1 is clockwise.
++                self.change_direction(self.current_rotation() + (1 if action == "rotate" else -1))
++            elif action.startswith("direction-"):
++                self.change_direction(int(action.split("-", 1)[1]))
+             elif action in ("zoom-in", "zoom-out"):
+                 self.set_zoom(self.zoom*(1.25 if action == "zoom-in" else .8))
+             elif action == "pause":
+@@ -1584,7 +1666,7 @@
+                 if core:
+                     self.camera_x, self.camera_y = self.world.center(core[0])
+                     self.update_camera()
+-            elif action in ("menu", "help"):
++            elif action in ("menu", "help", "controls"):
+                 self.show_overlay(action)
+             elif action == "close":
+                 self.close_overlay()
+@@ -1619,16 +1701,26 @@
+                 self.layout()
+                 self.close_overlay()
+                 self.notify("新規デモ。前の状態は before-new.json に保存")
++            if self.overlay_kind == "controls" and action in ("speed", "home", "zoom-in", "zoom-out"):
++                self.show_overlay("controls")
+             self.refresh_hud()
+ 
+         def highlight(self, x, y):
++            self.preview_tile = (x, y)
++            self.ghost_node.alpha = self.direction_marker.alpha = 0
+             b = self.world.at(x, y)
+             if self.tool in BUILD_TOOLS:
+                 size = self.world.content[self.tool]["size"]
+                 center = x+size/2, y+size/2
+-                ok = self.world.can_place(self.tool, x, y)[0]
++                same_belt = self.tool == "conveyor" and b is not None and b.kind == "conveyor"
++                ok = same_belt or self.world.can_place(self.tool, x, y)[0]
+                 color = "#90e1c1" if ok else "#ed8c86"
+                 kind = self.tool
++                self.ghost_node.texture = self.textures[kind]
++                self.ghost_node.position = center[0]*TILE, center[1]*TILE
++                self.ghost_node.size = size*TILE, size*TILE
++                self.ghost_node.rotation = self.build_rotation*math.pi/2 if kind == "conveyor" else 0
++                self.ghost_node.alpha = .55
+             elif b:
+                 size, center, kind, color = self.world.size_of(b), self.world.center(b), b.kind, "#e9d084"
+             else:
+@@ -1638,6 +1730,25 @@
+             self.selection.size = size*TILE, size*TILE
+             self.selection.color = color
+             self.selection.alpha = .9
++            if kind == "conveyor" and self.tool != "erase":
++                rotation = self.build_rotation if self.tool == "conveyor" else b.rotation
++                self.direction_label.text = ARROWS[rotation]
++                # Constant-size badge; keep it inside the game viewport rather
++                # than hiding half of it behind the header in landscape.
++                cx, cy = self.view_center()
++                screen_x = cx+(center[0]-self.camera_x)*TILE*self.zoom
++                screen_y = cy+(center[1]-self.camera_y)*TILE*self.zoom
++                low, high = self.bar_top+24, self.size.h-self.header_height
++                badge_x, badge_y = screen_x, screen_y+size*TILE*self.zoom/2+18
++                if high-low < 120:
++                    badge_x, badge_y = screen_x+size*TILE*self.zoom/2+24, screen_y
++                badge_x = clamp(badge_x, 18, self.size.w-18)
++                badge_y = clamp(badge_y, low+14, max(low+14, high-14))
++                wx, wy = self.screen_to_world((badge_x, badge_y))
++                self.direction_marker.position = wx*TILE, wy*TILE
++                self.direction_marker.x_scale = self.direction_marker.y_scale = 1/self.zoom
++                self.direction_marker.alpha = 1 if (0 <= screen_x <= self.size.w and
++                                                    low <= screen_y <= high) else 0
+             self.range_node.alpha = .45 if kind == "duo" else 0
+             if kind == "duo":
+                 radius = self.world.content["duo"]["range"]*TILE
+@@ -1662,8 +1773,9 @@
+                 item = self.world.ore[self.world.index(x, y)]
+                 self.notify("(%d,%d) %s" % (x, y, ITEM_LABELS.get(item, "地面")))
+             self.highlight(x, y)
+-
+-        def apply_tool(self, x, y):
++            self.refresh_hud()
++
++        def apply_tool(self, x, y, reorient=False):
+             if self.tool == "erase":
+                 b = self.world.at(x, y)
+                 if b and not self.world.remove(b):
+@@ -1671,7 +1783,14 @@
+             elif self.tool in BUILD_TOOLS:
+                 existing = self.world.at(x, y)
+                 if existing and existing.kind == self.tool:
+-                    # Do not charge or rebuild an already occupied drag tile.
++                    # Explicit taps can redirect a belt for free. Dragging across
++                    # an existing factory must not silently rotate its belts.
++                    if reorient and self.tool == "conveyor":
++                        if existing.rotation != self.build_rotation:
++                            existing.rotation = self.build_rotation
++                            self.world.invalidated()
++                        self.notify("既設ベルトを %s 向きに変更（資源消費なし）" % ARROWS[self.build_rotation], 2)
++                    self.highlight(x, y)
+                     return
+                 if self.world.place(self.tool, x, y, self.build_rotation) is None:
+                     self.notify(self.world.last_message)
+@@ -1790,7 +1909,7 @@
+                 if not g["drag"]:
+                     self.inspect_tile(*tile)
+             elif not g["drag"] or self.tool not in ("conveyor", "copper-wall", "erase"):
+-                self.apply_tool(*tile)
++                self.apply_tool(*tile, reorient=not g["drag"])
+             else:
+                 self.paint_line(g["tile"], tile)
+ 

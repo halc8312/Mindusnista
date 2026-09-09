@@ -1,0 +1,374 @@
+--- 0.1.0/mindustry_pythonista.py
++++ 0.1.1/mindustry_pythonista.py
+@@ -5,7 +5,7 @@
+ # Modified work: Pythonista development port, NOT an official Mindustry release.
+ # License: GNU GPL version 3. This program comes WITHOUT ANY WARRANTY.
+ # See LICENSE and NOTICE.md in the accompanying source package.
+-"""Mindustry -> Pythonista: development port 0.1.
++"""Mindustry -> Pythonista: development port 0.1.1 (startup fix).
+ 
+ Open this file in Pythonista 3 and press Run. No pip packages, JVM,
+ web view, original assets, or network connection are required at runtime.
+@@ -39,7 +39,12 @@
+ from pathlib import Path
+ from typing import Any, Dict, List, Optional, Tuple
+ 
+-VERSION = "0.1.0-dev"
++# Capture this while the script is executing, not later in a scene callback.
++# This also keeps save/config paths stable if the working directory changes.
++_SCRIPT_DIRECTORY = Path(os.path.abspath(
++    globals().get("__file__") or "mindustry_pythonista.py")).parent
++
++VERSION = "0.1.1-dev"
+ UPSTREAM = "v159.7"
+ SAVE_FORMAT = "mindustry-pythonista-dev"
+ SAVE_VERSION = 1
+@@ -935,7 +940,47 @@
+ 
+ 
+ def data_directory() -> Path:
+-    return Path(__file__).resolve().parent / "_mindustry_pythonista"
++    return _SCRIPT_DIRECTORY / "_mindustry_pythonista"
++
++
++def private_data_directory() -> Path:
++    """Persistent fallback inside Pythonista's own Documents directory."""
++    return Path.home() / "Documents" / "_mindustry_pythonista"
++
++
++def prepare_data_directory() -> Tuple[Path, str]:
++    """Prefer the existing save folder; never delete or move existing saves.
++
++    Some external File Provider folders cannot create sibling files. Check
++    write access before gameplay; if needed, explicitly announce the fallback.
++    A temporary directory is NOT used for save data.
++    """
++    errors = []
++    tried = set()
++    for location in (data_directory, private_data_directory):
++        candidate = None
++        try:
++            candidate = location()
++            if candidate in tried:
++                continue
++            tried.add(candidate)
++            candidate.mkdir(parents=True, exist_ok=True)
++            with tempfile.NamedTemporaryFile(
++                    mode="w+b", prefix=".startup-check-", dir=str(candidate)) as probe:
++                probe.write(b"ok")
++                probe.flush()
++            warning = ""
++            if errors:
++                warning = "保存先をPythonista内Documentsへ変更。元の保存は移動していません。"
++                print(warning)
++                print("Previous storage errors:\n" + "\n".join(errors))
++                print("Active save directory:", candidate)
++            return candidate, warning
++        except (OSError, RuntimeError) as error:
++            errors.append("%s: %s: %s" % (
++                candidate or getattr(location, "__name__", "storage location"),
++                type(error).__name__, error))
++    raise OSError("保存フォルダーを作成・使用できません。\n" + "\n".join(errors))
+ 
+ 
+ def self_test() -> None:
+@@ -1083,11 +1128,109 @@
+         return texture
+ 
+     class MindustryScene(sc.Scene):
++        # Defaults also protect callbacks invoked while the base constructor
++        # is running. Per-instance flags are assigned before calling it.
++        _failed = False
++        _ready = False
++        _setup_in_progress = False
++        _setup_attempted = False
++
++        def __init__(self, *args, **kwargs):
++            self._failed = False
++            self._ready = False
++            self._setup_in_progress = False
++            self._setup_attempted = False
++            self._stage = "construction"
++            self._last_error = ""
++            self._failure_report = ""
++            self._crash_log_path = None
++            self.storage = None
++            super().__init__(*args, **kwargs)
++
+         def setup(self):
++            # Pythonista normally calls setup once before presenting the scene.
++            # Guard against re-entry and an unexpected early update callback.
++            if self._ready or self._failed or self._setup_in_progress:
++                return
++            try:
++                if self.size.w <= 0 or self.size.h <= 0:
++                    return  # Wait for a real view size; do not lay out at 0x0.
++                self._setup_attempted = True
++                self._setup_in_progress = True
++                self._stage = "setup"
++                self._setup_game()
++                self._ready = True
++                self._stage = "running"
++            except Exception:
++                self._report_failure("startup / " + self._stage)
++            finally:
++                self._setup_in_progress = False
++
++        def _report_failure(self, phase):
++            """Keep the FIRST traceback even if disk access or the HUD fails."""
++            if self._failed:
++                return
++            self._failed = True
++            self._ready = False
++            self.sim_paused = True
++            self._last_error = traceback.format_exc()
++            self._failure_report = (
++                "Mindustry Pythonista %s\nPhase: %s\nPython: %s\n"
++                "Script directory: %s\nSave directory: %s\n\n%s" % (
++                    VERSION, phase, sys.version.replace("\n", " "),
++                    _SCRIPT_DIRECTORY, self.storage, self._last_error))
++            print(self._failure_report)
++            # Logging must never replace the original error with a second one.
++            locations = []
++            if self.storage is not None:
++                locations.append(self.storage)
++            for location in (data_directory, private_data_directory):
++                try:
++                    candidate = location()
++                    if candidate not in locations:
++                        locations.append(candidate)
++                except Exception:
++                    pass
++            for directory in locations:
++                try:
++                    directory.mkdir(parents=True, exist_ok=True)
++                    path = directory / "crash.log"
++                    path.write_text(self._failure_report, encoding="utf-8")
++                    self._crash_log_path = path
++                    print("Crash log:", path)
++                    break
++                except Exception as error:
++                    print("Could not write crash.log:", type(error).__name__, str(error))
++            self._show_failure()
++
++        def _show_failure(self):
++            # Deliberately independent of world, textures, storage and the HUD.
++            # A failure here is secondary; the console still has the root error.
++            try:
++                clear(self)
++                self.background_color = (.10, .035, .04)
++                width, height = self.size.w, self.size.h
++                chars = max(12, int((width-36)/13))
++                detail = self._last_error.strip().splitlines()[-1]
++                wrapped = [detail[i:i+chars] for i in range(0, min(len(detail), chars*4), chars)]
++                lines = ["起動／実行エラー  DEV " + VERSION,
++                         "ゲーム処理を停止しました。", ""] + wrapped + [
++                         "", "×で閉じてコンソールを確認してください。",
++                         "Tracebackの全文を送ってください。"]
++                step = min(24, max(14, (height-60)/max(1, len(lines))))
++                y = min(height-45, height/2 + len(lines)*step/2)
++                for text in lines:
++                    sc.LabelNode(text, font=("Helvetica", 13), color="white",
++                                 position=(width/2, y), parent=self, z_position=10000)
++                    y -= step
++            except Exception as error:
++                print("Could not draw error screen:", type(error).__name__, str(error))
++
++        def _setup_game(self):
++            self._stage = "background"
+             self.background_color = "#10171e"
+-            self.storage = data_directory()
+-            self.storage.mkdir(parents=True, exist_ok=True)
+-            self._failed = False
++            self._stage = "storage"
++            self.storage, storage_warning = prepare_data_directory()
+             self._clock = 0.0
+             self._autosave_at = 30.0
+             self.accumulator = 0.0
+@@ -1103,11 +1246,14 @@
+             self.gestures = {}
+             self.ignored_touches = set()
+             self.overlay_kind = None
++            self._stage = "textures"
+             self.textures = {kind: make_texture(kind) for kind in
+                              tuple(DEFAULT_CONTENT) + ("range", "selection", "item",
+                                                        "enemy", "gun-head", "drill-head")}
+-            startup_error = ""
+-            self.content = load_content(Path(__file__).resolve().parent / "content_overrides.json")
++            startup_error = storage_warning
++            self._stage = "content"
++            self.content = load_content(_SCRIPT_DIRECTORY / "content_overrides.json")
++            self._stage = "world / autosave"
+             resume = self.storage / "autosave.json"
+             if resume.exists():
+                 try:
+@@ -1117,21 +1263,26 @@
+                     backup = self.storage / ("unreadable-autosave-%d.json" % time.time_ns())
+                     os.replace(resume, backup)
+                     self.world = World.demo(self.content)
+-                    startup_error = "自動保存を読めず退避。詳細はコンソールへ"
++                    startup_error = (startup_error + " " if startup_error else "") + \
++                        "自動保存を読めず退避。詳細はコンソールへ"
+                     print("Autosave preserved at", backup, "error:", error)
+             else:
+                 self.world = World.demo(self.content)
++            self._stage = "scene graph"
+             self.root = sc.Node(parent=self, z_position=0)
+             self.hud = sc.Node(parent=self, z_position=100)
+             self.overlay = sc.Node(parent=self, z_position=200)
+             self.zoom = max(.45, min(1.0, (self.size.w-32)/(27*TILE)))
+             self.camera_x, self.camera_y = 16.5, 13.5
+             self._last_hud = -1.0
++            self._stage = "map drawing"
+             self.rebuild_world()
++            self._stage = "layout"
+             self.layout()
++            self._stage = "help overlay"
+             self.show_overlay("help")
+             if startup_error:
+-                self.notify(startup_error, 12)
++                self.notify(startup_error, 30)
+ 
+         def rebuild_world(self):
+             clear(self.root)
+@@ -1240,7 +1391,7 @@
+                           position=(self.size.w/2, self.bar_top/2), parent=self.hud)
+             sc.SpriteNode(color="#111c24", size=(self.size.w, self.header_height),
+                           position=(self.size.w/2, self.size.h-self.header_height/2), parent=self.hud)
+-            sc.LabelNode("MINDUSTRY / PYTHONISTA  ·  DEV 0.1", font=("Helvetica-Bold", 12),
++            sc.LabelNode("MINDUSTRY / PYTHONISTA  ·  DEV 0.1.1", font=("Helvetica-Bold", 12),
+                          color="#b6d4d5", position=(self.size.w/2, self.size.h-top), parent=self.hud)
+             self.stock_label = sc.LabelNode("", font=("Helvetica-Bold", 16), color="#f2d59b",
+                                            position=(self.size.w/2, self.size.h-top-23), parent=self.hud)
+@@ -1267,13 +1418,19 @@
+             self.refresh_hud()
+ 
+         def did_change_size(self):
+-            if not hasattr(self, "world"):
++            if self._failed:
++                self._show_failure()
+                 return
+-            self.gestures.clear()
+-            self.ignored_touches.clear()
+-            self.layout()
+-            if self.overlay_kind:
+-                self.show_overlay(self.overlay_kind)
++            if not self._ready:
++                return
++            try:
++                self.gestures.clear()
++                self.ignored_touches.clear()
++                self.layout()
++                if self.overlay_kind:
++                    self.show_overlay(self.overlay_kind)
++            except Exception:
++                self._report_failure("resize")
+ 
+         def notify(self, text, duration=3.0):
+             self.message = text
+@@ -1335,7 +1492,7 @@
+                 x, y = (self.size.w-cw)/2, (self.size.h-ch)/2
+                 sc.SpriteNode(color="#1b2b36", size=(cw, ch),
+                               position=(self.size.w/2, self.size.h/2), parent=self.overlay)
+-                sc.LabelNode("PYTHONISTA PORT / 開発版 0.1", font=("Helvetica-Bold", 15),
++                sc.LabelNode("PYTHONISTA PORT / 開発版 0.1.1", font=("Helvetica-Bold", 15),
+                              color="#edcd8d", position=(self.size.w/2, y+ch-25), parent=self.overlay)
+                 for i, text in enumerate(wrapped):
+                     node = sc.LabelNode(text, font=("Helvetica", font), color="#dce3de",
+@@ -1379,7 +1536,7 @@
+             return False
+ 
+         def save_world(self, manual=False):
+-            if self._failed:
++            if self._failed or not self._ready:
+                 return
+             path = self.storage / ("manual.json" if manual else "autosave.json")
+             try:
+@@ -1391,6 +1548,8 @@
+                 print("Save failed:", error)
+ 
+         def perform(self, action):
++            if self._failed or not self._ready:
++                return
+             try:
+                 self._perform(action)
+             except Exception as error:
+@@ -1449,7 +1608,7 @@
+             elif action == "new":
+                 if not self.confirm("new"):
+                     return
+-                self.content = load_content(Path(__file__).resolve().parent / "content_overrides.json")
++                self.content = load_content(_SCRIPT_DIRECTORY / "content_overrides.json")
+                 # Preserve the current state in a separate slot before resetting.
+                 self.world.save(self.storage / "before-new.json")
+                 self.world = World.demo(self.content)
+@@ -1548,6 +1707,8 @@
+             return x <= point[0] <= x+w and y <= point[1] <= y+h
+ 
+         def touch_began(self, touch):
++            if self._failed or not self._ready:
++                return
+             p, tid = tuple(touch.location), touch.touch_id
+             if self.overlay_kind:
+                 self.ignored_touches.add(tid)
+@@ -1574,6 +1735,8 @@
+                 self.highlight(int(math.floor(wx)), int(math.floor(wy)))
+ 
+         def touch_moved(self, touch):
++            if self._failed or not self._ready:
++                return
+             tid, p = touch.touch_id, tuple(touch.location)
+             if tid not in self.gestures or self.overlay_kind:
+                 return
+@@ -1614,6 +1777,8 @@
+                 self.highlight(*tile)
+ 
+         def touch_ended(self, touch):
++            if self._failed or not self._ready:
++                return
+             tid, p = touch.touch_id, tuple(touch.location)
+             self.ignored_touches.discard(tid)
+             g = self.gestures.pop(tid, None)
+@@ -1715,6 +1880,12 @@
+         def update(self):
+             if self._failed:
+                 return
++            if not self._ready:
++                # Never use partly initialized state. A skipped setup callback
++                # gets one attempt here, after the scene has a valid size.
++                if not self._setup_attempted and not self._setup_in_progress:
++                    self.setup()
++                return
+             try:
+                 dt = clamp(self.dt, 0.0, .1)
+                 self._clock += dt
+@@ -1733,22 +1904,22 @@
+                     self.save_world()
+                     self._autosave_at = self._clock+30
+             except Exception:
+-                self._failed = True
+-                self.sim_paused = True
+-                error = traceback.format_exc()
+-                print(error)
+-                (self.storage / "crash.log").write_text(error, encoding="utf-8")
+-                self.notify("処理を停止：crash.log を確認してください", 1000)
+-                self.refresh_hud()
++                self._report_failure("update")
+ 
+         def pause(self):
+             # Called by Pythonista on backgrounding, not the in-game Pause button.
++            if self._failed or not self._ready:
++                return
+             self.gestures.clear()
++            self.ignored_touches.clear()
+             self.accumulator = 0
+             self.save_world()
+ 
+         def resume(self):
++            if self._failed or not self._ready:
++                return
+             self.gestures.clear()
++            self.ignored_touches.clear()
+             self.accumulator = 0
+ 
+         def stop(self):
