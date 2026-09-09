@@ -1,0 +1,51 @@
+{
+  "repository": "halc8312/Mindusnista",
+  "task": "M0-01",
+  "base_main_sha": "0e4ff7dfb16eeeacd206c357e6bd89f563e1fe49",
+  "branch": "bootstrap/pythonista-0.1.2",
+  "import_commit_sha": "efdf3377bf63b372c26b3fc0dbf21c8cbc5f8d51",
+  "import_tree_sha": "b21f770311591e30be4b8ba4a7e4ace8c5029b35",
+  "import_blob_count": 69,
+  "local_tree_matched_remote": true,
+  "pr_number": 1,
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/1",
+  "pr_state": "open",
+  "merged": false,
+  "git_push": {
+    "success": false,
+    "reason": "No HTTPS username/credential available; terminal prompts disabled."
+  },
+  "github_git_data_write": {
+    "branch_created": true,
+    "commit_created": true,
+    "branch_ref_updated": true,
+    "force": false,
+    "read_back": true
+  },
+  "ci": {
+    "run_id": 34338852244,
+    "url": "https://github.com/halc8312/Mindusnista/actions/runs/34338852244",
+    "event": "pull_request",
+    "head_sha": "efdf3377bf63b372c26b3fc0dbf21c8cbc5f8d51",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 102424595628,
+        "name": "tests (3.13)",
+        "conclusion": "success"
+      },
+      {
+        "id": 102424595927,
+        "name": "tests (3.10)",
+        "conclusion": "success"
+      }
+    ],
+    "python_versions": [
+      "3.10.21",
+      "3.13.15"
+    ],
+    "unittest_count_per_job": 117,
+    "self_test_per_job": "passed"
+  },
+  "note": "Receipt for initial import. Subsequent commits only update documentation/evidence; final PR head must be read from GitHub."
+}

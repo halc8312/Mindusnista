@@ -1,0 +1,22 @@
+{
+  "handoff_id": "handoff-20260909",
+  "game_version": "0.1.2-dev",
+  "upstream_reference": "v159.7",
+  "save_schema": 1,
+  "script_sha256": "953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a",
+  "repository": "halc8312/Mindusnista",
+  "observed_default_branch": "main",
+  "observed_main_commit": "0e4ff7dfb16eeeacd206c357e6bd89f563e1fe49",
+  "observed_files": [
+    "README.md"
+  ],
+  "repo_write_performed": false,
+  "baseline_unittest_count": 117,
+  "fixture_case_count": 1504,
+  "pythonista_011_device": "startup success, user reported",
+  "pythonista_012_device": "not reported",
+  "next_task": "M0-01",
+  "python_runtime_tested": "3.13.5",
+  "python_310_runtime_tested": false,
+  "github_ci_executed": false
+}

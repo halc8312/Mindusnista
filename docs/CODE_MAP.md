@@ -1,0 +1,83 @@
+# 0.1.2 コード案内
+
+本体を変更せず AST から作成した案内です。行番号は 0.1.2-dev 限定。後の変更では検索を優先します。
+
+| 名前 | 行 |
+|---|---|
+| `clamp` | 88–89 |
+| `approach` | 92–93 |
+| `finite_number` | 96–101 |
+| `integer` | 104–107 |
+| `validate_content` | 110–141 |
+| `load_content` | 144–157 |
+| `read_json` | 160–165 |
+| `atomic_json` | 168–181 |
+| `conveyor_accepts` | 184–198 |
+| `advance_conveyor_positions` | 201–219 |
+| `BeltItem` | 223–226 |
+| `Building` | 230–248 |
+| `Enemy` | 252–263 |
+| `Bullet` | 267–274 |
+| `segment_circle_hit` | 277–292 |
+| `World` | 295–939 |
+| `data_directory` | 942–943 |
+| `private_data_directory` | 946–948 |
+| `prepare_data_directory` | 951–983 |
+| `self_test` | 986–1006 |
+| `benchmark` | 1009–1020 |
+| `make_scene_class` | 1025–2047 |
+| `run_pythonista` | 2050–2058 |
+| `main` | 2741–2751 |
+
+## World のメソッド
+
+| 名前 | 行 |
+|---|---|
+| `__init__` | 301–327 |
+| `uid` | 329–332 |
+| `random` | 334–337 |
+| `inside` | 339–340 |
+| `index` | 342–343 |
+| `at` | 345–346 |
+| `size_of` | 348–349 |
+| `center` | 351–353 |
+| `tiles` | 355–359 |
+| `cores` | 361–362 |
+| `invalidated` | 364–369 |
+| `neighbors` | 371–383 |
+| `mine_info` | 385–394 |
+| `can_place` | 396–421 |
+| `place` | 423–439 |
+| `remove` | 441–454 |
+| `incoming_direction` | 456–468 |
+| `front` | 470–472 |
+| `accepts` | 474–491 |
+| `receive` | 493–512 |
+| `offload` | 514–523 |
+| `_tick_drill` | 525–554 |
+| `_tick_conveyor` | 556–572 |
+| `_tick_router` | 574–590 |
+| `_tick_turret` | 592–619 |
+| `rebuild_path` | 621–651 |
+| `_tick_enemy` | 653–687 |
+| `_tick_bullets` | 689–710 |
+| `start_wave` | 712–719 |
+| `spawn_enemy` | 721–730 |
+| `step` | 732–762 |
+| `demo` | 765–796 |
+| `to_dict` | 798–812 |
+| `from_dict` | 815–928 |
+| `save` | 930–931 |
+| `load` | 934–935 |
+| `digest` | 937–939 |
+
+## テスト
+
+`tests/test_engine.py`: 抽出 Java fixture、World、資源・保存など。
+`tests/test_pythonista_adapter.py`: scene/ui 注入境界。
+`tests/test_startup_regressions.py`: 初期化・保存先・最初の例外の保持。
+`tests/test_rotation_controls.py`: 方向・回転・タッチ・配置・旧保存。
+`tests/pythonista_stub.py`: 模擬 scene/ui。実機や iOS エミュレーターではない。
+
+`reference/ConveyorKernelReference.java` と `java_fixtures.json` は抽出計算参照。
+原作全コード・アセットはこのフォルダーにない。実装時には SOURCES.md の固定タグの原作を読む。

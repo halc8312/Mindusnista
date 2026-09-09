@@ -1,0 +1,72 @@
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "java": "javac 21.0.11",
+  "syntax_target": "Python 3.10 grammar via ast.parse(feature_version=(3,10)); not a Python 3.10 runtime test",
+  "movement_vectors": 120,
+  "acceptance_vectors": 1344,
+  "drill_vectors": 40,
+  "maximum_observed_movement_error": 5.999999963535174e-08,
+  "maximum_observed_drill_progress_error": 0.00010000000008858478,
+  "benchmarks": [
+    {
+      "python": "3.13.5",
+      "requested_ticks": 3600,
+      "completed_ticks": 3600,
+      "wall_seconds": 0.0595,
+      "simulation_ticks_per_second": 60504.3,
+      "buildings": 20,
+      "enemies": 0,
+      "stats": {
+        "mined": 42,
+        "delivered": 21,
+        "shots": 61,
+        "kills": 8
+      },
+      "core_hp": [
+        1100.0
+      ],
+      "note": "Headless container result; NOT an iPhone FPS measurement."
+    },
+    {
+      "python": "3.13.5",
+      "requested_ticks": 3600,
+      "completed_ticks": 3600,
+      "wall_seconds": 0.058539,
+      "simulation_ticks_per_second": 61498.0,
+      "buildings": 20,
+      "enemies": 0,
+      "stats": {
+        "mined": 42,
+        "delivered": 21,
+        "shots": 61,
+        "kills": 8
+      },
+      "core_hp": [
+        1100.0
+      ],
+      "note": "Headless container result; NOT an iPhone FPS measurement."
+    },
+    {
+      "python": "3.13.5",
+      "requested_ticks": 3600,
+      "completed_ticks": 3600,
+      "wall_seconds": 0.055122,
+      "simulation_ticks_per_second": 65309.8,
+      "buildings": 20,
+      "enemies": 0,
+      "stats": {
+        "mined": 42,
+        "delivered": 21,
+        "shots": 61,
+        "kills": 8
+      },
+      "core_hp": [
+        1100.0
+      ],
+      "note": "Headless container result; NOT an iPhone FPS measurement."
+    }
+  ],
+  "iphone_runtime_tested": false,
+  "full_upstream_engine_tested": false
+}

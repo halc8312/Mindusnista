@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python",
+    "tools/verify_handoff.py"
+  ],
+  "cwd": "/workspace/scratch/5e4ca4a2a8b2/baseline/Mindusnista",
+  "started_utc": "2026-09-09T10:02:17.199888+00:00",
+  "finished_utc": "2026-09-09T10:02:17.297109+00:00",
+  "returncode": 0
+}

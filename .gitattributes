@@ -1,0 +1,4 @@
+# Preserve snapshot bytes across clone/checkouts; Pythonista files use LF.
+* text=auto eol=lf
+*.zip binary
+*.png binary
