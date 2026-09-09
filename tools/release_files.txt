@@ -111,3 +111,6 @@ docs/verification/UI-01-20260909/runtime-scope.json
 tests/test_placement_controls.py
 docs/verification/UI-01-20260909/after-check-project.json
 docs/verification/UI-01-20260909/after-check-project.txt
+docs/verification/UI-01-20260909/ci-python-3.10.21.txt
+docs/verification/UI-01-20260909/ci-python-3.13.15.txt
+docs/verification/UI-01-20260909/github-ci-implementation.json

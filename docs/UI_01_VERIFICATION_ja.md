@@ -52,7 +52,21 @@ Java fixture の再生成や原作本体の実行はしていない。原作互�
   非重複・画面内であることを模擬ノード座標から検査。実フォント描画は未確認。
 
 ログと環境は [verification/UI-01-20260909/](verification/UI-01-20260909/) に保存。
-GitHub commit / PR / CI は保存と読み戻し後に追記する。
+
+## GitHub 保存と CI
+
+実装コミット [`71bd9161dc3760c9b566e3070a4f3c9725de454d`](https://github.com/halc8312/Mindusnista/commit/71bd9161dc3760c9b566e3070a4f3c9725de454d) を
+作業ブランチに保存し、[PR #4](https://github.com/halc8312/Mindusnista/pull/4) を main 対象で作成した。
+Git Data API の保存後、API と git fetch で読み戻し、全 tree がローカルと一致した。
+
+[CI run 34387794054](https://github.com/halc8312/Mindusnista/actions/runs/34387794054) は success。
+Ubuntu / CPython **3.10.21 と 3.13.15** の両 job のログで、各 **172 unittest / OK** と self-test 成功を確認。
+これは Python 3.10 の実実行であり、ローカルの AST 構文検査とは別の証拠。
+ジョブ情報とテスト部分の抜粋ログは上記 verification フォルダーに保存した。
+
+この資料追記後も最終 head と CI を確認し、既存のユーザー許可に従って通常マージする。
+最終 commit / マージ SHA と統合状態は PR の head / merged / merge_commit_sha および main を読み戻す。
+本資料自身のコミット・マージ SHA は自己参照しない。
 
 ## 実機と次
 
