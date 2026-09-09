@@ -17,6 +17,13 @@ import stat
 import sys
 import zipfile
 
+if __package__:
+    from .build_single_file import BundleError, SOURCE_FILES, render_script
+else:
+    # Direct CLI execution must also work in an unpacked archive without Git
+    # or the repository root on sys.path.
+    from build_single_file import BundleError, SOURCE_FILES, render_script
+
 
 MANIFEST = "tools/release_files.txt"
 SCRIPT = "mindustry_pythonista.py"
@@ -24,7 +31,7 @@ REQUIRED_FILES = frozenset({
     SCRIPT, "LICENSE", "NOTICE.md", "SOURCES.md", "README.md", "README_ja.md",
     "tools/build_release.py", MANIFEST, "tools/check_project.py",
     "tests/test_release_packaging.py", "reference/ConveyorKernelReference.java",
-    "reference/java_fixtures.json",
+    "reference/java_fixtures.json", "tools/build_single_file.py", *SOURCE_FILES,
 })
 EXCLUDED_PARTS = frozenset({
     ".git", "dist", "__pycache__", ".pytest_cache", ".dist-cache", ".venv",
@@ -118,6 +125,16 @@ def _version(script: bytes) -> str:
 
 
 def _payloads(snapshot: dict[str, bytes]) -> tuple[str, dict[str, bytes]]:
+    # Validate the exact bytes going into the source ZIP. Re-reading sources
+    # here could verify one revision while distributing a different revision.
+    try:
+        generated = render_script(snapshot)
+    except BundleError as error:
+        raise ReleaseError(f"Invalid single-file sources: {error}") from error
+    if generated != snapshot[SCRIPT]:
+        raise ReleaseError(
+            "Generated script is stale; run python tools/build_single_file.py first"
+        )
     version = _version(snapshot[SCRIPT])
     archive_name = f"Mindusnista-{version}-source.zip"
     buffer = io.BytesIO()

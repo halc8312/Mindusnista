@@ -2,56 +2,59 @@
 
 更新日: 2026-09-09。ゲーム 0.1.2-dev / 原作基準 v159.7 / 保存 schema 1。
 
-## M0-01: 基準版移入の PR 作成済み
+## 完了した基盤と統合
 
-[PR #1](https://github.com/halc8312/Mindusnista/pull/1) は今回の開始時も open・未マージ。
-基準版 head は `285582c667f56a14c4c93f018df5b5a5af696960`、main は
-`0e4ff7dfb16eeeacd206c357e6bd89f563e1fe49`（README.md のみ）。
-M0-01 の検証・保存の履歴は [M0_01_VERIFICATION_ja.md](M0_01_VERIFICATION_ja.md)。
-古い添付から再移入しない。次回も現在の main・PR・作業ツリーを再取得する。
+ユーザーの明示的なマージ許可を受け、現在の差分と CI を確認して次の順に統合した。
 
-## M0-02: 再現可能な配布出力
+| 作業 | PR | main へのマージ SHA |
+|---|---|---|
+| M0-01 基準版移入 | [#1](https://github.com/halc8312/Mindusnista/pull/1) | `75c53940181b75514131748c57e9843a6c9b74c1` |
+| M0-02 再現可能な配布出力 | [#2](https://github.com/halc8312/Mindusnista/pull/2) | `4553462a16c6113dadcbfeea193a1f9f8b2d52a4` |
 
-ユーザーの継続依頼により、M0-01 の main 統合待ちの間に、保存済み head から
-`build/reproducible-release` を作り先行実装した。基準版ブランチを対象とする依存 PR として提示する。
-main 統合という元の前提が完了したとは扱わず、main への直接 push・マージ・強制 push はしない。
+両 PR の merged=true と main を読み戻し済み。過去の検証記録にある未マージ表記は当時の状態。
+基準版を添付から再移入しない。次回も現在の main・PR・作業ツリーを再取得する。
 
-実装済み:
+## M0-03: 最初の構造分割
 
-- `tools/build_release.py`: 標準ライブラリで単体 `.py`、版付きソース ZIP、SHA256 一覧を生成。
-- `tools/release_files.txt`: 配布対象の明示一覧。私用・生成物の既知のパスを拒否。
-- `tests/test_release_packaging.py`: 本体バイト一致、再現性、再展開後の再ビルド、既存データ保護等の回帰試験。
-- `tools/check_project.py`: tools も Python 3.10 の AST 構文検査に含める。
-- [配布手順](RELEASE_ja.md) と [M0-02 の検証・保存記録](M0_02_VERIFICATION_ja.md)。
+統合済み main `4553462a16c6113dadcbfeea193a1f9f8b2d52a4` から
+`refactor/transport-kernels` を作り、次を実装した。
 
-ローカル検査: Linux / CPython 3.12.13、138 unittest（既存117 + 配布21）と self-test 成功。
-生成 `.py` の self-test と、ZIP 展開後の再ビルド同一性も成功。
-GitHub 保存・[ドラフト PR #2](https://github.com/halc8312/Mindusnista/pull/2) 作成・読み戻し済み。
-実装コミット: `55224adab4433250c31b3fd5b67ced97a63d63bd`。
-[確認済み CI run](https://github.com/halc8312/Mindusnista/actions/runs/34341672730) では
-Python 3.10.21 / 3.13.15 の各138本と self-test 成功。本記録はその後の資料追記。
-最新 head は PR で再取得し、未マージ・main 未統合という状態と区別する。
-本体・既存ゲームテスト・reference・GPL・版番号・操作・schema は変更していない。
-配布 `.py` の PC self-test と Pythonista 実機成功は別。0.1.2 の実機結果は引き続き未報告。
+- 編集元は `src/mindusnista/app.py` と `kernels.py`。後者へ純粋計算4関数・定数2個を分離。
+- `tools/build_single_file.py` が root の `mindustry_pythonista.py` を決定的に生成。
+  今回の出力は従来の本体とバイト完全一致。iPhone には引き続き一つの `.py` を渡す。
+- `python tools/build_single_file.py --check`、全体検査、配布時の同一 snapshot 検査で生成忘れを拒否。
+- 配布24本・単体生成14本の試験を整備し、既存ゲーム117本を維持。
 
-## 次: M0-03 最初の小さな構造分割
+ローカル Linux / CPython 3.12.13 で **155 unittest と self-test 成功**、失敗・エラー・skip 各0。
+Python 3.10 の AST 構文検査も成功。[PR #3](https://github.com/halc8312/Mindusnista/pull/3) に保存し、
+実装コミット `1b6f43c804d85b6b1ac610f94daf5cc5205df95e` を読み戻し済み。
+GitHub CI の CPython 3.10.21 / 3.13.15 でも各155本と self-test が成功した。
+証跡は [M0_03_VERIFICATION_ja.md](M0_03_VERIFICATION_ja.md)。この資料追記後の最終 head と
+統合状態は PR と main で確認する。ユーザーは検証後のマージを明示許可済み。
+M0 の最小単位はこれで終了し、輸送・採掘の互換性向上へ進む。
 
-前提: M0-01 → M0-02 の順に main へ統合されたことを確認する。
-基準版 PR が先に統合された場合、M0-02 の比較元を main に変更し、差分・CI を確認する。
-未統合の依存 PR を「完了済み main」として扱わない。
+開発手順: src を編集 → `python tools/build_single_file.py` →
+`python tools/check_project.py` → `python tools/build_release.py`。
+root の生成物を別の編集元として手修正しない。既存の異なる配布出力は上書きしないため、
+継続開発では `--output dist/<作業名>` で新しい出力先を選ぶ。
 
-目的: 編集元を少しずつ整理しながら、iPhone には引き続き一つの `.py` を渡す。
-M0 を際限なく拡張せず、分割の最小単位を終えたら M1 の輸送・採掘移植へ進む。
+## 次: M1-01 輸送統合の比較基盤と最初の相違
 
-最初の実装内容:
+目的: 既存の純粋計算一致から、実際の複数ベルト間の受け渡しを含む挙動の比較へ進む。
+一つの PR で扱う範囲を通常コンベアの受入・移動・隣接受け渡しに絞る。
 
-- `docs/CODE_MAP.md` と実コードを確認し、独立した輸送・採掘の純粋計算関数等から一単位を選ぶ。
-- 編集元を一つに保ち、決定的な単体ファイル出力を生成する。二つの手編集本体を作らない。
-- ゲーム挙動・定数・保存 schema・起動ガード・操作を変えず、構造の変更だけにする。
-- 配布一覧と builder を更新し、生成物でも既存ゲームテストと self-test を実行する。
-- 旧セーブ続行、単体 import、Pythonista adapter の模擬試験、配布再現性を維持する。
-- 変更前後の実行結果・本数・環境・原作と未互換の範囲を記録し、一つの PR にまとめる。
+1. v159.7 の完全コミット SHA と対象 Java ソースを確認し、参照ファイルと計算の由来を記録する。
+2. 現在の `World` 側の更新順と輸送処理を読み、直列2本、混在する搬入方向、出口停止の
+   小さなシナリオで位置・品目・個数を tick ごとに比較できる基盤を作る。
+3. 原作コードの抽出実行と原作本体の実行を区別し、比較条件・時間刻み・許容誤差・未比較部分を明記する。
+4. 確認できた最初の相違について失敗する回帰試験を先に追加し、その範囲だけ修正する。
+   個数保存、旧セーブ schema 1、起動ガード、単体配布を維持する。
+5. 単体ファイルを再生成し、全体検査・配布再現性・CI を確認して PR にする。
+   採掘全体や新設備の追加を同じ PR に混ぜない。
 
-その次は M1-01: 固定版に基づく輸送・採掘統合の比較基盤と最初の相違の修正。
-原作の完全コミット SHA と対象ソースを確認し、抽出 fixture と原作本体実行の証拠を区別する。
-実機で再現する不具合報告が届いた場合は、その回帰試験と安全な修正を先に行い予定変更を記録する。
+## 実機確認が必要なこと
+
+0.1.1 の起動成功はユーザー報告あり。**0.1.2 の実機結果は未報告**。
+起動、方向操作、タッチ、混在搬入、保存復帰、負荷を Pythonista で確認する。
+PC の模擬試験・1,504件の抽出 Java 計算比較は実機成功や原作全体互換の証拠ではない。
+実機で再現する不具合報告が届いた場合は、その回帰試験と安全な修正を優先し予定変更を記録する。

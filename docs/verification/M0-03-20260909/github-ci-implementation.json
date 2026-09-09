@@ -1,0 +1,34 @@
+{
+  "observed_at": "2026-09-09T11:30:53.452Z",
+  "repository": "halc8312/Mindusnista",
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/3",
+  "head_sha": "1b6f43c804d85b6b1ac610f94daf5cc5205df95e",
+  "tree_sha": "b7b7e3d364236acbd66944ed7c926f677c3c4eb8",
+  "base_sha": "4553462a16c6113dadcbfeea193a1f9f8b2d52a4",
+  "run_id": 34345750467,
+  "run_url": "https://github.com/halc8312/Mindusnista/actions/runs/34345750467",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 102446818585,
+      "name": "tests (3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "python_version": "3.13.15",
+      "test_count": 155,
+      "self_test": "passed"
+    },
+    {
+      "id": 102446818941,
+      "name": "tests (3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "python_version": "3.10.21",
+      "test_count": 155,
+      "self_test": "passed"
+    }
+  ],
+  "scope": "PC CI only; Pythonista device not executed; upstream Java not rerun."
+}

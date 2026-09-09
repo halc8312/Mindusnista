@@ -78,7 +78,12 @@ Pythonista本体でスクリプトを開き、▶を押します。タイトル�
 
 一部数値の変更には `content_overrides.example.json` を `content_overrides.json` として置き、編集して新規デモを開始します。
 保存済みゲームのコンテンツ定義は保存データ側から復元します。
-新設備や独自挙動を追加する場合はPython本体の編集が必要です。
+継続開発では `src/mindusnista/app.py`（World・保存・UI 等）と
+`src/mindusnista/kernels.py`（コンベア計算4関数・2定数）を編集します。
+`python tools/build_single_file.py` で root の `mindustry_pythonista.py` を再生成し、
+`python tools/check_project.py` で検査してください。root と src の両方を手編集して管理しません。
+Pythonista で開く配布ファイルは従来どおり単体 `.py`。`src/mindusnista/app.py` は開発用です。
+今回の構造分割では、新設備・ゲーム処理・操作・版番号を変えず、生成物も元とバイト一致しています。
 
 PC上では標準ライブラリーのみで次の検査を実行できます。
 
@@ -100,10 +105,11 @@ PC側はゲームロジックと模擬画面の検査です。Pythonistaの実�
 
 ## 検証・未実装
 
-117本の自動テストが成功しました。条件と限界は `TEST_REPORT.md`、実機の記録は `DEVICE_TESTS.md` を参照してください。
+0.1.2基準のゲームテスト117本を維持し、M0-03では配布・単体生成を含め155本とセルフテストが成功しました。
+今回の条件と証跡は `docs/M0_03_VERIFICATION_ja.md`、基準版の履歴は `TEST_REPORT.md`、実機の記録は `DEVICE_TESTS.md` を参照してください。
 0.1.1はユーザーから起動成功の報告がありますが、**0.1.2のiPhone実機試験はまだです**。
 電力・液体・製造・原作ユニット・研究・キャンペーン・ロジック・通信・既存MOD互換は未実装です。
-ゲームの計算処理は今回変更しておらず、操作性を改善した版です。
+方向操作の改善は0.1.2基準版の変更です。M0-03は構造分割のみで、単体本体は基準版とバイト完全一致しています。
 
 ## 出典・ライセンス
 

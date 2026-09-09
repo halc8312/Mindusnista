@@ -1,6 +1,12 @@
 > Work + GitHub への今回の引き継ぎは `START_HERE_ja.md` と `docs/HANDOFF_ja.md` を優先してください。
 > 以下は 0.1.2 に同梱された旧チャット／PC向け案内です。
 
+M0-03 以降の編集手順: `src/mindusnista/app.py` / `kernels.py` を編集 →
+`python tools/build_single_file.py` → `python tools/check_project.py` →
+`python tools/build_release.py --output dist/<未使用名>`。
+root の `.py` は生成物です。Pythonista では root / dist の単体 `.py` を開き、src の app は直接開きません。
+詳細は `docs/RELEASE_ja.md`。以下の初期開発の履歴と現在の手順を区別してください。
+
 # チャットから継続する／PC・Codexへ引き継ぐ
 
 ## 方針

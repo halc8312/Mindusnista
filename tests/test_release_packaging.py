@@ -18,6 +18,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.build_release import ReleaseError, build_release
+from tools.build_single_file import BundleError, render_script
 
 
 REQUIRED_FILES = (
@@ -25,6 +26,8 @@ REQUIRED_FILES = (
     "README_ja.md", "tools/build_release.py", "tools/release_files.txt",
     "tools/check_project.py", "tests/test_release_packaging.py",
     "reference/ConveyorKernelReference.java", "reference/java_fixtures.json",
+    "tools/build_single_file.py", "src/mindusnista/__init__.py",
+    "src/mindusnista/app.py", "src/mindusnista/kernels.py",
 )
 
 
@@ -64,15 +67,37 @@ class ReleasePackagingTests(unittest.TestCase):
             destination = self.root / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text("fixture: " + name + "\n", encoding="utf-8")
-        # Packaging must read this literal without importing or running the file.
         self.script = self.root / "mindustry_pythonista.py"
-        self.script.write_text(
+        self.app = self.root / "src/mindusnista/app.py"
+        for name in ("tools/build_release.py", "tools/build_single_file.py",
+                     "src/mindusnista/__init__.py", "src/mindusnista/kernels.py"):
+            shutil.copyfile(ROOT / name, self.root / name)
+        # Both bundling and packaging must read the literal without importing
+        # or executing the editable app or the generated runtime script.
+        self.write_app(
             'VERSION = "0.1.2-dev"\nraise RuntimeError("do not execute during packaging")\n',
-            encoding="utf-8",
         )
-        shutil.copyfile(ROOT / "tools/build_release.py", self.root / "tools/build_release.py")
         self.manifest = self.root / "tools/release_files.txt"
         self.write_manifest()
+
+    def write_app(self, body):
+        self.app.write_text(
+            "from __future__ import annotations\n"
+            "from typing import List\n"
+            "from .kernels import ITEM_SPACE, BELT_CAPACITY\n"
+            "from .kernels import clamp, approach\n"
+            "from .kernels import conveyor_accepts, advance_conveyor_positions\n"
+            + body, encoding="utf-8",
+        )
+        snapshot = {name: (self.root / name).read_bytes() for name in REQUIRED_FILES}
+        try:
+            rendered = render_script(snapshot)
+        except BundleError:
+            # Malformed syntax is intentionally used by validation tests.
+            # A syntactically valid fixture must always exercise the bundler.
+            ast.parse(body, feature_version=(3, 10))
+            raise
+        self.script.write_bytes(rendered)
 
     def write_manifest(self, names=None):
         names = self.files if names is None else names
@@ -272,6 +297,45 @@ class ReleasePackagingTests(unittest.TestCase):
             build_release(self.root)
         self.assertEqual(tree_snapshot(self.root / "dist"), before)
 
+    def test_stale_generated_script_or_changed_editable_source_is_rejected(self):
+        for name in ("mindustry_pythonista.py", "src/mindusnista/app.py",
+                     "src/mindusnista/kernels.py"):
+            with self.subTest(name=name):
+                path = self.root / name
+                original = path.read_bytes()
+                changed = (original.replace(b"ITEM_SPACE = 0.4", b"ITEM_SPACE = 0.5")
+                           if name.endswith("/kernels.py")
+                           else original + b"\n# source revision changed\n")
+                self.assertNotEqual(changed, original)
+                path.write_bytes(changed)
+                self.assert_release_rejected()
+                path.write_bytes(original)
+
+    def test_release_uses_one_source_snapshot_even_if_files_change_after_reading(self):
+        from tools import build_release as release_module
+
+        original_reader = release_module._source_snapshot
+        captured = {}
+
+        def capture_then_change(root):
+            snapshot = original_reader(root)
+            captured.update(snapshot)
+            self.app.write_bytes(b"invalid editable source\n")
+            self.script.write_bytes(b"invalid generated source\n")
+            return snapshot
+
+        with patch.object(release_module, "_source_snapshot", side_effect=capture_then_change) as reader:
+            result = build_release(self.root)
+        reader.assert_called_once_with(self.root)
+        self.assertEqual(result["script"].read_bytes(), captured["mindustry_pythonista.py"])
+        with zipfile.ZipFile(result["source_zip"]) as archive:
+            for name, content in captured.items():
+                self.assertEqual(archive.read("Mindusnista/" + name), content)
+
+    def test_invalid_editable_source_does_not_create_release_output(self):
+        self.app.write_bytes(b"from .kernels import missing_symbol\n")
+        self.assert_release_rejected()
+
     def test_output_symlink_and_symlinked_parent_leave_destination_untouched(self):
         external = self.base / "external"
         external.mkdir()
@@ -309,7 +373,12 @@ class ReleasePackagingTests(unittest.TestCase):
             'VERSION = (\n',
         )):
             with self.subTest(script=script):
-                self.script.write_text(script, encoding="utf-8")
+                try:
+                    self.write_app(script)
+                except SyntaxError:
+                    # Keep malformed input in both source locations; rejection
+                    # may happen during bundling before version extraction.
+                    self.script.write_bytes(self.app.read_bytes())
                 self.assert_release_rejected(self.base / f"invalid-version-{index}")
 
     def test_cli_runs_from_other_working_directory_and_reports_validation_error(self):
