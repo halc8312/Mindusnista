@@ -99,3 +99,6 @@ tools/check_project.py
 tools/release_files.txt
 tools/verify_handoff.py
 verification.json
+docs/verification/M0-03-20260909/ci-python-3.10.21.txt
+docs/verification/M0-03-20260909/ci-python-3.13.15.txt
+docs/verification/M0-03-20260909/github-ci-implementation.json

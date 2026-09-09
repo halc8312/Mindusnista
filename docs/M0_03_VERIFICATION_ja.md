@@ -53,7 +53,23 @@ SHA256: `953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a`。
 
 コマンド・時刻・終了コード・原文ログ・今回のバイト比較は
 [verification/M0-03-20260909/](verification/M0-03-20260909/) に記録する。
-GitHub の実装 commit / PR / CI は保存・読み戻し後に追記する。
+
+## GitHub 保存と CI
+
+実装コミット [`1b6f43c804d85b6b1ac610f94daf5cc5205df95e`](https://github.com/halc8312/Mindusnista/commit/1b6f43c804d85b6b1ac610f94daf5cc5205df95e) を
+作業ブランチに保存し、[#3](https://github.com/halc8312/Mindusnista/pull/3) を main 対象で作成した。
+GitHub の commit / branch / PR とローカルの全 tree を比較して一致を確認。
+ソース保存は Git Data API、読み戻しは API と git fetch を使用した。
+
+[実装コミットの CI run 34345750467](https://github.com/halc8312/Mindusnista/actions/runs/34345750467) は success。
+Ubuntu / CPython **3.10.21** と **3.13.15** の両 job ログから、各 **155 unittest / OK** と
+self-test 成功を読み戻した。ローカルの AST 検査とは別に Python 3.10 実行も確認できた。
+ジョブ情報とテスト部分のログ抜粋は `github-ci-implementation.json` と `ci-python-*.txt` に保存。
+
+この追記は上記実装コミットの後に行う資料更新。
+最終 head の CI を再確認し、明示許可に従い expected head SHA を指定して通常マージする。
+このファイル自身のコミット SHA やマージ SHA は自己参照できないため、
+最終の統合状態と SHA は PR の merged / merge_commit_sha と main を読み戻して確認する。
 
 ## 実機と次の作業
 

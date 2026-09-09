@@ -26,8 +26,11 @@
 - 配布24本・単体生成14本の試験を整備し、既存ゲーム117本を維持。
 
 ローカル Linux / CPython 3.12.13 で **155 unittest と self-test 成功**、失敗・エラー・skip 各0。
-Python 3.10 の AST 構文検査も成功。保存・CI の証跡は
-[M0_03_VERIFICATION_ja.md](M0_03_VERIFICATION_ja.md) に追記する。
+Python 3.10 の AST 構文検査も成功。[PR #3](https://github.com/halc8312/Mindusnista/pull/3) に保存し、
+実装コミット `1b6f43c804d85b6b1ac610f94daf5cc5205df95e` を読み戻し済み。
+GitHub CI の CPython 3.10.21 / 3.13.15 でも各155本と self-test が成功した。
+証跡は [M0_03_VERIFICATION_ja.md](M0_03_VERIFICATION_ja.md)。この資料追記後の最終 head と
+統合状態は PR と main で確認する。ユーザーは検証後のマージを明示許可済み。
 M0 の最小単位はこれで終了し、輸送・採掘の互換性向上へ進む。
 
 開発手順: src を編集 → `python tools/build_single_file.py` →
