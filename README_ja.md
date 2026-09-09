@@ -8,6 +8,9 @@
 [今回の検証記録](docs/M0_01_VERIFICATION_ja.md) と [次の作業](docs/NEXT_TASK_ja.md) を参照。
 0.1.1 の起動成功はユーザー報告あり。0.1.2 の実機結果は未報告です。
 
+M0-02 で `python tools/build_release.py` による単体 `.py`・ソース ZIP・SHA256 の生成を追加しました。
+ゲーム本体は同じバイト列です。[配布の手順と出力先の保護](docs/RELEASE_ja.md) を参照。
+
 ## iPhoneで更新
 
 ゲーム画面を×で閉じ、今までと同じフォルダーの `mindustry_pythonista.py` をこの版に差し替えます。
