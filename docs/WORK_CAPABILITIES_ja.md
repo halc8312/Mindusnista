@@ -1,5 +1,18 @@
 # Work で最初に確認する能力
 
+## M0-01 での実測（2026-09-09）
+
+添付の展開・編集、CPython 3.12.13 実行、GitHub API の読取、git clone / fetch は成功。
+通常の git push は CLI 認証手段なしで失敗（終了128）した。
+別途 Work の GitHub 書込機能で branch / tree / commit 作成と非強制 ref 更新が成功し、
+[PR #1](https://github.com/halc8312/Mindusnista/pull/1) を作成・再取得した。
+GitHub Actions は Python 3.10.21 / 3.13.15 で各117本と self-test 成功を実際に確認。
+この会話には Pythonista 実機を実行する手段はなく、0.1.2 実機は未報告。
+詳細・根拠は [M0-01 検証記録](M0_01_VERIFICATION_ja.md)。
+以下の一般的な案内・初回添付時の履歴から、将来の能力を断定しないこと。
+
+## 次回も確認する項目
+
 この引き継ぎでは特定モデルの利用可否を前提にしません。
 Work が実際に提供するツールと認証を調べ、次の状態を分けて報告します。
 

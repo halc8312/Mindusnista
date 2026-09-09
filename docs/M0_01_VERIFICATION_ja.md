@@ -39,12 +39,17 @@
 | 未編集添付 | `python tools/verify_handoff.py` | 終了0、マニフェスト記載58ファイル一致 |
 | 未編集添付 | `python tools/check_project.py` | 終了0、117 unittest、self-test 成功 |
 | 移入後 | `python tools/check_project.py` | 終了0、117 unittest、self-test 成功 |
+| GitHub Actions / Python 3.10.21 | `python tools/check_project.py` | ジョブ成功、117 unittest、self-test 成功 |
+| GitHub Actions / Python 3.13.15 | `python tools/check_project.py` | ジョブ成功、117 unittest、self-test 成功 |
 
 未編集添付・移入後とも unittest は117本、失敗0、エラー0、skip 0。
 内訳: engine 54、Pythonista adapter 14、startup regressions 21、rotation controls 28。
 self-test は輸送・採掘・保存復元・決定的続行を検査し、117本には加算しない。
 Python 3.10 構文検査は本体と tests の `ast.parse(feature_version=(3, 10))`。
-Python 3.10 インタープリターの実行試験とは別。
+Python 3.10 インタープリターの実行試験とは別。上表の GitHub Actions では実際の
+3.10.21 / 3.13.15 で実行したことをログの Interpreter 行から確認した。
+CI 環境は `Linux-6.17.0-1022-azure-x86_64-with-glibc2.39`、GCC 13.3.0。
+CI も各117本、失敗0、エラー0、skip 0。
 
 既存 Java fixture は1,504件（コンベア位置120、受入1,344、乾式採掘40）を3本の
 unittest メソッド内で再利用。Java の再実行・fixture 再生成・原作全体の headless 実行は未実施。
@@ -62,9 +67,25 @@ unittest メソッド内で再利用。Java の再実行・fixture 再生成・�
 
 ## GitHub 保存と CI
 
-ローカル移入・検査済み。commit / push / PR / CI はこの記録作成時点では未確認。
-保存操作と読み戻し後に結果を追記する。`push: true` の表示だけでは書込成功としない。
-main への直接 push・マージ・強制 push、公開範囲・保護設定の変更は行わない。
+- 通常の `git push --set-upstream origin HEAD:refs/heads/bootstrap/pythonista-0.1.2` は終了128。
+  `could not read Username for 'https://github.com': terminal prompts disabled`。CLI 用の認証手段がない。
+- Work の GitHub 書込機能で、開始時 main からブランチ作成、tree / commit 作成、
+  `force=false` のブランチ更新に実際に成功。権限表示だけから成功を推測していない。
+- 初回移入コミット: [efdf3377bf63b372c26b3fc0dbf21c8cbc5f8d51](https://github.com/halc8312/Mindusnista/commit/efdf3377bf63b372c26b3fc0dbf21c8cbc5f8d51)。
+  parent は開始時 main。tree は `b21f770311591e30be4b8ba4a7e4ace8c5029b35`。
+  GitHub から commit・branch ref・再帰 tree の69ファイルを読み戻し、検査済みローカル tree と一致。
+- PR: [#1](https://github.com/halc8312/Mindusnista/pull/1)。
+  `bootstrap/pythonista-0.1.2` → `main`、open、未マージを再取得して確認。
+- CI: [run 34338852244](https://github.com/halc8312/Mindusnista/actions/runs/34338852244)、
+  `pull_request`、対象 head は上記移入コミット、結果 success。
+  `tests (3.10)` job `102424595927` と `tests (3.13)` job `102424595628` の
+  完了状態・テストステップ成功・Interpreter 行・117本・self-test 成功を取得。
+- `github-import-receipt.json` に読み戻しの要約、`ci-python310-check-project.txt` と
+  `ci-python313-check-project.txt` にテスト部分のログ抜粋を保存した。
+- 本記録の確定追記は移入コミットより後の文書更新。上記 SHA / CI は明記した対象の記録であり、
+  将来の head 全体の CI 成功を意味しない。最新 head と CI は PR から再取得する。
+- **GitHub 保存・PR 作成済み、main 未統合**。
+  main への直接 push・マージ・強制 push、公開範囲・保護設定の変更は実施していない。
 
 ## 実機の状態と次の作業
 

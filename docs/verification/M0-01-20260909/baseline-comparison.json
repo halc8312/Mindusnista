@@ -1,13 +1,14 @@
 {
   "archive_files": 59,
-  "unchanged_count": 53,
+  "unchanged_count": 52,
   "modified_paths": [
     "DEVICE_TESTS.md",
     "PORT_STATUS.md",
     "README.md",
     "README_ja.md",
     "docs/HANDOFF_ja.md",
-    "docs/NEXT_TASK_ja.md"
+    "docs/NEXT_TASK_ja.md",
+    "docs/WORK_CAPABILITIES_ja.md"
   ],
   "immutable_files": [
     {
