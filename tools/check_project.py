@@ -13,7 +13,9 @@ def main() -> int:
     print("Interpreter:", sys.version.replace("\n", " "), flush=True)
     print("OS:", platform.platform(), flush=True)
     try:
-        files = [root / "mindustry_pythonista.py"] + list((root / "tests").glob("*.py"))
+        files = ([root / "mindustry_pythonista.py"]
+                 + list((root / "tests").glob("*.py"))
+                 + list((root / "tools").glob("*.py")))
         for path in files:
             ast.parse(path.read_text(encoding="utf-8"), filename=str(path), feature_version=(3, 10))
         print("Python 3.10 syntax: PASS (not a Python 3.10 runtime test)", flush=True)

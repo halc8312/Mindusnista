@@ -1,0 +1,49 @@
+{
+  "base_commit": "285582c667f56a14c4c93f018df5b5a5af696960",
+  "files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "3c30c767ada717dd851b8b760c0fa67e7033796e5961591b9dbe92e0f0f999e6"
+    },
+    {
+      "path": "SOURCES.md",
+      "sha256": "2a6530f59740435da5ae2c2a90f07f36171e69f6acd7b66dbe7a64fda94384d4"
+    },
+    {
+      "path": "reference/ConveyorKernelReference.java",
+      "sha256": "ff4e48c033f6efcf3981fe9727484d2d81b31ae0d1123a67fe1cd5c2e5107efc"
+    },
+    {
+      "path": "reference/java_fixtures.json",
+      "sha256": "2c8500aa35c51d752411e8a4c7a3ca52cd9979183b991af8d215ebc0102c68fb"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "sha256": "cf816d9905525ed9e5d3f0d18596d2da40c6bb3fc3a72dac970415ccd857a79a"
+    },
+    {
+      "path": "tests/test_pythonista_adapter.py",
+      "sha256": "c336c7388e2f40a0b3ac569611ce0d3c859568b1d0c6964523e16f3b2879af2f"
+    },
+    {
+      "path": "tests/test_rotation_controls.py",
+      "sha256": "c7422d7c914c041bff67d5a5fa416d242425824f56560b50d590c454ef26535b"
+    },
+    {
+      "path": "tests/test_startup_regressions.py",
+      "sha256": "744c31477d57119d100448d28533973c47e3064e11a272c74cd804e548e7cb02"
+    },
+    {
+      "path": "tests/pythonista_stub.py",
+      "sha256": "8f4e731ab7436968ba6f7da51cba073186804c17c8142d886a7a95e59941f864"
+    }
+  ]
+}
