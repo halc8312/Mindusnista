@@ -25,7 +25,12 @@ main 統合という元の前提が完了したとは扱わず、main への直�
 - [配布手順](RELEASE_ja.md) と [M0-02 の検証・保存記録](M0_02_VERIFICATION_ja.md)。
 
 ローカル検査: Linux / CPython 3.12.13、138 unittest（既存117 + 配布21）と self-test 成功。
-生成 `.py` の self-test と、ZIP 展開後の再ビルド同一性も成功。GitHub 保存・PR・CI は保存後に更新する。
+生成 `.py` の self-test と、ZIP 展開後の再ビルド同一性も成功。
+GitHub 保存・[ドラフト PR #2](https://github.com/halc8312/Mindusnista/pull/2) 作成・読み戻し済み。
+実装コミット: `55224adab4433250c31b3fd5b67ced97a63d63bd`。
+[確認済み CI run](https://github.com/halc8312/Mindusnista/actions/runs/34341672730) では
+Python 3.10.21 / 3.13.15 の各138本と self-test 成功。本記録はその後の資料追記。
+最新 head は PR で再取得し、未マージ・main 未統合という状態と区別する。
 本体・既存ゲームテスト・reference・GPL・版番号・操作・schema は変更していない。
 配布 `.py` の PC self-test と Pythonista 実機成功は別。0.1.2 の実機結果は引き続き未報告。
 

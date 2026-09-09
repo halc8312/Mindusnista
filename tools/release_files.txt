@@ -50,6 +50,9 @@ docs/verification/M0-02-20260909/after-check-project.json
 docs/verification/M0-02-20260909/after-check-project.txt
 docs/verification/M0-02-20260909/before-check-project.json
 docs/verification/M0-02-20260909/before-check-project.txt
+docs/verification/M0-02-20260909/ci-python310-check-project.txt
+docs/verification/M0-02-20260909/ci-python313-check-project.txt
+docs/verification/M0-02-20260909/github-implementation-receipt.json
 docs/verification/M0-02-20260909/packaging-regressions-after-fix.txt
 docs/verification/M0-02-20260909/packaging-regressions-before-fix.txt
 docs/verification/M0-02-20260909/unchanged-runtime.json

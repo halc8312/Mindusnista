@@ -43,7 +43,24 @@ checksum を最後に書く。I/O 失敗では部分生成が残り得るが、�
 基準コミットと同一であることを記録している。
 配布 ZIP を展開した Git のないソースでも `python tools/check_project.py` を実行し、
 138本と self-test 成功を確認（`unpacked-check-project.txt`）。
-GitHub commit / PR / CI は保存と読み戻し後に確定する。
+GitHub Actions でも Python **3.10.21 / 3.13.15** で各138本と self-test 成功。
+環境は Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 / GCC 13.3.0。
+ジョブ状態に加え Interpreter 行・テスト実数・self-test のログを取得した。
+
+## GitHub 保存
+
+- 実装コミット: [55224adab4433250c31b3fd5b67ced97a63d63bd](https://github.com/halc8312/Mindusnista/commit/55224adab4433250c31b3fd5b67ced97a63d63bd)。
+- tree: `cbd704190ddcecb264148f70e020a0e7b64d821a`。保存後に commit と branch ref を読み戻し、
+  git fetch した内容とローカルの全 tree が同一であることを確認した。
+- PR: [#2](https://github.com/halc8312/Mindusnista/pull/2)、open / draft / 未マージ。
+  `build/reproducible-release` → `bootstrap/pythonista-0.1.2`。PR #1 に依存する。
+- CI: [run 34341672730](https://github.com/halc8312/Mindusnista/actions/runs/34341672730)、上記実装コミット、success。
+  Python 3.10 job `102433656514` / Python 3.13 job `102433656741`。
+- 前回と同じ GitHub 書込機能によるコミット作成・非強制 ref 更新で保存。CLI の認証情報は求めていない。
+- `github-implementation-receipt.json` に読み戻し要約、`ci-python310-check-project.txt` /
+  `ci-python313-check-project.txt` にテストログ抜粋を保存した。
+- 本記録の確定追記は実装コミットより後の資料変更。最新 head とその CI は PR から再取得する。
+  **M0-01 / M0-02 とも main 未統合**。main への直接 push・マージ・強制 push は実施していない。
 
 本体 SHA256（変更しない基準）:
 `953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a`。
