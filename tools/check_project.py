@@ -15,10 +15,13 @@ def main() -> int:
     try:
         files = ([root / "mindustry_pythonista.py"]
                  + list((root / "tests").glob("*.py"))
-                 + list((root / "tools").glob("*.py")))
+                 + list((root / "tools").glob("*.py"))
+                 + list((root / "src").rglob("*.py")))
         for path in files:
             ast.parse(path.read_text(encoding="utf-8"), filename=str(path), feature_version=(3, 10))
         print("Python 3.10 syntax: PASS (not a Python 3.10 runtime test)", flush=True)
+        subprocess.run([sys.executable, str(root / "tools/build_single_file.py"), "--check"],
+                       cwd=root, check=True, timeout=30)
         for args in (("-m", "unittest", "discover", "-s", "tests", "-v"),
                      ("mindustry_pythonista.py", "--self-test")):
             subprocess.run([sys.executable, *args], cwd=root, check=True, timeout=180)

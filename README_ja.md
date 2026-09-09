@@ -78,7 +78,12 @@ Pythonista本体でスクリプトを開き、▶を押します。タイトル�
 
 一部数値の変更には `content_overrides.example.json` を `content_overrides.json` として置き、編集して新規デモを開始します。
 保存済みゲームのコンテンツ定義は保存データ側から復元します。
-新設備や独自挙動を追加する場合はPython本体の編集が必要です。
+継続開発では `src/mindusnista/app.py`（World・保存・UI 等）と
+`src/mindusnista/kernels.py`（コンベア計算4関数・2定数）を編集します。
+`python tools/build_single_file.py` で root の `mindustry_pythonista.py` を再生成し、
+`python tools/check_project.py` で検査してください。root と src の両方を手編集して管理しません。
+Pythonista で開く配布ファイルは従来どおり単体 `.py`。`src/mindusnista/app.py` は開発用です。
+今回の構造分割では、新設備・ゲーム処理・操作・版番号を変えず、生成物も元とバイト一致しています。
 
 PC上では標準ライブラリーのみで次の検査を実行できます。
 

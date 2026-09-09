@@ -1,9 +1,12 @@
 # Pythonista 用の配布を作る
 
 Python 3.10 以上の標準ライブラリだけで実行できます。Git・pip・ネット接続は不要です。
-ゲーム本体の編集元は引き続き root の `mindustry_pythonista.py` 一つです。
+ゲーム本体の編集元は `src/mindusnista/app.py` と `kernels.py` です。
+root の `mindustry_pythonista.py` はチェックインする生成物で、手編集の編集元を二重に持ちません。
+Pythonista へ渡すのは root または dist の単体 `.py`。src の app を直接実行する必要はありません。
 
 ```sh
+python tools/build_single_file.py
 python tools/check_project.py
 python tools/build_release.py
 python dist/mindustry_pythonista.py --self-test
@@ -22,10 +25,14 @@ python tools/build_release.py --output dist/review-01
 
 | ファイル | 内容 |
 |---|---|
-| `mindustry_pythonista.py` | 編集元とバイト一致する iPhone 用ファイル |
+| `mindustry_pythonista.py` | 再生成済み root 本体とバイト一致する iPhone 用ファイル |
 | `Mindusnista-0.1.2-dev-source.zip` | ソース・テスト・参照・LICENSE/NOTICE・資料。最上位は `Mindusnista/` |
 | `SHA256SUMS.txt` | 上記 `.py` と ZIP の SHA256。自身のハッシュは含めない |
 
+配布前に、同じ入力 snapshot の src から生成したバイト列と root 本体が一致するか確認します。
+不一致なら出力せず、上記の再生成コマンドを案内します。検査が勝手に root を修復することはありません。
+`python tools/build_single_file.py --check` でも書き込まずに更新漏れを検出できます。
+単体生成は明示した6定義の原文を元の位置へ展開し、実行時のパッケージ読込・exec・sys.path 操作を加えません。
 版名はゲーム本体の `VERSION` 文字列を AST で読みます。本体を import・実行して版名を得ることはありません。
 `build_release.py` 自体はゲームの正しさを検査しないので、上の検査コマンドも実行してください。
 本体の版番号、ゲーム処理、保存 schema 1、起動ガード、操作は変更しません。

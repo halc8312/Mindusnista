@@ -2,6 +2,18 @@
 
 本体を変更せず AST から作成した案内です。行番号は 0.1.2-dev 限定。後の変更では検索を優先します。
 
+M0-03 から root の本体は生成物です。編集元は次の二つです。
+
+| 編集元 | 対象 |
+|---|---|
+| `src/mindusnista/kernels.py` | ITEM_SPACE / BELT_CAPACITY、clamp / approach / conveyor_accepts / advance_conveyor_positions |
+| `src/mindusnista/app.py` | World・採掘・コンテンツ・保存・起動・Pythonista UI・GPL 全文 |
+
+`tools/build_single_file.py` が app の明示した relative imports を kernels の原文で置換します。
+編集後は再生成し、`--check` と `tools/check_project.py` で更新漏れを確認します。
+今回、生成物は元とバイト一致するため下表の行番号も保持しています。
+分割対象を増やす場合は bundler の `EXPORTS`・対応テスト・配布一覧も更新します。
+
 | 名前 | 行 |
 |---|---|
 | `clamp` | 88–89 |

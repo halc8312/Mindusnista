@@ -33,6 +33,10 @@ M0-02 では [配布生成](docs/RELEASE_ja.md) を実装しました。
 `python tools/build_release.py` で本体と一致する単体 `.py`、ソース ZIP、SHA256 一覧を生成できます。
 配布対象は明示したファイルのみで、既存の異なる出力を上書きしません。
 
+M0-03 から編集元は `src/mindusnista/`、root の `mindustry_pythonista.py` は生成物です。
+`python tools/build_single_file.py` → `python tools/check_project.py` の順に更新・検査します。
+iPhone では従来どおり生成した単体 `.py` を開きます。今回の生成物は分割前とバイト一致します。
+
 ## 現在できること／できないこと
 
 コア、ドリル、ベルト、ルーター、デュオ、銅の壁を使う小さなデモです。
