@@ -179,6 +179,7 @@ class RotationControlsTests(unittest.TestCase):
         self.press('direction-1')
         p, q = self.point(16.5, 12.5), self.point(20.5, 12.5)
         s.touch_began(touch(1, p))
+        s._clock += m.BUILD_HOLD_SECONDS  # Keep testing intentional brush strokes.
         s.touch_moved(touch(1, q))
         s.touch_ended(touch(1, q))
         self.assertEqual(b.rotation, 2)
@@ -190,6 +191,7 @@ class RotationControlsTests(unittest.TestCase):
         s.perform('conveyor')
         p, q, r = self.point(16.5,12.5), self.point(18.5,12.5), self.point(20.5,12.5)
         s.touch_began(touch(1, p))
+        s._clock += m.BUILD_HOLD_SECONDS
         s.touch_moved(touch(1, q))
         self.press('direction-3', tid=2)
         s.touch_moved(touch(1, r))

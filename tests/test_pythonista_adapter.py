@@ -165,6 +165,7 @@ class PythonistaAdapterTests(unittest.TestCase):
         p=self.world_point(16.5,12.5)
         q=self.world_point(20.5,12.5)
         s.touch_began(touch(1,p))
+        s._clock += m.BUILD_HOLD_SECONDS  # Explicitly arm continuous placement.
         s.touch_moved(touch(1,q))
         s.touch_ended(touch(1,q))
         for x in range(16,21):

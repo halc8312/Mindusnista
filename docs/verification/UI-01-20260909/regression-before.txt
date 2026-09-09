@@ -1,0 +1,213 @@
+test_directional_nudges_only_move_the_candidate_one_tile (test_placement_controls.PlacementControlsTests.test_directional_nudges_only_move_the_candidate_one_tile) ... ERROR
+test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) ...
+  test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='conveyor') ... FAIL
+  test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='copper-wall') ... FAIL
+  test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='erase') ... FAIL
+test_hold_then_slide_keeps_contiguous_build_and_erase (test_placement_controls.PlacementControlsTests.test_hold_then_slide_keeps_contiguous_build_and_erase) ... ok
+test_large_release_jump_without_move_event_does_not_build (test_placement_controls.PlacementControlsTests.test_large_release_jump_without_move_event_does_not_build) ... FAIL
+test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) ...
+  test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='toolbar') ... FAIL
+  test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='left') ... FAIL
+  test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='right') ... FAIL
+test_movement_before_hold_threshold_cancels_this_touch (test_placement_controls.PlacementControlsTests.test_movement_before_hold_threshold_cancels_this_touch) ... FAIL
+test_nudges_clamp_the_whole_footprint_and_follow_offscreen_candidate (test_placement_controls.PlacementControlsTests.test_nudges_clamp_the_whole_footprint_and_follow_offscreen_candidate) ... ERROR
+test_pinch_resize_menu_and_pause_cancel_held_placement (test_placement_controls.PlacementControlsTests.test_pinch_resize_menu_and_pause_cancel_held_placement) ...
+  test_pinch_resize_menu_and_pause_cancel_held_placement (test_placement_controls.PlacementControlsTests.test_pinch_resize_menu_and_pause_cancel_held_placement) (action='pause') ... FAIL
+test_place_button_commits_candidate_once_with_normal_cost (test_placement_controls.PlacementControlsTests.test_place_button_commits_candidate_once_with_normal_cost) ... ERROR
+test_place_button_reorients_existing_belt_without_cargo_or_hp_loss (test_placement_controls.PlacementControlsTests.test_place_button_reorients_existing_belt_without_cargo_or_hp_loss) ... ERROR
+test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) ...
+  test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='position-mode') ... FAIL
+  test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='move-0') ... FAIL
+  test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='place-preview') ... FAIL
+test_position_map_tap_and_slide_are_preview_only (test_placement_controls.PlacementControlsTests.test_position_map_tap_and_slide_are_preview_only) ... FAIL
+test_position_mode_reuses_six_buttons_and_three_rows (test_placement_controls.PlacementControlsTests.test_position_mode_reuses_six_buttons_and_three_rows) ... ERROR
+test_small_jitter_across_low_zoom_tile_edge_taps_start_tile (test_placement_controls.PlacementControlsTests.test_small_jitter_across_low_zoom_tile_edge_taps_start_tile) ... FAIL
+test_wave_remains_reachable_and_position_control_is_for_build_tools (test_placement_controls.PlacementControlsTests.test_wave_remains_reachable_and_position_control_is_for_build_tools) ... FAIL
+
+======================================================================
+ERROR: test_directional_nudges_only_move_the_candidate_one_tile (test_placement_controls.PlacementControlsTests.test_directional_nudges_only_move_the_candidate_one_tile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 114, in test_directional_nudges_only_move_the_candidate_one_tile
+    self.press('move-%d' % rotation)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 45, in press
+    button = next(b for b in buttons if b['action'] == action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_nudges_clamp_the_whole_footprint_and_follow_offscreen_candidate (test_placement_controls.PlacementControlsTests.test_nudges_clamp_the_whole_footprint_and_follow_offscreen_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 126, in test_nudges_clamp_the_whole_footprint_and_follow_offscreen_candidate
+    self.press('move-2')
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 45, in press
+    button = next(b for b in buttons if b['action'] == action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_place_button_commits_candidate_once_with_normal_cost (test_placement_controls.PlacementControlsTests.test_place_button_commits_candidate_once_with_normal_cost)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 162, in test_place_button_commits_candidate_once_with_normal_cost
+    self.press('place-preview')
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 45, in press
+    button = next(b for b in buttons if b['action'] == action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_place_button_reorients_existing_belt_without_cargo_or_hp_loss (test_placement_controls.PlacementControlsTests.test_place_button_reorients_existing_belt_without_cargo_or_hp_loss)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 182, in test_place_button_reorients_existing_belt_without_cargo_or_hp_loss
+    self.press('place-preview')
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 45, in press
+    button = next(b for b in buttons if b['action'] == action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_position_mode_reuses_six_buttons_and_three_rows (test_placement_controls.PlacementControlsTests.test_position_mode_reuses_six_buttons_and_three_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 57, in test_position_mode_reuses_six_buttons_and_three_rows
+    self.assertFalse(s.position_mode)
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'MindustryScene' object has no attribute 'position_mode'
+
+======================================================================
+FAIL: test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='conveyor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 219, in test_early_slide_cannot_paint_or_erase_even_after_waiting
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[1534 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 68815 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='copper-wall')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 219, in test_early_slide_cannot_paint_or_erase_even_after_waiting
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'copper-wall', 'x': [1554 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 68835 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_early_slide_cannot_paint_or_erase_even_after_waiting (test_placement_controls.PlacementControlsTests.test_early_slide_cannot_paint_or_erase_even_after_waiting) (tool='erase')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 219, in test_early_slide_cannot_paint_or_erase_even_after_waiting
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}} != {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[1534 chars]: 0}}
+Diff is 68761 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_large_release_jump_without_move_event_does_not_build (test_placement_controls.PlacementControlsTests.test_large_release_jump_without_move_event_does_not_build)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 257, in test_large_release_jump_without_move_event_does_not_build
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 20,[506 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 66495 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='toolbar')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 286, in test_leaving_viewport_cancels_even_if_touch_returns_after_hold
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[1020 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 67655 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='left')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 286, in test_leaving_viewport_cancels_even_if_touch_returns_after_hold
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[4610 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 75767 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_leaving_viewport_cancels_even_if_touch_returns_after_hold (test_placement_controls.PlacementControlsTests.test_leaving_viewport_cancels_even_if_touch_returns_after_hold) (edge='right')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 286, in test_leaving_viewport_cancels_even_if_touch_returns_after_hold
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[4104 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 74615 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_movement_before_hold_threshold_cancels_this_touch (test_placement_controls.PlacementControlsTests.test_movement_before_hold_threshold_cancels_this_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 249, in test_movement_before_hold_threshold_cancels_this_touch
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[1020 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 67655 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_pinch_resize_menu_and_pause_cancel_held_placement (test_placement_controls.PlacementControlsTests.test_pinch_resize_menu_and_pause_cancel_held_placement) (action='pause')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 310, in test_pinch_resize_menu_and_pause_cancel_held_placement
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[1020 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 67655 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='position-mode')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 198, in test_position_actions_cancel_old_map_touches_before_release
+    self.assertFalse(s.gestures)
+AssertionError: {1: {'start': (209.4, 440.1), 'last': (209.4, 440.1), 'tile': (17, 12), 'drag': False, 'pinched': False}} is not false
+
+======================================================================
+FAIL: test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='move-0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 198, in test_position_actions_cancel_old_map_touches_before_release
+    self.assertFalse(s.gestures)
+AssertionError: {1: {'start': (209.4, 440.1), 'last': (209.4, 440.1), 'tile': (17, 12), 'drag': False, 'pinched': False}} is not false
+
+======================================================================
+FAIL: test_position_actions_cancel_old_map_touches_before_release (test_placement_controls.PlacementControlsTests.test_position_actions_cancel_old_map_touches_before_release) (action='place-preview')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 198, in test_position_actions_cancel_old_map_touches_before_release
+    self.assertFalse(s.gestures)
+AssertionError: {1: {'start': (209.4, 440.1), 'last': (209.4, 440.1), 'tile': (17, 12), 'drag': False, 'pinched': False}} is not false
+
+======================================================================
+FAIL: test_position_map_tap_and_slide_are_preview_only (test_placement_controls.PlacementControlsTests.test_position_map_tap_and_slide_are_preview_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 147, in test_position_map_tap_and_slide_are_preview_only
+    self.assertEqual(s.world.to_dict(), before)
+AssertionError: {'for[17623 chars]': 0}, {'id': 22, 'kind': 'conveyor', 'x': 16,[506 chars]: 0}} != {'for[17623 chars]': 0}], 'enemies': [], 'bullets': [], 'stock':[249 chars]: 0}}
+Diff is 66495 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_small_jitter_across_low_zoom_tile_edge_taps_start_tile (test_placement_controls.PlacementControlsTests.test_small_jitter_across_low_zoom_tile_edge_taps_start_tile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 268, in test_small_jitter_across_low_zoom_tile_edge_taps_start_tile
+    self.assertIsNotNone(s.world.at(17, 12))
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_wave_remains_reachable_and_position_control_is_for_build_tools (test_placement_controls.PlacementControlsTests.test_wave_remains_reachable_and_position_control_is_for_build_tools)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_placement_controls.py", line 94, in test_wave_remains_reachable_and_position_control_is_for_build_tools
+    self.assertIn('position-mode', [b['action'] for b in s.buttons])
+AssertionError: 'position-mode' not found in ['mechanical-drill', 'conveyor', 'router', 'duo', 'copper-wall', 'pan', 'erase', 'pause', 'wave', 'menu', 'rotate', 'direction-2', 'direction-1', 'direction-3', 'direction-0', 'rotate-cw']
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.985s
+
+FAILED (failures=15, errors=5)

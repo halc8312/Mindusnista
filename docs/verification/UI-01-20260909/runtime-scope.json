@@ -1,0 +1,10 @@
+{
+  "base_commit": "4a93f6b294e1656fa8710cda1126031cbe0da392",
+  "world_ast_unchanged": true,
+  "kernel_bytes_unchanged": true,
+  "old_runtime_sha256": "953ead54eb54bea25c7032cb673d178ef9e61e68880e77ec7382f9ae6a417f2a",
+  "new_runtime_sha256": "843a84cc8076491b4666ef59f2c9732dc170d0bf5b0db193faa1406ae8519eff",
+  "version": "0.1.2-dev",
+  "schema": 1,
+  "upstream": "v159.7"
+}

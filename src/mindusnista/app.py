@@ -50,6 +50,8 @@ SAVE_FORMAT = "mindustry-pythonista-dev"
 SAVE_VERSION = 1
 TPS = 60
 TILE = 32
+TOUCH_SLOP = 7  # Screen points, independent of map zoom.
+BUILD_HOLD_SECONDS = .35
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 ARROWS = ("→", "↑", "←", "↓")
 ITEMS = ("copper", "lead")
@@ -1197,6 +1199,7 @@ def make_scene_class(sc, ui):
             self.sim_speed = 1
             self.tool = "pan"
             self.build_rotation = 0
+            self.position_mode = False
             self.preview_tile = None
             self.selected_id = None
             self.message = ""
@@ -1344,10 +1347,12 @@ def make_scene_class(sc, ui):
                                     int((w-10)/max(1, title_units))))
             label = sc.LabelNode(title, font=("Helvetica", font_size),
                                  color="#eff0e5", position=(0, 5 if subtitle else 0), parent=bg)
+            sublabel = None
             if subtitle:
-                sc.LabelNode(subtitle, font=("Helvetica", 10), color="#bfc2b7",
-                             position=(0, -13), parent=bg)
-            record = {"action": action, "rect": box, "bg": bg, "label": label}
+                sublabel = sc.LabelNode(subtitle, font=("Helvetica", 10), color="#bfc2b7",
+                                        position=(0, -13), parent=bg)
+            record = {"action": action, "rect": box, "bg": bg, "label": label,
+                      "subtitle": sublabel}
             (group if group is not None else self.buttons).append(record)
             return record
 
@@ -1379,13 +1384,16 @@ def make_scene_class(sc, ui):
                 self.add_button(self.hud, kind, spec["label"],
                                 (edge+col*(width+5), bottom+102, width, 46), cost)
             # Keep the same three-row footprint, including in landscape.
-            # The entire middle row is now dedicated to direction controls.
+            # Reuse the wave slot during building instead of adding small buttons.
+            contextual = (("position-mode", "マス操作") if self.tool in BUILD_TOOLS
+                          else ("wave", "ウェーブ"))
             for col, (action, title) in enumerate((
                 ("pan", "移動/調査"), ("erase", "撤去"), ("pause", "停止"),
-                ("wave", "ウェーブ"), ("menu", "メニュー"),
+                contextual, ("menu", "メニュー"),
             )):
                 self.add_button(self.hud, action, title,
-                                (edge+col*(width+5), bottom, width, 46))
+                                (edge+col*(width+5), bottom, width, 46),
+                                ("ON" if self.position_mode else "OFF") if action == "position-mode" else None)
             gap = 4
             rotation_width = (self.size.w-edge*2-gap*5)/6
             rotations = (("rotate", "↶", "左90°"),
@@ -1394,11 +1402,18 @@ def make_scene_class(sc, ui):
                          ("direction-3", "↓", "下向き"),
                          ("direction-0", "→", "右向き"),
                          ("rotate-cw", "↷", "右90°"))
+            if self.position_mode:
+                rotations = (("rotate", "↶", "向き回転"),
+                             ("move-2", "←", "左1マス"),
+                             ("move-1", "↑", "上1マス"),
+                             ("move-3", "↓", "下1マス"),
+                             ("move-0", "→", "右1マス"),
+                             ("place-preview", "置く", "確定"))
             for col, (action, title, subtitle) in enumerate(rotations):
                 button = self.add_button(self.hud, action, title,
                     (edge+col*(rotation_width+gap), bottom+51, rotation_width, 46),
                     subtitle)
-                button["label"].font = ("Helvetica-Bold", 23)
+                button["label"].font = ("Helvetica-Bold", 18 if action == "place-preview" else 23)
             self.update_camera()
             self.refresh_hud()
 
@@ -1430,16 +1445,21 @@ def make_scene_class(sc, ui):
             state = "コア破壊" if w.game_over else "停止中" if self.sim_paused else mode
             self.state_label.text = "WAVE %d   敵 %d   次 %ds   %s" % (
                 w.wave, len(w.enemies), max(0, w.wave_timer//TPS), state)
-            if self._clock < self.message_until:
+            if any(g.get("armed") and not g["pinched"] and not g.get("cancelled")
+                   for g in self.gestures.values()):
+                text = "連続撤去OK：なぞって撤去" if self.tool == "erase" else "連続設置OK：なぞって設置"
+            elif self._clock < self.message_until:
                 text = self.message
+            elif self.position_mode:
+                text = "マス操作：矢印で調整 →「置く」で確定"
             elif self.tool == "conveyor":
-                text = "ベルト %s：中央の矢印で向き／同じベルトをタップで変更" % ARROWS[self.build_rotation]
+                text = "ベルト %s：タップで1個／長押し後になぞる" % ARROWS[self.build_rotation]
             elif self.rotation_target() is not None:
                 text = "選択ベルト %s：中央の矢印で向きを変更" % ARROWS[self.rotation_target().rotation]
             elif self.tool in w.content:
                 text = "%s：タップで設置（方向指定なし）" % w.content[self.tool]["label"]
             elif self.tool == "erase":
-                text = "撤去：タップ／ドラッグ（建築費の半分を返却）"
+                text = "撤去：タップで1個／長押し後になぞる"
             else:
                 text = "移動：1本指ドラッグ／2本指ズーム／タップで調査"
             max_chars = max(18, int((self.size.w-24)/12))
@@ -1451,6 +1471,12 @@ def make_scene_class(sc, ui):
                     button["label"].text = "再開" if self.sim_paused else "停止"
                 elif action == "speed":
                     button["label"].text = "×%d" % self.sim_speed
+                elif action == "position-mode":
+                    button["bg"].color = "#8b682f" if self.position_mode else "#273741"
+                elif action.startswith("move-"):
+                    button["bg"].color = "#3e6870"
+                elif action == "place-preview":
+                    button["bg"].color = "#397050"
                 if action in ("rotate", "rotate-cw") or action.startswith("direction-"):
                     enabled = self.tool == "conveyor" or self.rotation_target() is not None
                     button["bg"].alpha = 1.0 if enabled else .38
@@ -1474,9 +1500,10 @@ def make_scene_class(sc, ui):
                          "移動：1本指ドラッグ。2本指で拡大・縮小。",
                          "建物を選び、地面をタップすると建築します。",
                          "ベルト：中央の←↑↓→で向き、↶↷で90°回転。",
-                         "地面で指を離すと設置。ベルトはドラッグも可。",
+                         "連続設置・撤去：少し長押し→OK表示→なぞる。",
+                         "マス操作ON：矢印で位置を動かし、置くで確定。",
                          "既設ベルト：移動/調査で選択→方向ボタン。",
-                         "ウェーブで敵出現。デュオは銅を弾薬にします。",
+                         "ウェーブは下段またはメニュー。銅が砲台の弾薬。",
                          "保存・速度・コア移動・ズームはメニュー内。",
                          "本家セーブ・MOD・通信・キャンペーンは未対応。"]
                 font = 12
@@ -1512,7 +1539,8 @@ def make_scene_class(sc, ui):
                     actions = (("save", "手動保存"), ("load", "手動読込"),
                                ("sandbox", "研究用 " + ("ON" if self.world.sandbox else "OFF")),
                                ("new", "新規デモ"), ("help", "操作説明"),
-                               ("controls", "表示・速度"), ("close", "ゲームへ"))
+                               ("controls", "表示・速度"), ("wave", "ウェーブ開始"),
+                               ("close", "ゲームへ"))
                 bw = (cw-42)/2
                 for i, (action, title) in enumerate(actions):
                     if self.confirm_action == action and self._clock < self.confirm_until:
@@ -1591,10 +1619,33 @@ def make_scene_class(sc, ui):
                     self.highlight(*self.preview_tile)
                 self.notify("設置方向 %s（次に置くベルト）" % ARROWS[rotation], 2)
 
+        def move_preview(self, direction):
+            """Move only the build cursor; never move or rebuild an existing block."""
+            if not self.position_mode or self.tool not in BUILD_TOOLS:
+                return
+            self.gestures.clear()
+            size = self.world.content[self.tool]["size"]
+            x, y = self.preview_tile or tuple(map(math.floor, self.screen_to_world(self.view_center())))
+            dx, dy = DIRECTIONS[direction % 4]
+            x = int(clamp(x+dx, 0, self.world.width-size))
+            y = int(clamp(y+dy, 0, self.world.height-size))
+            self.highlight(x, y)
+            # Follow the cursor only when it would leave the usable viewport.
+            cx, cy = self.view_center()
+            px = cx+(x+size/2-self.camera_x)*TILE*self.zoom
+            py = cy+(y+size/2-self.camera_y)*TILE*self.zoom
+            half = size*TILE*self.zoom/2
+            if px-half < 0 or px+half > self.size.w:
+                self.camera_x = x+size/2
+            if py-half < self.bar_top+24 or py+half > self.size.h-self.header_height:
+                self.camera_y = y+size/2
+            self.update_camera()
+
         def _perform(self, action):
             if action in BUILD_TOOLS or action in ("pan", "erase"):
                 self.gestures.clear()
                 self.tool = action
+                self.position_mode = False
                 self.selected_id = None
                 self.preview_tile = None
                 self.selection.alpha = self.range_node.alpha = 0
@@ -1603,6 +1654,18 @@ def make_scene_class(sc, ui):
                 if action in BUILD_TOOLS:
                     wx, wy = self.screen_to_world(self.view_center())
                     self.highlight(int(math.floor(wx)), int(math.floor(wy)))
+                self.layout()
+            elif action == "position-mode" and self.tool in BUILD_TOOLS:
+                self.gestures.clear()
+                self.position_mode = not self.position_mode
+                self.message_until = 0
+                self.layout()
+            elif action.startswith("move-"):
+                self.move_preview(int(action.split("-", 1)[1]))
+            elif action == "place-preview":
+                if self.position_mode and self.tool in BUILD_TOOLS and self.preview_tile is not None:
+                    self.gestures.clear()
+                    self.apply_tool(*self.preview_tile, reorient=True)
             elif action in ("rotate", "rotate-cw"):
                 # World axes: +1 is counterclockwise, -1 is clockwise.
                 self.change_direction(self.current_rotation() + (1 if action == "rotate" else -1))
@@ -1611,11 +1674,14 @@ def make_scene_class(sc, ui):
             elif action in ("zoom-in", "zoom-out"):
                 self.set_zoom(self.zoom*(1.25 if action == "zoom-in" else .8))
             elif action == "pause":
+                self.gestures.clear()
                 self.sim_paused = not self.sim_paused
                 self.accumulator = 0
             elif action == "speed":
                 self.sim_speed = 2 if self.sim_speed == 1 else 1
             elif action == "wave":
+                if self.overlay_kind:
+                    self.close_overlay()
                 if self.world.start_wave():
                     self.notify("ウェーブ %d 開始" % self.world.wave)
                 else:
@@ -1777,7 +1843,16 @@ def make_scene_class(sc, ui):
                     y += sy
 
         def is_world_point(self, point):
-            return self.bar_top+24 < point[1] < self.size.h-self.header_height
+            return (0 <= point[0] <= self.size.w and
+                    self.bar_top+24 < point[1] < self.size.h-self.header_height)
+
+        def arm_build_gesture(self, g):
+            if (not g["armed"] and not g["drag"] and not g["pinched"] and not g["cancelled"]
+                    and not self.position_mode and not self.overlay_kind and len(self.gestures) == 1
+                    and self.tool in ("conveyor", "copper-wall", "erase")
+                    and self._clock-g["started_at"] >= BUILD_HOLD_SECONDS):
+                g["armed"] = True
+                self._last_hud = -1
 
         @staticmethod
         def hit(button, point):
@@ -1804,11 +1879,15 @@ def make_scene_class(sc, ui):
                 self.ignored_touches.add(tid)
                 return
             wx, wy = self.screen_to_world(p)
-            self.gestures[tid] = {"start": p, "last": p, "tile": (int(math.floor(wx)), int(math.floor(wy))),
+            tile = int(math.floor(wx)), int(math.floor(wy))
+            self.gestures[tid] = {"start": p, "last": p, "tile": tile, "origin_tile": tile,
+                                  "started_at": self._clock, "armed": False, "cancelled": False,
                                   "drag": False, "pinched": False}
             if len(self.gestures) >= 2:
                 for g in self.gestures.values():
                     g["pinched"] = True
+                    g["armed"] = False
+                self._last_hud = -1
             else:
                 self.highlight(int(math.floor(wx)), int(math.floor(wy)))
 
@@ -1838,9 +1917,14 @@ def make_scene_class(sc, ui):
                 self.update_camera()
                 return
             g["last"] = p
-            if g["pinched"]:
+            if g["pinched"] or g["cancelled"]:
                 return
-            if math.dist(p, g["start"]) > 7:
+            if self.tool != "pan" and not self.is_world_point(p):
+                g["cancelled"] = True
+                self._last_hud = -1
+                return
+            self.arm_build_gesture(g)
+            if math.dist(p, g["start"]) > TOUCH_SLOP:
                 g["drag"] = True
             if self.tool == "pan":
                 self.camera_x -= (p[0]-old[0])/(TILE*self.zoom)
@@ -1849,27 +1933,46 @@ def make_scene_class(sc, ui):
             elif self.is_world_point(p):
                 wx, wy = self.screen_to_world(p)
                 tile = (int(math.floor(wx)), int(math.floor(wy)))
-                if g["drag"] and self.tool in ("conveyor", "copper-wall", "erase"):
-                    self.paint_line(g["tile"], tile)
-                g["tile"] = tile
-                self.highlight(*tile)
+                if self.position_mode:
+                    self.highlight(*tile)
+                elif g["drag"]:
+                    if g["armed"]:
+                        self.paint_line(g["tile"], tile)
+                        g["tile"] = tile
+                    else:
+                        # Once a quick swipe is rejected, waiting mid-swipe
+                        # cannot turn it into a brush stroke or an end-point tap.
+                        g["cancelled"] = True
+                        self.notify("スライドを取消：連続操作は長押し後になぞる", 2)
+                        self.highlight(*g["origin_tile"])
+                else:
+                    # A few points of finger jitter must not switch tiles at
+                    # low zoom. Keep an ordinary tap anchored to its start.
+                    self.highlight(*g["origin_tile"])
 
         def touch_ended(self, touch):
             if self._failed or not self._ready:
                 return
             tid, p = touch.touch_id, tuple(touch.location)
             self.ignored_touches.discard(tid)
+            g = self.gestures.get(tid)
+            if g and p != g["last"]:
+                # Some input sequences end without a final moved callback.
+                self.touch_moved(touch)
             g = self.gestures.pop(tid, None)
-            if not g or g["pinched"] or self.overlay_kind or not self.is_world_point(p):
+            self._last_hud = -1
+            if not g or g["pinched"] or g["cancelled"] or self.overlay_kind or not self.is_world_point(p):
                 return
             wx, wy = self.screen_to_world(p)
             tile = int(math.floor(wx)), int(math.floor(wy))
             if self.tool == "pan":
                 if not g["drag"]:
                     self.inspect_tile(*tile)
-            elif not g["drag"] or self.tool not in ("conveyor", "copper-wall", "erase"):
-                self.apply_tool(*tile, reorient=not g["drag"])
-            else:
+            elif self.position_mode:
+                self.highlight(*tile)
+            elif not g["drag"]:
+                self.apply_tool(*g["origin_tile"], reorient=True)
+            elif g["armed"]:
                 self.paint_line(g["tile"], tile)
 
         def sync_nodes(self):
@@ -1967,6 +2070,8 @@ def make_scene_class(sc, ui):
             try:
                 dt = clamp(self.dt, 0.0, .1)
                 self._clock += dt
+                for g in self.gestures.values():
+                    self.arm_build_gesture(g)
                 if not self.overlay_kind and not self.sim_paused and not self.world.game_over:
                     self.accumulator += dt*TPS*self.sim_speed
                     steps = min(12, int(self.accumulator + 1e-9))

@@ -1,6 +1,7 @@
 # 0.1.2 コード案内
 
-本体を変更せず AST から作成した案内です。行番号は 0.1.2-dev 限定。後の変更では検索を優先します。
+基準版の AST から作成した案内です。下表の行番号は初回 0.1.2-dev 当時のものです。
+UI-01 では UI と定数の追加により行番号が変わったため、現在の編集では名前で検索してください。
 
 M0-03 から root の本体は生成物です。編集元は次の二つです。
 
@@ -11,7 +12,7 @@ M0-03 から root の本体は生成物です。編集元は次の二つです�
 
 `tools/build_single_file.py` が app の明示した relative imports を kernels の原文で置換します。
 編集後は再生成し、`--check` と `tools/check_project.py` で更新漏れを確認します。
-今回、生成物は元とバイト一致するため下表の行番号も保持しています。
+M0-03 時点では生成物が元とバイト一致していました。UI-01 の操作変更後は本体も更新しています。
 分割対象を増やす場合は bundler の `EXPORTS`・対応テスト・配布一覧も更新します。
 
 | 名前 | 行 |
@@ -89,7 +90,11 @@ M0-03 から root の本体は生成物です。編集元は次の二つです�
 `tests/test_pythonista_adapter.py`: scene/ui 注入境界。
 `tests/test_startup_regressions.py`: 初期化・保存先・最初の例外の保持。
 `tests/test_rotation_controls.py`: 方向・回転・タッチ・配置・旧保存。
+`tests/test_placement_controls.py`: マス操作、候補の確定、長押しと誤スライドの取消。
 `tests/pythonista_stub.py`: 模擬 scene/ui。実機や iOS エミュレーターではない。
 
 `reference/ConveyorKernelReference.java` と `java_fixtures.json` は抽出計算参照。
 原作全コード・アセットはこのフォルダーにない。実装時には SOURCES.md の固定タグの原作を読む。
+
+UI-01 の入口は app の `layout` / `move_preview` / `_perform` / `arm_build_gesture` /
+`touch_began` / `touch_moved` / `touch_ended` です。World と kernels は今回変更していません。

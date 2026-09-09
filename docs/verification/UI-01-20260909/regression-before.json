@@ -1,0 +1,7 @@
+{
+  "command": "python -m unittest discover -s tests -p test_placement_controls.py -v",
+  "runtime": "unchanged root from main 4a93f6b294e1656fa8710cda1126031cbe0da392",
+  "expected": "failure before UI implementation",
+  "exit_code": 1,
+  "log_normalization": "trailing whitespace removed only"
+}
