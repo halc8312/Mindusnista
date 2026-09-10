@@ -137,3 +137,16 @@ docs/verification/M1-01-20260910/regression-after.txt
 docs/verification/M1-01-20260910/regression-before.json
 docs/verification/M1-01-20260910/regression-before.txt
 docs/verification/M1-01-20260910/scope.json
+tools/pythonista_parallel_probe.py
+tests/test_parallel_probe.py
+docs/P_01_PROBE_ja.md
+docs/P_01_VERIFICATION_ja.md
+docs/verification/M1-01-20260910/github-java-comparison.json
+docs/verification/P-01-20260910/after-check-project.json
+docs/verification/P-01-20260910/after-check-project.txt
+docs/verification/P-01-20260910/delayed-output-after-fix.txt
+docs/verification/P-01-20260910/delayed-output-before-fix.txt
+docs/verification/P-01-20260910/individual-tests.txt
+docs/verification/P-01-20260910/numpy-probe-20000.json
+docs/verification/P-01-20260910/numpy-probe-200000.json
+docs/verification/P-01-20260910/scope.json

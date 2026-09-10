@@ -44,6 +44,13 @@ Java は float、Python は倍精度。今回の公差を全ゲームや通信�
 ローカル Java 比較は未実行。GitHub CI の Python 3.10 側へ JDK 17 と比較コマンドを追加し、
 実際の head に対する結果を確認して PR に記録する。Java は開発時だけで、iPhone の起動依存にはしない。
 
+追記: [PR #6](https://github.com/halc8312/Mindusnista/pull/6) は検証後にマージ済み。
+実装 `d3f0314b7af6cfa730ce376a41940ece8bba6fb9`、マージ `1b3d7ed92b1e7b2df275c0ae549c969f27237e03`。
+CI の CPython 3.10.21 / 3.13.15 で各179本と self-test 成功、skipなし。
+Temurin JDK 17.0.20.1 で抽出参照をコンパイル・実行し、11シナリオ・22明示更新で差分0を確認した。
+[run・head・実トレース](verification/M1-01-20260910/github-java-comparison.json) を保存。
+Java 比較は3.10側で1回実行し、3.13側のJava専用stepは意図したskip。unittestのskipではない。
+
 ```sh
 python tools/build_single_file.py
 python tools/check_project.py

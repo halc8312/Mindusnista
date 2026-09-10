@@ -1,0 +1,215 @@
+{
+  "probe": "Mindusnista P-01 NumPy distance comparison",
+  "probe_schema": 1,
+  "created_at_utc": "2026-09-10T03:27:10.242647+00:00",
+  "environment": {
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "os": "Linux",
+    "os_release": "6.18.35",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "pythonista": {
+      "status": "not_detected",
+      "version": null,
+      "build": null,
+      "ios_version": null
+    }
+  },
+  "workload": {
+    "rows": 20000,
+    "seed": 1597,
+    "columns": 5,
+    "formula": "dx=x-target_x; dy=y-target_y; d2=dx*dx+dy*dy; hit=d2<=threshold2",
+    "dtype": "float64",
+    "warmups": 2,
+    "steady_repeats": 7,
+    "dataset_seconds": 0.03183609699772205,
+    "reference_seconds": 0.002492472001904389,
+    "expected_digest_sha256": "394998e42b022438b13b5a02ea3b0bed8476fe4cf3d6f33c2c7596b1ddb61b1f",
+    "expected_hits": 14130
+  },
+  "measurement": {
+    "clock": "time.perf_counter",
+    "timed": "input conversion through ordered Python result lists",
+    "untimed": "dataset/reference generation, correctness checks, metadata and report serialization",
+    "order": "Python, NumPy 1 worker, NumPy 2 workers, NumPy 4 workers",
+    "numeric_buffer_estimate_bytes": 1140000,
+    "numeric_buffer_estimate_rule": "5 input float64 + 2 worker float64 + 1 worker bool per row",
+    "numeric_buffer_estimate_excludes": "Python input/results/reference objects, executor, allocator and runtime",
+    "peak_process_memory_bytes": null,
+    "peak_process_memory_status": "not_measured"
+  },
+  "backends": [
+    {
+      "status": "correct",
+      "first_run_seconds": 0.0029930189994047396,
+      "warmup_seconds": [
+        0.002427082999929553,
+        0.002413507001620019
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.001946453001437476,
+          0.0018269600004714448,
+          0.0017949720022443216,
+          0.0022568200001842342,
+          0.0017564209992997348,
+          0.0027251990031800233,
+          0.0018931729973701295
+        ],
+        "count": 7,
+        "p50_seconds": 0.0018931729973701295,
+        "p95_seconds": 0.0027251990031800233,
+        "max_seconds": 0.0027251990031800233,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 10,
+        "total_runs": 10,
+        "first_failure": null
+      },
+      "name": "python",
+      "workers": 1,
+      "prepare_seconds": 0.0,
+      "first_with_prepare_seconds": 0.0029930189994047396
+    },
+    {
+      "name": "numpy",
+      "workers": 1,
+      "partition_rows": [
+        20000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.008404660999076441,
+      "warmup_seconds": [
+        0.006064130000595469,
+        0.0056817820004653186
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.005211159001191845,
+          0.0050495569994382095,
+          0.007944043001771206,
+          0.006240574999537785,
+          0.005697620999853825,
+          0.00569629700112273,
+          0.006002256002830109
+        ],
+        "count": 7,
+        "p50_seconds": 0.005697620999853825,
+        "p95_seconds": 0.007944043001771206,
+        "max_seconds": 0.007944043001771206,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 10,
+        "total_runs": 10,
+        "first_failure": null
+      },
+      "prepare_seconds": 0.0001804249986889772,
+      "first_with_prepare_seconds": 0.008585085997765418,
+      "python_p50_ratio": 0.3322742943798297,
+      "faster_than_python_p50": false
+    },
+    {
+      "name": "numpy",
+      "workers": 2,
+      "partition_rows": [
+        10000,
+        10000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.006669527996564284,
+      "warmup_seconds": [
+        0.007030085998849245,
+        0.00987738299954799
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.005268332999548875,
+          0.005133950999152148,
+          0.006583718000911176,
+          0.005360613999073394,
+          0.005850366000231588,
+          0.005208735001360765,
+          0.007042556997475913
+        ],
+        "count": 7,
+        "p50_seconds": 0.005360613999073394,
+        "p95_seconds": 0.007042556997475913,
+        "max_seconds": 0.007042556997475913,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 10,
+        "total_runs": 10,
+        "first_failure": null
+      },
+      "prepare_seconds": 1.7453003238188103e-05,
+      "first_with_prepare_seconds": 0.006686980999802472,
+      "python_p50_ratio": 0.35316346181563774,
+      "faster_than_python_p50": false
+    },
+    {
+      "name": "numpy",
+      "workers": 4,
+      "partition_rows": [
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.0069518169984803535,
+      "warmup_seconds": [
+        0.00602892800088739,
+        0.005775748002633918
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.00806757299869787,
+          0.008324586997332517,
+          0.005640735998895252,
+          0.006784530996810645,
+          0.006508537000627257,
+          0.005956560999038629,
+          0.0064899839999270625
+        ],
+        "count": 7,
+        "p50_seconds": 0.006508537000627257,
+        "p95_seconds": 0.008324586997332517,
+        "max_seconds": 0.008324586997332517,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 10,
+        "total_runs": 10,
+        "first_failure": null
+      },
+      "prepare_seconds": 1.3246997696114704e-05,
+      "first_with_prepare_seconds": 0.006965063996176468,
+      "python_p50_ratio": 0.29087535296913514,
+      "faster_than_python_p50": false
+    }
+  ],
+  "not_implemented": [
+    "Accelerate",
+    "Metal",
+    "game integration"
+  ],
+  "limitations": [
+    "synthetic float64 kernel, not upstream Java float32 parity",
+    "no FPS, thermal, long-run or full-game performance measurement",
+    "worker count is requested concurrency, not proof of simultaneous CPU execution",
+    "fixed backend order may include frequency/thermal/order bias",
+    "few repeats give a coarse p95; repeat and increase workload explicitly"
+  ],
+  "numpy": {
+    "status": "available",
+    "version": "2.3.5",
+    "import_seconds": 0.049792377998528536,
+    "reason": null
+  },
+  "status": "correct"
+}

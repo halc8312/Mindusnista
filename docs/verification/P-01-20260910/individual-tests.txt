@@ -1,0 +1,17 @@
+Python 3.10 AST: PASS
+test_cli_exclusive_json_output_and_existing_file_untouched (test_parallel_probe.ParallelProbeTests.test_cli_exclusive_json_output_and_existing_file_untouched) ... ok
+test_cli_invalid_counts_fail_before_output (test_parallel_probe.ParallelProbeTests.test_cli_invalid_counts_fail_before_output) ... ok
+test_cli_reports_delayed_output_failure_before_success (test_parallel_probe.ParallelProbeTests.test_cli_reports_delayed_output_failure_before_success) ... ok
+test_comparison_rejects_length_mask_distance_and_nonfinite (test_parallel_probe.ParallelProbeTests.test_comparison_rejects_length_mask_distance_and_nonfinite) ... ok
+test_each_phase_is_checked_and_mismatch_is_retained (test_parallel_probe.ParallelProbeTests.test_each_phase_is_checked_and_mismatch_is_retained) ... ok
+test_fixed_seed_prefix_and_threshold_edges (test_parallel_probe.ParallelProbeTests.test_fixed_seed_prefix_and_threshold_edges) ... ok
+test_mismatch_gets_no_speedup_claim (test_parallel_probe.ParallelProbeTests.test_mismatch_gets_no_speedup_claim) ... ok
+test_missing_numpy_is_not_successful_numpy_execution (test_parallel_probe.ParallelProbeTests.test_missing_numpy_is_not_successful_numpy_execution) ... ok
+test_partitions_cover_once_in_order_and_balance (test_parallel_probe.ParallelProbeTests.test_partitions_cover_once_in_order_and_balance) ... ok
+test_real_numpy_all_worker_counts_and_small_uneven_inputs (test_parallel_probe.ParallelProbeTests.test_real_numpy_all_worker_counts_and_small_uneven_inputs) ... ok
+test_standalone_cli_json_and_no_implicit_files (test_parallel_probe.ParallelProbeTests.test_standalone_cli_json_and_no_implicit_files) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.623s
+
+OK

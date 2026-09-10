@@ -1,0 +1,24 @@
+{
+  "base_commit": "1b3d7ed92b1e7b2df275c0ae549c969f27237e03",
+  "runtime_files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "c37c01df10a7db379796b7457d409a33588efdf9a56d4d4044c5b6a445a80048",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/app.py",
+      "sha256": "56ee8b7418dfff226d6533daff71c291fefedb8bc5140be98856b404421ab70e",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/kernels.py",
+      "sha256": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+      "identical_to_base": true
+    }
+  ],
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "device_tests": "not_run",
+  "benchmark_timing": "captured before output-close handling fix; timed kernel unchanged"
+}

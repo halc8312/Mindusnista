@@ -1,0 +1,231 @@
+{
+  "probe": "Mindusnista P-01 NumPy distance comparison",
+  "probe_schema": 1,
+  "created_at_utc": "2026-09-10T03:27:11.009401+00:00",
+  "environment": {
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "os": "Linux",
+    "os_release": "6.18.35",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "pythonista": {
+      "status": "not_detected",
+      "version": null,
+      "build": null,
+      "ios_version": null
+    }
+  },
+  "workload": {
+    "rows": 200000,
+    "seed": 1597,
+    "columns": 5,
+    "formula": "dx=x-target_x; dy=y-target_y; d2=dx*dx+dy*dy; hit=d2<=threshold2",
+    "dtype": "float64",
+    "warmups": 2,
+    "steady_repeats": 11,
+    "dataset_seconds": 0.29605527099920437,
+    "reference_seconds": 0.021714725000492763,
+    "expected_digest_sha256": "feebba9761ddf19cf952d57ea0cefcd879bc5a4d17224634deed1eb5c27cbcec",
+    "expected_hits": 141661
+  },
+  "measurement": {
+    "clock": "time.perf_counter",
+    "timed": "input conversion through ordered Python result lists",
+    "untimed": "dataset/reference generation, correctness checks, metadata and report serialization",
+    "order": "Python, NumPy 1 worker, NumPy 2 workers, NumPy 4 workers",
+    "numeric_buffer_estimate_bytes": 11400000,
+    "numeric_buffer_estimate_rule": "5 input float64 + 2 worker float64 + 1 worker bool per row",
+    "numeric_buffer_estimate_excludes": "Python input/results/reference objects, executor, allocator and runtime",
+    "peak_process_memory_bytes": null,
+    "peak_process_memory_status": "not_measured"
+  },
+  "backends": [
+    {
+      "status": "correct",
+      "first_run_seconds": 0.024272523001855006,
+      "warmup_seconds": [
+        0.033738191003067186,
+        0.036782251998374704
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.024437427997327177,
+          0.022659795999061316,
+          0.021445473001222126,
+          0.02208967100159498,
+          0.021079542999359546,
+          0.02345474799949443,
+          0.022644341002887813,
+          0.02361296000162838,
+          0.0205290519988921,
+          0.019863208999595372,
+          0.022712472000421258
+        ],
+        "count": 11,
+        "p50_seconds": 0.022644341002887813,
+        "p95_seconds": 0.024437427997327177,
+        "max_seconds": 0.024437427997327177,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 14,
+        "total_runs": 14,
+        "first_failure": null
+      },
+      "name": "python",
+      "workers": 1,
+      "prepare_seconds": 0.0,
+      "first_with_prepare_seconds": 0.024272523001855006
+    },
+    {
+      "name": "numpy",
+      "workers": 1,
+      "partition_rows": [
+        200000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.10570891899988055,
+      "warmup_seconds": [
+        0.056404191000183346,
+        0.06202098699941416
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.05560083700038376,
+          0.06592580100186751,
+          0.06120932200064999,
+          0.08717384799820138,
+          0.06284059700192302,
+          0.054137964001711225,
+          0.05627405999985058,
+          0.07806643699950655,
+          0.057412383997871075,
+          0.06594354299886618,
+          0.05656018399895402
+        ],
+        "count": 11,
+        "p50_seconds": 0.06120932200064999,
+        "p95_seconds": 0.08717384799820138,
+        "max_seconds": 0.08717384799820138,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 14,
+        "total_runs": 14,
+        "first_failure": null
+      },
+      "prepare_seconds": 2.5859000743366778e-05,
+      "first_with_prepare_seconds": 0.10573477800062392,
+      "python_p50_ratio": 0.36994922117659385,
+      "faster_than_python_p50": false
+    },
+    {
+      "name": "numpy",
+      "workers": 2,
+      "partition_rows": [
+        100000,
+        100000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.05610723099744064,
+      "warmup_seconds": [
+        0.06609394300176064,
+        0.122987139999168
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.07015992800006643,
+          0.05402189799860935,
+          0.05827979300011066,
+          0.0927308020000055,
+          0.08693686699916725,
+          0.05685341500065988,
+          0.06136322100064717,
+          0.06608519400106161,
+          0.06175024299955112,
+          0.06200860399985686,
+          0.07185704699804774
+        ],
+        "count": 11,
+        "p50_seconds": 0.06200860399985686,
+        "p95_seconds": 0.0927308020000055,
+        "max_seconds": 0.0927308020000055,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 14,
+        "total_runs": 14,
+        "first_failure": null
+      },
+      "prepare_seconds": 5.273300121189095e-05,
+      "first_with_prepare_seconds": 0.05615996399865253,
+      "python_p50_ratio": 0.3651806288517652,
+      "faster_than_python_p50": false
+    },
+    {
+      "name": "numpy",
+      "workers": 4,
+      "partition_rows": [
+        50000,
+        50000,
+        50000,
+        50000
+      ],
+      "status": "correct",
+      "first_run_seconds": 0.05934058700222522,
+      "warmup_seconds": [
+        0.0654909740005678,
+        0.06347170099979849
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.06248651599889854,
+          0.059024632999353344,
+          0.10585622700091335,
+          0.07550504599930719,
+          0.05923292999796104,
+          0.05793317899951944,
+          0.0565892749982595,
+          0.06847047400151496,
+          0.06485479800176108,
+          0.07766963699759799,
+          0.062036639003054006
+        ],
+        "count": 11,
+        "p50_seconds": 0.06248651599889854,
+        "p95_seconds": 0.10585622700091335,
+        "max_seconds": 0.10585622700091335,
+        "p95_method": "nearest_rank"
+      },
+      "verification": {
+        "verified_runs": 14,
+        "total_runs": 14,
+        "first_failure": null
+      },
+      "prepare_seconds": 4.762800017488189e-05,
+      "first_with_prepare_seconds": 0.0593882150024001,
+      "python_p50_ratio": 0.3623876390113824,
+      "faster_than_python_p50": false
+    }
+  ],
+  "not_implemented": [
+    "Accelerate",
+    "Metal",
+    "game integration"
+  ],
+  "limitations": [
+    "synthetic float64 kernel, not upstream Java float32 parity",
+    "no FPS, thermal, long-run or full-game performance measurement",
+    "worker count is requested concurrency, not proof of simultaneous CPU execution",
+    "fixed backend order may include frequency/thermal/order bias",
+    "few repeats give a coarse p95; repeat and increase workload explicitly"
+  ],
+  "numpy": {
+    "status": "available",
+    "version": "2.3.5",
+    "import_seconds": 0.07495658599873423,
+    "reason": null
+  },
+  "status": "correct"
+}
