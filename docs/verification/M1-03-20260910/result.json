@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-09-10T04:55:29.490795+00:00",
+  "base_commit": "6e0c924a6543be815b7fd904c40765a8f445da19",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "command": "python tools/check_project.py",
+  "exit_code": 0,
+  "tests": 245,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "self_test": "passed",
+  "added_tests": 18,
+  "initial_regression_before": {
+    "methods": 9,
+    "failures": 7,
+    "errors": 0
+  },
+  "runtime_files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "c57d87212141f5bde52d40cd6d080c1258aa47b439c504ee944c7d56e613b3c0",
+      "identical_to_base": false
+    },
+    {
+      "path": "src/mindusnista/app.py",
+      "sha256": "4a7c9f717853ef72258610d03fab09b760f05881bfa513d06704e385bed7bf0a",
+      "identical_to_base": false
+    },
+    {
+      "path": "src/mindusnista/kernels.py",
+      "sha256": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+      "identical_to_base": true
+    }
+  ],
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "device_test": "not_run"
+}

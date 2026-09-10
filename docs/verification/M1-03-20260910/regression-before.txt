@@ -1,0 +1,78 @@
+test_dump_timer_four_then_five_ticks (test_drill_dump.DrillDumpTests.test_dump_timer_four_then_five_ticks) ... FAIL
+test_failed_scan_normalizes_oversized_saved_cursor (test_drill_dump.DrillDumpTests.test_failed_scan_normalizes_oversized_saved_cursor) ... FAIL
+test_failed_scan_preserves_normal_cursor (test_drill_dump.DrillDumpTests.test_failed_scan_preserves_normal_cursor) ... ok
+test_fallback_visits_neighbor_before_next_item (test_drill_dump.DrillDumpTests.test_fallback_visits_neighbor_before_next_item) ... FAIL
+test_no_dominant_uses_content_id_before_inventory_order (test_drill_dump.DrillDumpTests.test_no_dominant_uses_content_id_before_inventory_order) ... FAIL
+test_rejected_stocked_dominant_does_not_fall_back_to_other_item (test_drill_dump.DrillDumpTests.test_rejected_stocked_dominant_does_not_fall_back_to_other_item) ... FAIL
+test_save_restart_preserves_selector_cursor_and_cargo (test_drill_dump.DrillDumpTests.test_save_restart_preserves_selector_cursor_and_cargo) ... FAIL
+test_stocked_dominant_item_precedes_inventory_insertion_order (test_drill_dump.DrillDumpTests.test_stocked_dominant_item_precedes_inventory_insertion_order) ... FAIL
+test_unstocked_dominant_uses_available_item (test_drill_dump.DrillDumpTests.test_unstocked_dominant_uses_available_item) ... ok
+
+======================================================================
+FAIL: test_dump_timer_four_then_five_ticks (test_drill_dump.DrillDumpTests.test_dump_timer_four_then_five_ticks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 107, in test_dump_timer_four_then_five_ticks
+    self.assertEqual(router.inventory, {"lead": 1})
+AssertionError: {'copper': 1} != {'lead': 1}
+- {'copper': 1}
++ {'lead': 1}
+
+======================================================================
+FAIL: test_failed_scan_normalizes_oversized_saved_cursor (test_drill_dump.DrillDumpTests.test_failed_scan_normalizes_oversized_saved_cursor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 85, in test_failed_scan_normalizes_oversized_saved_cursor
+    self.assertEqual(drill.cursor, 1)
+AssertionError: 7 != 1
+
+======================================================================
+FAIL: test_fallback_visits_neighbor_before_next_item (test_drill_dump.DrillDumpTests.test_fallback_visits_neighbor_before_next_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 73, in test_fallback_visits_neighbor_before_next_item
+    self.assertEqual(duo.ammo, 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_no_dominant_uses_content_id_before_inventory_order (test_drill_dump.DrillDumpTests.test_no_dominant_uses_content_id_before_inventory_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 63, in test_no_dominant_uses_content_id_before_inventory_order
+    self.assertEqual(router.inventory, {"copper": 1})
+AssertionError: {'lead': 1} != {'copper': 1}
+- {'lead': 1}
++ {'copper': 1}
+
+======================================================================
+FAIL: test_rejected_stocked_dominant_does_not_fall_back_to_other_item (test_drill_dump.DrillDumpTests.test_rejected_stocked_dominant_does_not_fall_back_to_other_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 47, in test_rejected_stocked_dominant_does_not_fall_back_to_other_item
+    self.assertEqual(duo.ammo, 0)
+AssertionError: 2 != 0
+
+======================================================================
+FAIL: test_save_restart_preserves_selector_cursor_and_cargo (test_drill_dump.DrillDumpTests.test_save_restart_preserves_selector_cursor_and_cargo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 125, in test_save_restart_preserves_selector_cursor_and_cargo
+    self.assertEqual(restored.buildings[router.id].inventory, {"lead": 1})
+AssertionError: {'copper': 1} != {'lead': 1}
+- {'copper': 1}
++ {'lead': 1}
+
+======================================================================
+FAIL: test_stocked_dominant_item_precedes_inventory_insertion_order (test_drill_dump.DrillDumpTests.test_stocked_dominant_item_precedes_inventory_insertion_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M13/tests/test_drill_dump.py", line 39, in test_stocked_dominant_item_precedes_inventory_insertion_order
+    self.assertEqual(router.inventory, {"lead": 1})
+AssertionError: {'copper': 1} != {'lead': 1}
+- {'copper': 1}
++ {'lead': 1}
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.005s
+
+FAILED (failures=7)

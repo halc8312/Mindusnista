@@ -45,3 +45,6 @@ jobs:
       - name: Compare extracted Java conveyor transfers
         if: matrix.python-version == '3.10'
         run: python tools/check_conveyor_reference.py
+      - name: Compare extracted Java drill dump selection
+        if: matrix.python-version == '3.10'
+        run: python tools/check_dump_reference.py
