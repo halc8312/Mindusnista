@@ -207,6 +207,9 @@ class Building:
     ammo: int = 0
     angle: float = 0.0
     shots: int = 0
+    # Conveyor.java caches: refreshed by updateTile, not by handleItem.
+    conveyor_minitem: float = 1.0
+    conveyor_mid: int = 0
 
 
 @dataclass
@@ -441,8 +444,7 @@ class World:
         if target.kind == "core-shard":
             return self.stock[item] < self.content[target.kind]["capacity"]
         if target.kind == "conveyor":
-            minimum = min((p.y for p in target.belt), default=1.0)
-            return conveyor_accepts(minimum, len(target.belt), incoming, target.rotation,
+            return conveyor_accepts(target.conveyor_minitem, len(target.belt), incoming, target.rotation,
                                     source.kind == "conveyor", self.front(target) is source)
         if target.kind == "router":
             return not target.inventory
@@ -462,8 +464,8 @@ class World:
             ang = incoming - target.rotation
             xx = 1.0 if ang in (-1, 3) else -1.0 if ang in (1, -3) else 0.0
             pos = 0.0 if incoming == target.rotation else 0.5
-            target.belt.append(BeltItem(item, pos, xx))
-            target.belt.sort(key=lambda p: p.y)
+            index = 0 if incoming == target.rotation else target.conveyor_mid
+            target.belt.insert(index, BeltItem(item, pos, xx))
         elif target.kind == "router":
             target.inventory[item] = 1
             target.router_time = 0.0
@@ -515,25 +517,36 @@ class World:
                     b.inventory[item] = b.inventory.get(item, 0) + 1
 
     def _tick_conveyor(self, b: Building) -> None:
+        b.conveyor_minitem = 1.0
+        b.conveyor_mid = 0
         if not b.belt:
             return
         target = self.front(b)
         aligned = bool(target and target.kind == "conveyor" and target.rotation == b.rotation)
-        next_min = min((p.y for p in target.belt), default=1.0) if aligned else 1.0
+        next_min = target.conveyor_minitem if aligned else 1.0
         next_max = 1.0 - max(ITEM_SPACE - next_min, 0.0) if aligned else 1.0
         moved = self.content[b.kind]["speed"]
         # Conveyor.java v159.7: move, pass and remove each item before updating
         # its follower. A successful pass changes which item is now the head.
-        # Cached minitem/mid and upstream entity scheduling remain separate work.
+        # Insertion keeps upstream array order, which need not be sorted after
+        # several handleItem calls. Entity scheduling remains separate work.
         for index in range(len(b.belt) - 1, -1, -1):
             p = b.belt[index]
             next_pos = (100.0 if index == len(b.belt) - 1 else b.belt[index + 1].y) - ITEM_SPACE
             p.y = min(p.y + clamp(next_pos - p.y, 0.0, moved), next_max)
+            if p.y > 0.5 and index > 0:
+                b.conveyor_mid = index - 1
             p.x = approach(p.x, 0.0, moved * 2.0)
             if p.y >= 1.0 and target and self.receive(target, b, p.item):
                 if aligned:
+                    # lastInserted remains zero in the pinned ordinary path.
                     target.belt[0].x = p.x
+                # Ordinary traffic passes the active tail, matching len=i.
+                # Keep other cargo in manually fabricated unordered saves;
+                # upstream's truncation of such arrays is outside this port.
                 del b.belt[index]
+            elif p.y < b.conveyor_minitem:
+                b.conveyor_minitem = p.y
 
     def _tick_router(self, b: Building) -> None:
         if not b.inventory:
@@ -804,6 +817,9 @@ class World:
             raise ValueError("Too many buildings")
         for raw in data["buildings"]:
             r = dict(raw)
+            cache_keys = ("conveyor_minitem" in r, "conveyor_mid" in r)
+            if cache_keys[0] != cache_keys[1]:
+                raise ValueError("Incomplete conveyor cache")
             r["belt"] = [BeltItem(**p) for p in r["belt"]]
             b = Building(**r)
             check_id(b.id)
@@ -834,8 +850,20 @@ class World:
                     raise ValueError("Unknown conveyor item")
                 finite_number(p.y, "belt y", 0, 1)
                 finite_number(p.x, "belt x", -1, 1)
-            if [p.y for p in b.belt] != sorted(p.y for p in b.belt):
-                raise ValueError("Unsorted conveyor contents")
+            if not cache_keys[0]:
+                # Legacy schema 1 did not record caches and always sorted
+                # cargo. Derive a deterministic starting cache without ticking
+                # or changing coordinates, inventory, time or RNG state.
+                if [p.y for p in b.belt] != sorted(p.y for p in b.belt):
+                    raise ValueError("Unsorted legacy conveyor contents")
+                b.conveyor_minitem = min((p.y for p in b.belt), default=1.0)
+                for index in range(len(b.belt) - 1, 0, -1):
+                    if b.belt[index].y > 0.5:
+                        b.conveyor_mid = index - 1
+            finite_number(b.conveyor_minitem, "conveyor minitem", 0, 1)
+            integer(b.conveyor_mid, "conveyor mid", 0, min(len(b.belt), BELT_CAPACITY - 2))
+            if b.kind != "conveyor" and (b.conveyor_minitem != 1 or b.conveyor_mid != 0):
+                raise ValueError("Conveyor cache on an unsupported building")
             if b.ammo > w.content["duo"]["capacity"] or (b.kind != "duo" and b.ammo):
                 raise ValueError("Invalid turret ammunition")
             for x, y in w.tiles(b):

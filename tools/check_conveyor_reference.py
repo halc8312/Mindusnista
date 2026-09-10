@@ -49,10 +49,11 @@ def number(value: Any, low: float, high: float) -> float:
 
 def load_fixtures(path: Path) -> dict[str, Any]:
     fixture = json.loads(path.read_text(encoding="utf-8"))
-    if fixture.get("schema") != 1 or fixture.get("upstream", {}).get("commit") != UPSTREAM_COMMIT:
+    if fixture.get("schema") != 2 or fixture.get("upstream", {}).get("commit") != UPSTREAM_COMMIT:
         raise ValueError("unsupported fixture schema or upstream commit")
     fixed_conditions = {"delta": 1, "efficiency": 1, "time_scale": 1, "team": "same",
-                        "block_size": 1, "initial_mid": 0, "initial_last_inserted": 0}
+                        "block_size": 1, "initial_last_inserted": 0,
+                        "initial_item_order": "nondecreasing_y", "cache_state": "explicit_per_belt"}
     if any(fixture.get("conditions", {}).get(key) != value for key, value in fixed_conditions.items()):
         raise ValueError("fixture conditions are outside the extracted reference scope")
     cases = fixture.get("cases")
@@ -81,9 +82,13 @@ def load_fixtures(path: Path) -> dict[str, Any]:
                 raise ValueError("overlapping fixture belts")
             occupied.add(position)
             number(belt["minitem"], 0, 1)
+            # minitem/mid are update-time caches, not properties derived from
+            # the current array. A receiver retains them after handleItem.
             items = belt["items"]
             if not isinstance(items, list) or len(items) > 3:
                 raise ValueError("invalid fixture capacity")
+            if type(belt.get("mid", 0)) is not int or not 0 <= belt.get("mid", 0) <= min(len(items), 1):
+                raise ValueError("invalid fixture mid cache")
             for item in items:
                 if item["item"] not in ("copper", "lead"):
                     raise ValueError("fixture item is unsupported by the current port")
@@ -91,9 +96,6 @@ def load_fixtures(path: Path) -> dict[str, Any]:
                 number(item["x"], -1, 1)
             if items != sorted(items, key=lambda item: item["y"]):
                 raise ValueError("seeded items must be ordered by y")
-            minimum = min((item["y"] for item in items), default=1.0)
-            if abs(minimum - belt["minitem"]) > TOLERANCE:
-                raise ValueError("fixtures in this slice must start with a primed minitem")
         if not isinstance(case["updates"], list) or not case["updates"]:
             raise ValueError("case must contain explicit updates")
         if any(name not in belts for name in case["updates"]):
@@ -108,7 +110,8 @@ def protocol_input(cases: list[dict[str, Any]]) -> str:
         lines.append("\t".join(("C", case["name"], str(case["speed"]))))
         for belt in case["belts"]:
             fields = ["B", belt["name"], str(belt["x"]), str(belt["y"]),
-                      str(belt["rotation"]), str(belt["minitem"]), str(len(belt["items"]))]
+                      str(belt["rotation"]), str(belt["minitem"]), str(belt.get("mid", 0)),
+                      str(len(belt["items"]))]
             for item in belt["items"]:
                 fields.extend((item["item"], str(item["y"]), str(item["x"])))
             lines.append("\t".join(fields))
@@ -140,6 +143,8 @@ def python_traces(cases: list[dict[str, Any]]) -> list[dict[str, Any]]:
             if belt is None:
                 raise ValueError("fixture placement failed: " + world.last_message)
             belt.belt = [game.BeltItem(item["item"], item["y"], item["x"]) for item in seed["items"]]
+            belt.conveyor_minitem = seed["minitem"]
+            belt.conveyor_mid = seed.get("mid", 0)
             belts[seed["name"]] = belt
         frames = []
         for name in case["updates"]:
@@ -147,7 +152,11 @@ def python_traces(cases: list[dict[str, Any]]) -> list[dict[str, Any]]:
             world._tick_conveyor(belts[name])
             frames.append({"update": name, "belts": {
                 key: {"count": len(belt.belt), "items": [
-                    {"item": item.item, "y": item.y, "x": item.x} for item in belt.belt]}
+                    {"item": item.item, "y": item.y, "x": item.x} for item in belt.belt],
+                    "cache": {"minitem": belt.conveyor_minitem, "mid": belt.conveyor_mid,
+                              # The extracted methods never change upstream's
+                              # default lastInserted=0; no Python field needed.
+                              "lastInserted": 0}}
                 for key, belt in belts.items()}})
         traces.append({"name": case["name"], "frames": frames})
     return traces
@@ -171,6 +180,12 @@ def validate_traces(cases: list[dict[str, Any]], traces: list[dict[str, Any]]) -
                     raise ValueError("trace count does not match live items")
                 if not 0 <= belt["count"] <= 3:
                     raise ValueError("trace capacity violation")
+                cache = belt["cache"]
+                number(cache["minitem"], -TOLERANCE, 1 + TOLERANCE)
+                if type(cache["mid"]) is not int or not 0 <= cache["mid"] <= min(belt["count"], 1):
+                    raise ValueError("trace mid cache outside extracted capacity-3 range")
+                if type(cache["lastInserted"]) is not int or cache["lastInserted"] != 0:
+                    raise ValueError("trace lastInserted differs from extracted default")
                 for item in belt["items"]:
                     identifier(item["item"])
                     number(item["y"], -TOLERANCE, 1 + TOLERANCE)
@@ -181,7 +196,7 @@ def validate_traces(cases: list[dict[str, Any]], traces: list[dict[str, Any]]) -
 
 
 def compare_traces(expected: list[dict[str, Any]], actual: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Caller validates trace shape first. Java cache is evidence, not compared."""
+    """Compare live item order and update-time caches after shape validation."""
     mismatches = []
     for ref, port in zip(expected, actual):
         for index, (ref_frame, port_frame) in enumerate(zip(ref["frames"], port["frames"])):
@@ -190,6 +205,13 @@ def compare_traces(expected: list[dict[str, Any]], actual: list[dict[str, Any]])
                 location = {"case": ref["name"], "update_index": index, "update": ref_frame["update"], "belt": name}
                 if ref_belt["count"] != port_belt["count"]:
                     mismatches.append(dict(location, field="count", java=ref_belt["count"], python=port_belt["count"]))
+                for field in ("minitem", "mid", "lastInserted"):
+                    expected_value, actual_value = ref_belt["cache"][field], port_belt["cache"][field]
+                    differs = (abs(expected_value - actual_value) > TOLERANCE if field == "minitem"
+                               else expected_value != actual_value)
+                    if differs:
+                        mismatches.append(dict(location, field="cache." + field,
+                                               java=expected_value, python=actual_value))
                 for item_index, (ref_item, port_item) in enumerate(zip(ref_belt["items"], port_belt["items"])):
                     for field in ("item", "y", "x"):
                         expected_value, actual_value = ref_item[field], port_item[field]
@@ -239,15 +261,18 @@ def main(argv: list[str] | None = None) -> int:
         "python": sys.version, "platform": platform.platform(),
         "reference_kind": "source-extracted Java float conveyor transfers; not the original engine",
         "upstream_commit": UPSTREAM_COMMIT, "position_absolute_tolerance": TOLERANCE,
-        "exact_fields": ["case", "update", "belt", "count", "item identity and order"],
-        "cache_comparison": "Java minitem/mid/lastInserted are recorded, but Python does not yet retain these caches.",
+        "cache_absolute_tolerance": TOLERANCE,
+        "exact_fields": ["case", "update", "belt", "count", "item identity and order",
+                         "cache.mid", "cache.lastInserted"],
+        "cache_comparison": "minitem and mid are retained and compared; lastInserted is the extracted default 0 on both sides.",
         "device_test": "not run", "java_comparison": "not run",
     }
     exit_code = 2
     try:
         fixtures = load_fixtures(args.fixtures)
         cases = fixtures["cases"]
-        report.update({"conditions": fixtures["conditions"], "excluded": fixtures["excluded"],
+        report.update({"fixture_schema": fixtures["schema"],
+                       "conditions": fixtures["conditions"], "excluded": fixtures["excluded"],
                        "case_count": len(cases), "update_count": sum(len(case["updates"]) for case in cases),
                        "sha256": {"fixtures": hashlib.sha256(args.fixtures.read_bytes()).hexdigest(),
                                   "java_source": hashlib.sha256(JAVA_SOURCE.read_bytes()).hexdigest(),

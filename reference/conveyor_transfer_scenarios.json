@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "upstream": {
     "tag": "v159.7",
     "commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
@@ -12,15 +12,19 @@
     "time_scale": 1,
     "team": "same",
     "block_size": 1,
-    "initial_mid": 0,
+    "initial_mid": "Optional per-belt integer cache; omitted means 0. Capacity-3 updates produce 0 or 1.",
     "initial_last_inserted": 0,
-    "initial_minitem": "Explicit per-belt value, primed from seeded item positions; not a constructor-only state.",
-    "updates": "Each name updates exactly one belt once; no implicit world tick or scheduler."
+    "initial_minitem": "Explicit per-belt update-time cache; may differ from current item positions after arrivals. Artificial cache-reset seeds are described per case.",
+    "updates": "Each name updates exactly one belt once; no implicit world tick or scheduler.",
+    "initial_item_order": "nondecreasing_y",
+    "cache_state": "explicit_per_belt",
+    "trace_item_order": "Preserve the live array order, including non-monotonic y produced by consecutive receives; never sort a trace.",
+    "last_inserted": "The extracted methods leave upstream lastInserted at 0; the Python trace records the same fixed value."
   },
   "excluded": [
     "Rendering, teams, units, sleep/clog, stack APIs, serialization and original entity scheduling.",
     "ItemModule is represented only by the live item-array prefix, not the original module.",
-    "Rear-before-side simultaneous input: cached minitem differs from current Python acceptance; still an open parity task.",
+    "Direct external handleItem events and real-world generation of artificially dense seed arrays; cases explicitly list belt update order.",
     "Original engine execution, full-game compatibility and Pythonista device testing."
   ],
   "cases": [
@@ -456,6 +460,399 @@
       "updates": [
         "S",
         "A",
+        "B"
+      ]
+    },
+    {
+      "name": "rear_then_side_follow",
+      "description": "Rear then side arrive before the target updates: minitem remains 1 and cached mid=0 inserts the side item before the rear item, producing non-monotonic y. Follow three target updates without sorting.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "S",
+          "x": 11,
+          "y": 9,
+          "rotation": 1,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": -0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A",
+        "S",
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "side_then_rear_follow",
+      "description": "Side then rear arrive before the target updates. Follow three target updates to compare cache refresh, retained array order and positions against the opposite arrival order.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "S",
+          "x": 11,
+          "y": 9,
+          "rotation": 1,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": -0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "S",
+        "A",
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "opposed_sides_follow",
+      "description": "Opposed side sources arrive successively into an unupdated empty target. Both see cached minitem=1 and use mid=0; the second item is inserted first. Follow three target updates.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "S",
+          "x": 11,
+          "y": 9,
+          "rotation": 1,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": -0.6
+            }
+          ]
+        },
+        {
+          "name": "N",
+          "x": 11,
+          "y": 11,
+          "rotation": 3,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "S",
+        "N",
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "constructor_cache_after_arrival",
+      "description": "B is seeded immediately after an aligned rear pass into a newly constructed belt: item y=0 with transferred x=.2, constructor minitem=1 and mid=0 remain. Side and rear arrivals still use that cache until B updates; the initial item is counted in cargo conservation.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "S",
+          "x": 11,
+          "y": 9,
+          "rotation": 1,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": -0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0,
+              "x": 0.2
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "S",
+        "A",
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "updated_target_receives_then_source_reuses_cache",
+      "description": "B first updates empty. A passes its lead item and retains a normally spaced follower. A updates again before B, using stale next.minitem=1 despite the received item at y=0; later B updates refresh the cache.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "B",
+        "A",
+        "A",
+        "B",
+        "A",
+        "B"
+      ]
+    },
+    {
+      "name": "empty_cache_reset",
+      "description": "Artificial diagnostic boundary: an empty belt starts with minitem=.2 and mid=0. Its update must restore minitem=1 even without live cargo; this is not claimed as a generated gameplay state.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.2,
+          "items": [],
+          "mid": 0
+        }
+      ],
+      "updates": [
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "update_generates_mid_one",
+      "description": "Three seeded items at y=.1,.4,.9 exercise update-generated mid=1: the front crosses .5 while index 1 remains below .5. This is a deliberately primed item-array boundary fixture, not a spacing-generation test.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.1,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.1,
+              "x": 0.1
+            },
+            {
+              "item": "lead",
+              "y": 0.4,
+              "x": -0.1
+            },
+            {
+              "item": "copper",
+              "y": 0.9,
+              "x": 0.2
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "dense_seed_repeated_rear_pass",
+      "description": "Artificial boundary, not naturally spaced conveyor cargo: A starts with three densely seeded items near its exit. One A update passes all three rear inputs while B retains minitem=1. Check capacity, reverse pass/insertion order and per-item conservation, then B cache refresh.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.96,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.96,
+              "x": 0.2
+            },
+            {
+              "item": "lead",
+              "y": 0.97,
+              "x": -0.3
+            },
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "name": "seeded_mid_one_refresh",
+      "description": "Explicit cache seed approximating the prior mid-one diagnostic update within float tolerance: B starts with mid=1. Updating an unrelated empty A first exposes the seeded cache in both traces, then B updates retain and eventually replace it. Item spacing is deliberately primed.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 8,
+          "y": 8,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.1,
+          "mid": 1,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.1,
+              "x": 0.008
+            },
+            {
+              "item": "lead",
+              "y": 0.446,
+              "x": -0.008
+            },
+            {
+              "item": "copper",
+              "y": 0.946,
+              "x": 0.108
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "A",
+        "B",
         "B"
       ]
     }

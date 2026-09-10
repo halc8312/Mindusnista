@@ -1,0 +1,23 @@
+test_cache_does_not_relax_item_coordinate_or_capacity_validation (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_cache_does_not_relax_item_coordinate_or_capacity_validation) ... ok
+test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance) ... ok
+test_legacy_unsorted_cargo_is_still_rejected (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_legacy_unsorted_cargo_is_still_rejected) ... ok
+test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) ... ok
+test_old_empty_conveyor_and_other_buildings_get_neutral_cache (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_empty_conveyor_and_other_buildings_get_neutral_cache) ... ok
+test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) ... ok
+test_old_schema_one_migration_preserves_state_and_does_not_tick (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_schema_one_migration_preserves_state_and_does_not_tick) ... ok
+test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) ... ok
+test_saved_stale_cache_is_preserved_without_recomputation (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_saved_stale_cache_is_preserved_without_recomputation) ... ok
+test_aligned_backpressure_reads_target_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_aligned_backpressure_reads_target_cache) ... ok
+test_cache_tracks_only_items_remaining_after_pass (tests.test_conveyor_cache.ConveyorCacheTests.test_cache_tracks_only_items_remaining_after_pass) ... ok
+test_cached_minimum_can_reject_despite_open_positions (tests.test_conveyor_cache.ConveyorCacheTests.test_cached_minimum_can_reject_despite_open_positions) ... ok
+test_empty_update_resets_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_empty_update_resets_cache) ... ok
+test_multiple_rear_arrivals_insert_at_zero_until_capacity (tests.test_conveyor_cache.ConveyorCacheTests.test_multiple_rear_arrivals_insert_at_zero_until_capacity) ... ok
+test_opposite_sides_insert_before_earlier_arrival (tests.test_conveyor_cache.ConveyorCacheTests.test_opposite_sides_insert_before_earlier_arrival) ... ok
+test_rear_then_side_uses_previous_update_cache_and_keeps_array_order (tests.test_conveyor_cache.ConveyorCacheTests.test_rear_then_side_uses_previous_update_cache_and_keeps_array_order) ... ok
+test_side_input_uses_cached_mid_without_sorting (tests.test_conveyor_cache.ConveyorCacheTests.test_side_input_uses_cached_mid_without_sorting) ... ok
+test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.051s
+
+OK
