@@ -1,0 +1,837 @@
+{
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "clock": {
+      "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-09
+    }
+  },
+  "runtime": {
+    "filename": "mindustry_pythonista.py",
+    "sha256": "14ba5722ccfb0f3641452e10beb025d43bdbb63f8f77013dfe52bc9d555bc850",
+    "candidate_method_sha256": "e85f4e63c56dcec2ed388b00c979aaaf34d163fcb5fd530730eb46ffa2ed0911",
+    "version": "0.1.2-dev",
+    "upstream": "v159.7",
+    "save_schema": 1
+  },
+  "measurement": "unwrapped World.step with same instance binding; alternate order; three repeats; 60 steady ticks each",
+  "targeting": {
+    "normal": {
+      "baseline": {
+        "count": 180,
+        "p50_ms": 0.019395,
+        "p95_ms": 0.03498,
+        "max_ms": 1.899998
+      },
+      "candidate": {
+        "count": 180,
+        "p50_ms": 0.018971,
+        "p95_ms": 0.033528,
+        "max_ms": 0.245934
+      },
+      "p50_reduction_percent": 2.186130445991241,
+      "per_repeat": [
+        {
+          "repeat": 0,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 3226677,
+            "p50_ns": 20447.0,
+            "p95_ns": 42269,
+            "max_ns": 1899998
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 1306334,
+            "p50_ns": 23121.0,
+            "p95_ns": 33528,
+            "max_ns": 34203
+          },
+          "candidate_over_baseline_p50": 1.1307771311194796
+        },
+        {
+          "repeat": 1,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 1553781,
+            "p50_ns": 19159.5,
+            "p95_ns": 29712,
+            "max_ns": 386181
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 1214677,
+            "p50_ns": 18546.5,
+            "p95_ns": 31463,
+            "max_ns": 72849
+          },
+          "candidate_over_baseline_p50": 0.9680054281166002
+        },
+        {
+          "repeat": 2,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 2866723,
+            "p50_ns": 18575.0,
+            "p95_ns": 33821,
+            "max_ns": 1586510
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 1466186,
+            "p50_ns": 19298.0,
+            "p95_ns": 34569,
+            "max_ns": 245934
+          },
+          "candidate_over_baseline_p50": 1.0389232839838494
+        }
+      ],
+      "verified_ticks": 198,
+      "verified_resume_ticks": 9,
+      "initial_counts": {
+        "tiles": 1536,
+        "buildings": 21,
+        "building_kinds": {
+          "conveyor": 8,
+          "copper-wall": 7,
+          "core-shard": 1,
+          "duo": 2,
+          "mechanical-drill": 2,
+          "router": 1
+        },
+        "enemies": 0,
+        "bullets": 0,
+        "belt_items": 0,
+        "stored_items": 0,
+        "ammo": 40
+      },
+      "max_bullets": 0
+    },
+    "transport": {
+      "baseline": {
+        "count": 180,
+        "p50_ms": 1.3774135,
+        "p95_ms": 2.171911,
+        "max_ms": 4.764399
+      },
+      "candidate": {
+        "count": 180,
+        "p50_ms": 1.3921065,
+        "p95_ms": 1.885135,
+        "max_ms": 4.469547
+      },
+      "p50_reduction_percent": -1.0667094521724874,
+      "per_repeat": [
+        {
+          "repeat": 0,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 90778887,
+            "p50_ns": 1355996.5,
+            "p95_ns": 2003980,
+            "max_ns": 4764399
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 88484829,
+            "p50_ns": 1373535.5,
+            "p95_ns": 1959487,
+            "max_ns": 4469547
+          },
+          "candidate_over_baseline_p50": 1.0129343991669595
+        },
+        {
+          "repeat": 1,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 85814818,
+            "p50_ns": 1382857.0,
+            "p95_ns": 1968343,
+            "max_ns": 2341296
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 86286962,
+            "p50_ns": 1387770.0,
+            "p95_ns": 1885135,
+            "max_ns": 2335985
+          },
+          "candidate_over_baseline_p50": 1.0035527896232221
+        },
+        {
+          "repeat": 2,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 94003280,
+            "p50_ns": 1378949.5,
+            "p95_ns": 2803753,
+            "max_ns": 3775585
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 87463023,
+            "p50_ns": 1396904.5,
+            "p95_ns": 1870111,
+            "max_ns": 2778696
+          },
+          "candidate_over_baseline_p50": 1.0130207813991738
+        }
+      ],
+      "verified_ticks": 198,
+      "verified_resume_ticks": 9,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 0,
+        "bullets": 0,
+        "belt_items": 1008,
+        "stored_items": 72,
+        "ammo": 0
+      },
+      "max_bullets": 0
+    },
+    "battle": {
+      "baseline": {
+        "count": 180,
+        "p50_ms": 3.784668,
+        "p95_ms": 5.970361,
+        "max_ms": 10.707472
+      },
+      "candidate": {
+        "count": 180,
+        "p50_ms": 2.804693,
+        "p95_ms": 4.663051,
+        "max_ms": 6.978538
+      },
+      "p50_reduction_percent": 25.893288394120706,
+      "per_repeat": [
+        {
+          "repeat": 0,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 228599026,
+            "p50_ns": 3863104.0,
+            "p95_ns": 5245258,
+            "max_ns": 6251090
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 168558116,
+            "p50_ns": 2743661.5,
+            "p95_ns": 4146596,
+            "max_ns": 6978538
+          },
+          "candidate_over_baseline_p50": 0.7102220131790394
+        },
+        {
+          "repeat": 1,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 235781609,
+            "p50_ns": 3791216.5,
+            "p95_ns": 5843420,
+            "max_ns": 10604936
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 185229522,
+            "p50_ns": 2907726.5,
+            "p95_ns": 4663051,
+            "max_ns": 6586442
+          },
+          "candidate_over_baseline_p50": 0.7669639810862819
+        },
+        {
+          "repeat": 2,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 244278837,
+            "p50_ns": 3619574.0,
+            "p95_ns": 7416021,
+            "max_ns": 10707472
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 171257642,
+            "p50_ns": 2761620.5,
+            "p95_ns": 5041891,
+            "max_ns": 5188684
+          },
+          "candidate_over_baseline_p50": 0.7629683769415959
+        }
+      ],
+      "verified_ticks": 198,
+      "verified_resume_ticks": 9,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 33,
+        "building_kinds": {
+          "core-shard": 1,
+          "duo": 32
+        },
+        "enemies": 192,
+        "bullets": 0,
+        "belt_items": 0,
+        "stored_items": 0,
+        "ammo": 960
+      },
+      "max_bullets": 29
+    },
+    "mixed": {
+      "baseline": {
+        "count": 180,
+        "p50_ms": 3.4405845,
+        "p95_ms": 8.983712,
+        "max_ms": 30.043846
+      },
+      "candidate": {
+        "count": 180,
+        "p50_ms": 3.0085175,
+        "p95_ms": 9.016767,
+        "max_ms": 27.77427
+      },
+      "p50_reduction_percent": 12.557953452385783,
+      "per_repeat": [
+        {
+          "repeat": 0,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 241737902,
+            "p50_ns": 3416391.0,
+            "p95_ns": 6733975,
+            "max_ns": 16093251
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 225418475,
+            "p50_ns": 2972760.5,
+            "p95_ns": 5348752,
+            "max_ns": 19806594
+          },
+          "candidate_over_baseline_p50": 0.8701464498647842
+        },
+        {
+          "repeat": 1,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 238585582,
+            "p50_ns": 3285833.5,
+            "p95_ns": 5487056,
+            "max_ns": 30043846
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 203466925,
+            "p50_ns": 2854176.0,
+            "p95_ns": 4557505,
+            "max_ns": 27774270
+          },
+          "candidate_over_baseline_p50": 0.868630744680155
+        },
+        {
+          "repeat": 2,
+          "baseline": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 322650166,
+            "p50_ns": 4108718.0,
+            "p95_ns": 11171279,
+            "max_ns": 17825739
+          },
+          "candidate": {
+            "status": "measured",
+            "count": 60,
+            "total_ns": 308341094,
+            "p50_ns": 4137724.0,
+            "p95_ns": 9958904,
+            "max_ns": 16769815
+          },
+          "candidate_over_baseline_p50": 1.0070596229772888
+        }
+      ],
+      "verified_ticks": 198,
+      "verified_resume_ticks": 9,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 192,
+        "bullets": 0,
+        "belt_items": 1008,
+        "stored_items": 72,
+        "ammo": 360
+      },
+      "max_bullets": 21
+    }
+  },
+  "profile": {
+    "transport": {
+      "normal": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 96046317,
+        "p50_ns": 1321415.5,
+        "p95_ns": 3370310,
+        "max_ns": 5391024
+      },
+      "profiled": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 130823514,
+        "p50_ns": 1714887.0,
+        "p95_ns": 6050933,
+        "max_ns": 6730812
+      },
+      "profiled_over_normal_p50": 1.2977651616770047,
+      "methods": {
+        "step": {
+          "calls": 60,
+          "inclusive_ns": 130719762,
+          "exclusive_ns": 19684405,
+          "status": "measured"
+        },
+        "_tick_drill": {
+          "calls": 720,
+          "inclusive_ns": 7108502,
+          "exclusive_ns": 2056490,
+          "status": "measured"
+        },
+        "_tick_conveyor": {
+          "calls": 20160,
+          "inclusive_ns": 102097002,
+          "exclusive_ns": 99228762,
+          "status": "measured"
+        },
+        "_tick_router": {
+          "calls": 720,
+          "inclusive_ns": 1333102,
+          "exclusive_ns": 727232,
+          "status": "measured"
+        },
+        "_tick_turret": {
+          "calls": 720,
+          "inclusive_ns": 427699,
+          "exclusive_ns": 427699,
+          "status": "measured"
+        },
+        "rebuild_path": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_enemy": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_bullets": {
+          "calls": 60,
+          "inclusive_ns": 69052,
+          "exclusive_ns": 69052,
+          "status": "measured"
+        },
+        "neighbors": {
+          "calls": 324,
+          "inclusive_ns": 286921,
+          "exclusive_ns": 286921,
+          "status": "measured"
+        },
+        "mine_info": {
+          "calls": 720,
+          "inclusive_ns": 4017008,
+          "exclusive_ns": 4017008,
+          "status": "measured"
+        },
+        "accepts": {
+          "calls": 1056,
+          "inclusive_ns": 2452908,
+          "exclusive_ns": 2452908,
+          "status": "measured"
+        },
+        "receive": {
+          "calls": 720,
+          "inclusive_ns": 3358610,
+          "exclusive_ns": 1369613,
+          "status": "measured"
+        },
+        "offload": {
+          "calls": 12,
+          "inclusive_ns": 74066,
+          "exclusive_ns": 27308,
+          "status": "measured"
+        },
+        "dump": {
+          "calls": 144,
+          "inclusive_ns": 960938,
+          "exclusive_ns": 372364,
+          "status": "measured"
+        }
+      },
+      "checkpoint_save_load_ms": 21.878532,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 0,
+        "bullets": 0,
+        "belt_items": 1008,
+        "stored_items": 72,
+        "ammo": 0
+      },
+      "final_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 0,
+        "bullets": 0,
+        "belt_items": 912,
+        "stored_items": 72,
+        "ammo": 216
+      },
+      "final_stats": {
+        "mined": 12,
+        "delivered": 0,
+        "shots": 0,
+        "kills": 0
+      }
+    },
+    "battle": {
+      "normal": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 166817441,
+        "p50_ns": 2801547.5,
+        "p95_ns": 3745252,
+        "max_ns": 4818427
+      },
+      "profiled": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 174481113,
+        "p50_ns": 2820514.5,
+        "p95_ns": 3669560,
+        "max_ns": 7323360
+      },
+      "profiled_over_normal_p50": 1.0067701868342407,
+      "methods": {
+        "step": {
+          "calls": 60,
+          "inclusive_ns": 174274704,
+          "exclusive_ns": 9192660,
+          "status": "measured"
+        },
+        "_tick_drill": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_conveyor": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_router": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_turret": {
+          "calls": 1920,
+          "inclusive_ns": 78622616,
+          "exclusive_ns": 78622616,
+          "status": "measured"
+        },
+        "rebuild_path": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "_tick_enemy": {
+          "calls": 11259,
+          "inclusive_ns": 13923793,
+          "exclusive_ns": 13923793,
+          "status": "measured"
+        },
+        "_tick_bullets": {
+          "calls": 60,
+          "inclusive_ns": 72535635,
+          "exclusive_ns": 72535635,
+          "status": "measured"
+        },
+        "neighbors": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "mine_info": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "accepts": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "receive": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "offload": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        },
+        "dump": {
+          "calls": 0,
+          "inclusive_ns": 0,
+          "exclusive_ns": 0,
+          "status": "not_run"
+        }
+      },
+      "checkpoint_save_load_ms": 10.383555,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 33,
+        "building_kinds": {
+          "core-shard": 1,
+          "duo": 32
+        },
+        "enemies": 192,
+        "bullets": 0,
+        "belt_items": 0,
+        "stored_items": 0,
+        "ammo": 960
+      },
+      "final_counts": {
+        "tiles": 6144,
+        "buildings": 33,
+        "building_kinds": {
+          "core-shard": 1,
+          "duo": 32
+        },
+        "enemies": 184,
+        "bullets": 24,
+        "belt_items": 0,
+        "stored_items": 0,
+        "ammo": 836
+      },
+      "final_stats": {
+        "mined": 0,
+        "delivered": 0,
+        "shots": 124,
+        "kills": 8
+      }
+    },
+    "mixed": {
+      "normal": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 198152906,
+        "p50_ns": 2906618.0,
+        "p95_ns": 4998920,
+        "max_ns": 15530447
+      },
+      "profiled": {
+        "status": "measured",
+        "count": 60,
+        "total_ns": 227267565,
+        "p50_ns": 3455489.0,
+        "p95_ns": 5343894,
+        "max_ns": 12614374
+      },
+      "profiled_over_normal_p50": 1.1888349277407626,
+      "methods": {
+        "step": {
+          "calls": 60,
+          "inclusive_ns": 227038595,
+          "exclusive_ns": 23938482,
+          "status": "measured"
+        },
+        "_tick_drill": {
+          "calls": 720,
+          "inclusive_ns": 8433090,
+          "exclusive_ns": 2249556,
+          "status": "measured"
+        },
+        "_tick_conveyor": {
+          "calls": 20160,
+          "inclusive_ns": 83730964,
+          "exclusive_ns": 82125979,
+          "status": "measured"
+        },
+        "_tick_router": {
+          "calls": 720,
+          "inclusive_ns": 8095768,
+          "exclusive_ns": 2416342,
+          "status": "measured"
+        },
+        "_tick_turret": {
+          "calls": 720,
+          "inclusive_ns": 32054207,
+          "exclusive_ns": 32054207,
+          "status": "measured"
+        },
+        "rebuild_path": {
+          "calls": 1,
+          "inclusive_ns": 9305239,
+          "exclusive_ns": 9305239,
+          "status": "measured"
+        },
+        "_tick_enemy": {
+          "calls": 11520,
+          "inclusive_ns": 15246470,
+          "exclusive_ns": 15246470,
+          "status": "measured"
+        },
+        "_tick_bullets": {
+          "calls": 60,
+          "inclusive_ns": 46234375,
+          "exclusive_ns": 46234375,
+          "status": "measured"
+        },
+        "neighbors": {
+          "calls": 888,
+          "inclusive_ns": 992146,
+          "exclusive_ns": 992146,
+          "status": "measured"
+        },
+        "mine_info": {
+          "calls": 720,
+          "inclusive_ns": 4668134,
+          "exclusive_ns": 4668134,
+          "status": "measured"
+        },
+        "accepts": {
+          "calls": 2244,
+          "inclusive_ns": 6145499,
+          "exclusive_ns": 6145499,
+          "status": "measured"
+        },
+        "receive": {
+          "calls": 804,
+          "inclusive_ns": 2089187,
+          "exclusive_ns": 810233,
+          "status": "measured"
+        },
+        "offload": {
+          "calls": 12,
+          "inclusive_ns": 81048,
+          "exclusive_ns": 31320,
+          "status": "measured"
+        },
+        "dump": {
+          "calls": 144,
+          "inclusive_ns": 1434352,
+          "exclusive_ns": 820613,
+          "status": "measured"
+        }
+      },
+      "checkpoint_save_load_ms": 37.626219,
+      "initial_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 192,
+        "bullets": 0,
+        "belt_items": 1008,
+        "stored_items": 72,
+        "ammo": 360
+      },
+      "final_counts": {
+        "tiles": 6144,
+        "buildings": 373,
+        "building_kinds": {
+          "conveyor": 336,
+          "core-shard": 1,
+          "duo": 12,
+          "mechanical-drill": 12,
+          "router": 12
+        },
+        "enemies": 192,
+        "bullets": 12,
+        "belt_items": 996,
+        "stored_items": 84,
+        "ammo": 348
+      },
+      "final_stats": {
+        "mined": 12,
+        "delivered": 0,
+        "shots": 36,
+        "kills": 0
+      }
+    }
+  },
+  "decision": {
+    "adopt": true,
+    "basis": "All states/saves match; battle p50/p95 improves in each of three repeats. Mixed repeat 3 is flat/slightly slower; transport pooled median is about 1% longer. No universal/device speedup claim."
+  }
+}

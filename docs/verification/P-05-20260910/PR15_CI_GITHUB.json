@@ -1,0 +1,70 @@
+{
+  "ci_conclusion": "success",
+  "ci_url": "https://github.com/halc8312/Mindusnista/actions/runs/34468572870",
+  "date": "2026-09-10",
+  "device_test": "not_run",
+  "extracted_java": [
+    {
+      "cases": 20,
+      "mismatches": 0,
+      "status": "passed",
+      "updates": 59
+    },
+    {
+      "calls": 49,
+      "cases": 14,
+      "mismatches": 0,
+      "status": "passed"
+    },
+    {
+      "calls": 44,
+      "cases": 22,
+      "mismatches": 0,
+      "status": "passed"
+    },
+    {
+      "cases": 14,
+      "deliveries": 58,
+      "kind": "source_extracted_integrated_methods_not_original_engine",
+      "mismatches": 0,
+      "status": "passed",
+      "updates": 985
+    }
+  ],
+  "head_sha": "61172da6b1ac9020b529ba7331ece82f6cd150b1",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "errors": 0,
+      "failures": 0,
+      "id": 102842862095,
+      "name": "tests (3.13)",
+      "self_test": "passed",
+      "skips": 0,
+      "tests": 326,
+      "versions": [
+        "Successfully set up CPython (3.13.15)",
+        "Successfully installed numpy-2.3.5"
+      ]
+    },
+    {
+      "conclusion": "success",
+      "errors": 0,
+      "failures": 0,
+      "id": 102842862306,
+      "name": "tests (3.10)",
+      "self_test": "passed",
+      "skips": 0,
+      "tests": 326,
+      "versions": [
+        "Successfully set up CPython (3.10.21)",
+        "Successfully installed numpy-1.26.4"
+      ]
+    }
+  ],
+  "main_and_pr_read_back": true,
+  "merge_sha": "b67f0fc80db470d2b5260926b3dc621e0f1a6339",
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/15",
+  "repository": "halc8312/Mindusnista",
+  "tree_sha": "e752b42f817304c0abe2b7b3305901d44343d884"
+}

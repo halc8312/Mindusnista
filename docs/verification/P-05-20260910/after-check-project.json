@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-10",
+  "base_sha": "b67f0fc80db470d2b5260926b3dc621e0f1a6339",
+  "command": "python tools/check_project.py",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39"
+  },
+  "exit_code": 0,
+  "unittest": {
+    "tests": 355,
+    "seconds": 15.026,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "self_test": "passed",
+  "python_310_ast": "passed",
+  "single_file_sync": "passed",
+  "runtime_sha256": "14ba5722ccfb0f3641452e10beb025d43bdbb63f8f77013dfe52bc9d555bc850",
+  "device": "not_run"
+}

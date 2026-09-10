@@ -1,0 +1,20 @@
+{
+  "base_sha": "b67f0fc80db470d2b5260926b3dc621e0f1a6339",
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+  "runtime_change": "Only World._tick_turret target selection; generated single file synchronized",
+  "all_other_app_ast_identical": true,
+  "sha256": {
+    "mindustry_pythonista.py": "14ba5722ccfb0f3641452e10beb025d43bdbb63f8f77013dfe52bc9d555bc850",
+    "src/mindusnista/app.py": "1d1e24212d35ebad3df88e57ea67cf7d5e939f3d7264cd6b0365fb7c6174db0c",
+    "tools/profile_world.py": "4d09c518fdc18ecf02d45aac9ff8e81b0ca1f4501d6030d09dcc4085b2417bae",
+    "tools/check_target_selection.py": "5fe8011f36580e940043e1f48cb548f2c525b04b97b6493756fed968118fd204"
+  },
+  "profile_verified_ticks": 198,
+  "targeting_verified_ticks": 792,
+  "targeting_resume_ticks": 36,
+  "device": "not_run",
+  "original_save_sharing": "not_implemented",
+  "large_scale_limits": "existing scaffold limits retained; not production target limits"
+}
