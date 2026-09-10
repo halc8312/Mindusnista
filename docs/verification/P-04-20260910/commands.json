@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-P04/tools/pythonista_dynamic_state_probe.py",
+      "--count",
+      "20000",
+      "--warmups",
+      "1",
+      "--repeats",
+      "5",
+      "--output",
+      "/workspace/scratch/5e4ca4a2a8b2/evidence/P-04/final/pc-20000.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-P04/tools/pythonista_dynamic_state_probe.py",
+      "--count",
+      "200000",
+      "--warmups",
+      "1",
+      "--repeats",
+      "5",
+      "--output",
+      "/workspace/scratch/5e4ca4a2a8b2/evidence/P-04/final/pc-200000.json"
+    ],
+    "exit_code": 0
+  }
+]

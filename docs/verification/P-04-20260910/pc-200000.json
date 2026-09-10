@@ -1,0 +1,1643 @@
+{
+  "probe": "Mindusnista P-04 dynamic synthetic state",
+  "probe_schema": 1,
+  "created_at_utc": "2026-09-10T08:29:59.405505+00:00",
+  "source": {
+    "sha256": "beae51b2ea4ee22890977048fd8a4ba87938c70d5f3058b174ebab1d33612ddf",
+    "status": "read"
+  },
+  "environment": {
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "pythonista": {
+      "status": "not_detected"
+    }
+  },
+  "workload": {
+    "initial_rows": 200000,
+    "seed": 159704,
+    "warmups": 1,
+    "steady_repeats": 5,
+    "columns": [
+      "id",
+      "x",
+      "y",
+      "vx",
+      "vy",
+      "target_x",
+      "target_y",
+      "threshold2"
+    ],
+    "dataset_seconds": 0.644090709000011,
+    "command_generation_seconds": 0.28287790399917867,
+    "command_batches_sha256": "0413f198a41e54b72a71094cec100649b97d54b59e61edc67b7cb1c6c7d87347",
+    "command_counts": [
+      {
+        "spawn": 6250,
+        "delete": 0,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3124,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3126,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3124,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3126,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3124,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3126,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3124,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3126,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      },
+      {
+        "spawn": 3124,
+        "delete": 3125,
+        "velocity": 3125,
+        "target": 3125
+      }
+    ],
+    "dtype": "float64 + int64 IDs",
+    "output_every_tick": [
+      "ids",
+      "x",
+      "y",
+      "vx",
+      "vy",
+      "target_x",
+      "target_y",
+      "threshold2",
+      "distances",
+      "mask"
+    ],
+    "order": "surviving insertion order; fresh ID appends, LIFO free slots, capacity doubles",
+    "id_rule": "int64, each new ID >= next_id, IDs never reused, exhausted range raises",
+    "snapshot_cadence": "once after measured ticks, restore then replay 3 command batches"
+  },
+  "measurement": {
+    "clock": "time.perf_counter",
+    "timed": "prepare; full command validation/application including growth; update; compute/sync; all fields as Python lists; JSON checkpoint/restore",
+    "untimed": "dataset/command generation (separate), scalar oracle, comparisons/digests, report, shutdown",
+    "backend_order": [
+      "python",
+      "numpy 1",
+      "numpy 2",
+      "numpy 4"
+    ],
+    "growth_seconds_rule": "inside command_apply_seconds, never add twice",
+    "numeric_buffer_estimate_rule": "NumPy capacity * 81 bytes: 7 float64 state + int64 ID + 2 float64 work + bool",
+    "numeric_buffer_estimate_excludes": "mapping/free lists, Python input/output/oracle/JSON, index temporaries, growth overlap, executor/runtime",
+    "peak_process_memory_bytes": null,
+    "peak_process_memory_status": "not_measured"
+  },
+  "numpy": {
+    "status": "available",
+    "version": "2.3.5",
+    "import_seconds": 0.05766632599988952,
+    "reason": null
+  },
+  "limitations": [
+    "different workload/boundary from P-03; cross-probe ratios are not same-work speedups",
+    "synthetic float64 state and commands, not original float32 parity or game integration",
+    "NumPy scans allocated capacity including zero free slots; Python scans capacity and skips None slots",
+    "snapshot is not game schema 1 or msav; no disk I/O is timed",
+    "fixed order, few repeats, interleaved oracle; workers do not prove simultaneous CPU execution",
+    "no device FPS, thermal, sustained load, peak memory, or game/effects reduction"
+  ],
+  "backends": [
+    {
+      "name": "python",
+      "workers": 1,
+      "prepare_seconds": 0.6745859719958389,
+      "initial_conversion_seconds": 0.6624478179946891,
+      "status": "correct",
+      "reason": null,
+      "frame_samples": [
+        {
+          "command_validate_seconds": 0.034082397003658116,
+          "command_apply_seconds": 0.13998844699381152,
+          "state_update_seconds": 0.06481933699978981,
+          "compute_sync_seconds": 0.05962784300209023,
+          "result_apply_seconds": 0.20388653100235388,
+          "runner_overhead_seconds": 1.2746000720653683e-05,
+          "total_seconds": 0.5024173010024242,
+          "mutation": {
+            "growth_seconds": 0.06555050799943274,
+            "growth_events": 1,
+            "free_slot_allocations": 6249,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12500,
+          "tick": 1,
+          "phase": "first"
+        },
+        {
+          "command_validate_seconds": 0.013652801004354842,
+          "command_apply_seconds": 0.07244078599615023,
+          "state_update_seconds": 0.02244489500299096,
+          "compute_sync_seconds": 0.03575137900043046,
+          "result_apply_seconds": 0.1505891119959415,
+          "runner_overhead_seconds": 9.076997230295092e-06,
+          "total_seconds": 0.2948880499970983,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 2,
+          "phase": "warmup"
+        },
+        {
+          "command_validate_seconds": 0.016313093998178374,
+          "command_apply_seconds": 0.03288431800319813,
+          "state_update_seconds": 0.02213209299952723,
+          "compute_sync_seconds": 0.035305163997691125,
+          "result_apply_seconds": 0.12131429000146454,
+          "runner_overhead_seconds": 5.745998350903392e-06,
+          "total_seconds": 0.2279547049984103,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 3,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.013810686003125738,
+          "command_apply_seconds": 0.02847413699782919,
+          "state_update_seconds": 0.021513200998015236,
+          "compute_sync_seconds": 0.03915219600457931,
+          "result_apply_seconds": 0.13060209399554878,
+          "runner_overhead_seconds": 5.528003384824842e-06,
+          "total_seconds": 0.23355784200248308,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 4,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.014841618998616468,
+          "command_apply_seconds": 0.07667982300336007,
+          "state_update_seconds": 0.021442928002215922,
+          "compute_sync_seconds": 0.03603103199566249,
+          "result_apply_seconds": 0.12832907800475368,
+          "runner_overhead_seconds": 6.6599968704395e-06,
+          "total_seconds": 0.27733114000147907,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 5,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.025751105000381358,
+          "command_apply_seconds": 0.030051257002924103,
+          "state_update_seconds": 0.024275587995362002,
+          "compute_sync_seconds": 0.03557703600381501,
+          "result_apply_seconds": 0.1319727910013171,
+          "runner_overhead_seconds": 5.745998350903392e-06,
+          "total_seconds": 0.24763352300215047,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 6,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.019587226001021918,
+          "command_apply_seconds": 0.0347065560054034,
+          "state_update_seconds": 0.0287012879998656,
+          "compute_sync_seconds": 0.04553177499474259,
+          "result_apply_seconds": 0.1368110660041566,
+          "runner_overhead_seconds": 6.027999916113913e-06,
+          "total_seconds": 0.2653439390051062,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 7,
+          "phase": "steady"
+        }
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.2279547049984103,
+          0.23355784200248308,
+          0.27733114000147907,
+          0.24763352300215047,
+          0.2653439390051062
+        ],
+        "count": 5,
+        "p50_seconds": 0.24763352300215047,
+        "p95_seconds": 0.27733114000147907,
+        "max_seconds": 0.27733114000147907,
+        "p95_method": "nearest_rank"
+      },
+      "steady_components": {
+        "command_validate_seconds": {
+          "samples_seconds": [
+            0.016313093998178374,
+            0.013810686003125738,
+            0.014841618998616468,
+            0.025751105000381358,
+            0.019587226001021918
+          ],
+          "count": 5,
+          "p50_seconds": 0.016313093998178374,
+          "p95_seconds": 0.025751105000381358,
+          "max_seconds": 0.025751105000381358,
+          "p95_method": "nearest_rank"
+        },
+        "command_apply_seconds": {
+          "samples_seconds": [
+            0.03288431800319813,
+            0.02847413699782919,
+            0.07667982300336007,
+            0.030051257002924103,
+            0.0347065560054034
+          ],
+          "count": 5,
+          "p50_seconds": 0.03288431800319813,
+          "p95_seconds": 0.07667982300336007,
+          "max_seconds": 0.07667982300336007,
+          "p95_method": "nearest_rank"
+        },
+        "state_update_seconds": {
+          "samples_seconds": [
+            0.02213209299952723,
+            0.021513200998015236,
+            0.021442928002215922,
+            0.024275587995362002,
+            0.0287012879998656
+          ],
+          "count": 5,
+          "p50_seconds": 0.02213209299952723,
+          "p95_seconds": 0.0287012879998656,
+          "max_seconds": 0.0287012879998656,
+          "p95_method": "nearest_rank"
+        },
+        "compute_sync_seconds": {
+          "samples_seconds": [
+            0.035305163997691125,
+            0.03915219600457931,
+            0.03603103199566249,
+            0.03557703600381501,
+            0.04553177499474259
+          ],
+          "count": 5,
+          "p50_seconds": 0.03603103199566249,
+          "p95_seconds": 0.04553177499474259,
+          "max_seconds": 0.04553177499474259,
+          "p95_method": "nearest_rank"
+        },
+        "result_apply_seconds": {
+          "samples_seconds": [
+            0.12131429000146454,
+            0.13060209399554878,
+            0.12832907800475368,
+            0.1319727910013171,
+            0.1368110660041566
+          ],
+          "count": 5,
+          "p50_seconds": 0.13060209399554878,
+          "p95_seconds": 0.1368110660041566,
+          "max_seconds": 0.1368110660041566,
+          "p95_method": "nearest_rank"
+        },
+        "runner_overhead_seconds": {
+          "samples_seconds": [
+            5.745998350903392e-06,
+            5.528003384824842e-06,
+            6.6599968704395e-06,
+            5.745998350903392e-06,
+            6.027999916113913e-06
+          ],
+          "count": 5,
+          "p50_seconds": 5.745998350903392e-06,
+          "p95_seconds": 6.6599968704395e-06,
+          "max_seconds": 6.6599968704395e-06,
+          "p95_method": "nearest_rank"
+        }
+      },
+      "verification": {
+        "planned_runs": 7,
+        "completed_runs": 7,
+        "verified_runs": 7,
+        "checked_rows": 1443747,
+        "first_failure": null,
+        "actual_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ],
+        "expected_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ]
+      },
+      "first_with_prepare_seconds": 1.1770032729982631,
+      "amortized_seconds_per_tick": 0.38910178171499865,
+      "amortized_with_import_seconds_per_tick": 0.38910178171499865,
+      "final_capacity": 400000,
+      "numeric_buffer_estimate_bytes": null,
+      "checkpoint": {
+        "status": "correct",
+        "resume_samples": [
+          {
+            "command_validate_seconds": 0.016412764001870528,
+            "command_apply_seconds": 0.0375352990013198,
+            "state_update_seconds": 0.031396494996442925,
+            "compute_sync_seconds": 0.03864059199986514,
+            "result_apply_seconds": 0.13164410900208168,
+            "runner_overhead_seconds": 5.404996045399457e-06,
+            "total_seconds": 0.25563466399762547,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 8,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5",
+            "actual_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5"
+          },
+          {
+            "command_validate_seconds": 0.014360718996613286,
+            "command_apply_seconds": 0.03218841800116934,
+            "state_update_seconds": 0.024512971998774447,
+            "compute_sync_seconds": 0.033066015006625094,
+            "result_apply_seconds": 0.19931621399882715,
+            "runner_overhead_seconds": 0.0003946779979742132,
+            "total_seconds": 0.30383901599998353,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3126,
+              "capacity": 400000,
+              "active_rows": 206250
+            },
+            "command_count": 12501,
+            "tick": 9,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206250,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88",
+            "actual_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88"
+          },
+          {
+            "command_validate_seconds": 0.0176147009988199,
+            "command_apply_seconds": 0.11059198500151979,
+            "state_update_seconds": 0.026030268003523815,
+            "compute_sync_seconds": 0.040746148995822296,
+            "result_apply_seconds": 0.15555060699989554,
+            "runner_overhead_seconds": 6.032001692801714e-06,
+            "total_seconds": 0.35053974200127413,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 10,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4",
+            "actual_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4"
+          }
+        ],
+        "resume_ticks": 3,
+        "verified_resume_ticks": 3,
+        "first_failure": null,
+        "state_export_seconds": 0.2648641229970963,
+        "json_encode_seconds": 0.5588827050014515,
+        "json_decode_validate_seconds": 0.8176091490022372,
+        "state_restore_seconds": 0.7408106599978055,
+        "total_seconds": 2.3821666369985905,
+        "bytes": 20411016,
+        "snapshot_sha256": "3726c3e227bf73c859f148388752f23608cff576a02f32f33ef0645d834ec8ac",
+        "snapshot_matches_reference": true,
+        "restored_snapshot_matches": true,
+        "final_snapshot_matches_reference": true
+      },
+      "amortized_with_checkpoint_seconds_per_tick": 0.7294113012862259
+    },
+    {
+      "name": "numpy",
+      "workers": 1,
+      "prepare_seconds": 0.4562718649976887,
+      "initial_conversion_seconds": 0.4378779899998335,
+      "status": "correct",
+      "reason": null,
+      "frame_samples": [
+        {
+          "command_validate_seconds": 0.019840332999592647,
+          "command_apply_seconds": 0.027055127000494394,
+          "state_update_seconds": 0.007579100994917098,
+          "compute_sync_seconds": 0.010895830004301388,
+          "result_apply_seconds": 0.060311852997983806,
+          "runner_overhead_seconds": 8.957002137321979e-06,
+          "total_seconds": 0.12569120099942666,
+          "mutation": {
+            "growth_seconds": 0.014882709001540206,
+            "growth_events": 1,
+            "free_slot_allocations": 6249,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12500,
+          "tick": 1,
+          "phase": "first"
+        },
+        {
+          "command_validate_seconds": 0.014542912002070807,
+          "command_apply_seconds": 0.009848977002548054,
+          "state_update_seconds": 0.003614336994360201,
+          "compute_sync_seconds": 0.004940960003295913,
+          "result_apply_seconds": 0.05274024500249652,
+          "runner_overhead_seconds": 0.0001193109928863123,
+          "total_seconds": 0.08580674199765781,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 2,
+          "phase": "warmup"
+        },
+        {
+          "command_validate_seconds": 0.013495124003384262,
+          "command_apply_seconds": 0.008705955995537806,
+          "state_update_seconds": 0.0035910750011680648,
+          "compute_sync_seconds": 0.004544485003862064,
+          "result_apply_seconds": 0.05086921699694358,
+          "runner_overhead_seconds": 7.013994036242366e-06,
+          "total_seconds": 0.08121287099493202,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 3,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.013699459996132646,
+          "command_apply_seconds": 0.009014786999614444,
+          "state_update_seconds": 0.003469547002168838,
+          "compute_sync_seconds": 0.004237255998305045,
+          "result_apply_seconds": 0.051372693000303116,
+          "runner_overhead_seconds": 6.679008947685361e-06,
+          "total_seconds": 0.08180042200547177,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 4,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.01393580799776828,
+          "command_apply_seconds": 0.009066193997568917,
+          "state_update_seconds": 0.003442512999754399,
+          "compute_sync_seconds": 0.004251712001860142,
+          "result_apply_seconds": 0.04799615400406765,
+          "runner_overhead_seconds": 7.4260024121031165e-06,
+          "total_seconds": 0.07869980700343149,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 5,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.015153280000959057,
+          "command_apply_seconds": 0.009179150001727976,
+          "state_update_seconds": 0.0033760070000425912,
+          "compute_sync_seconds": 0.004206033998343628,
+          "result_apply_seconds": 0.050955448001332115,
+          "runner_overhead_seconds": 6.784001016058028e-06,
+          "total_seconds": 0.08287670300342143,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 6,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.014380123000591993,
+          "command_apply_seconds": 0.010752542999398429,
+          "state_update_seconds": 0.003681466005218681,
+          "compute_sync_seconds": 0.004807644996617455,
+          "result_apply_seconds": 0.06215441200038185,
+          "runner_overhead_seconds": 8.92999378265813e-06,
+          "total_seconds": 0.09578511899599107,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 7,
+          "phase": "steady"
+        }
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.08121287099493202,
+          0.08180042200547177,
+          0.07869980700343149,
+          0.08287670300342143,
+          0.09578511899599107
+        ],
+        "count": 5,
+        "p50_seconds": 0.08180042200547177,
+        "p95_seconds": 0.09578511899599107,
+        "max_seconds": 0.09578511899599107,
+        "p95_method": "nearest_rank"
+      },
+      "steady_components": {
+        "command_validate_seconds": {
+          "samples_seconds": [
+            0.013495124003384262,
+            0.013699459996132646,
+            0.01393580799776828,
+            0.015153280000959057,
+            0.014380123000591993
+          ],
+          "count": 5,
+          "p50_seconds": 0.01393580799776828,
+          "p95_seconds": 0.015153280000959057,
+          "max_seconds": 0.015153280000959057,
+          "p95_method": "nearest_rank"
+        },
+        "command_apply_seconds": {
+          "samples_seconds": [
+            0.008705955995537806,
+            0.009014786999614444,
+            0.009066193997568917,
+            0.009179150001727976,
+            0.010752542999398429
+          ],
+          "count": 5,
+          "p50_seconds": 0.009066193997568917,
+          "p95_seconds": 0.010752542999398429,
+          "max_seconds": 0.010752542999398429,
+          "p95_method": "nearest_rank"
+        },
+        "state_update_seconds": {
+          "samples_seconds": [
+            0.0035910750011680648,
+            0.003469547002168838,
+            0.003442512999754399,
+            0.0033760070000425912,
+            0.003681466005218681
+          ],
+          "count": 5,
+          "p50_seconds": 0.003469547002168838,
+          "p95_seconds": 0.003681466005218681,
+          "max_seconds": 0.003681466005218681,
+          "p95_method": "nearest_rank"
+        },
+        "compute_sync_seconds": {
+          "samples_seconds": [
+            0.004544485003862064,
+            0.004237255998305045,
+            0.004251712001860142,
+            0.004206033998343628,
+            0.004807644996617455
+          ],
+          "count": 5,
+          "p50_seconds": 0.004251712001860142,
+          "p95_seconds": 0.004807644996617455,
+          "max_seconds": 0.004807644996617455,
+          "p95_method": "nearest_rank"
+        },
+        "result_apply_seconds": {
+          "samples_seconds": [
+            0.05086921699694358,
+            0.051372693000303116,
+            0.04799615400406765,
+            0.050955448001332115,
+            0.06215441200038185
+          ],
+          "count": 5,
+          "p50_seconds": 0.050955448001332115,
+          "p95_seconds": 0.06215441200038185,
+          "max_seconds": 0.06215441200038185,
+          "p95_method": "nearest_rank"
+        },
+        "runner_overhead_seconds": {
+          "samples_seconds": [
+            7.013994036242366e-06,
+            6.679008947685361e-06,
+            7.4260024121031165e-06,
+            6.784001016058028e-06,
+            8.92999378265813e-06
+          ],
+          "count": 5,
+          "p50_seconds": 7.013994036242366e-06,
+          "p95_seconds": 8.92999378265813e-06,
+          "max_seconds": 8.92999378265813e-06,
+          "p95_method": "nearest_rank"
+        }
+      },
+      "verification": {
+        "planned_runs": 7,
+        "completed_runs": 7,
+        "verified_runs": 7,
+        "checked_rows": 1443747,
+        "first_failure": null,
+        "actual_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ],
+        "expected_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ]
+      },
+      "first_with_prepare_seconds": 0.5819630659971153,
+      "amortized_seconds_per_tick": 0.1554492471425744,
+      "amortized_with_import_seconds_per_tick": 0.16368729371398721,
+      "final_capacity": 400000,
+      "numeric_buffer_estimate_bytes": 32400000,
+      "checkpoint": {
+        "status": "correct",
+        "resume_samples": [
+          {
+            "command_validate_seconds": 0.044546423996507656,
+            "command_apply_seconds": 0.021170965999772307,
+            "state_update_seconds": 0.0614778210001532,
+            "compute_sync_seconds": 0.027869415003806353,
+            "result_apply_seconds": 0.13540094099880662,
+            "runner_overhead_seconds": 0.00023562499700346962,
+            "total_seconds": 0.2907011919960496,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 8,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5",
+            "actual_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5"
+          },
+          {
+            "command_validate_seconds": 0.03148373500152957,
+            "command_apply_seconds": 0.02217458499944769,
+            "state_update_seconds": 0.009988666999561246,
+            "compute_sync_seconds": 0.01584319199901074,
+            "result_apply_seconds": 0.37138080099975923,
+            "runner_overhead_seconds": 0.00010057499457616359,
+            "total_seconds": 0.45097155499388464,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3126,
+              "capacity": 400000,
+              "active_rows": 206250
+            },
+            "command_count": 12501,
+            "tick": 9,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206250,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88",
+            "actual_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88"
+          },
+          {
+            "command_validate_seconds": 0.016341859998647124,
+            "command_apply_seconds": 0.02070583400200121,
+            "state_update_seconds": 0.00622801899589831,
+            "compute_sync_seconds": 0.005902707998757251,
+            "result_apply_seconds": 0.052578722999896854,
+            "runner_overhead_seconds": 2.0382009097374976e-05,
+            "total_seconds": 0.10177752600429812,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 10,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4",
+            "actual_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4"
+          }
+        ],
+        "resume_ticks": 3,
+        "verified_resume_ticks": 3,
+        "first_failure": null,
+        "state_export_seconds": 0.8439906509956927,
+        "json_encode_seconds": 1.0548094100013259,
+        "json_decode_validate_seconds": 1.084288017002109,
+        "state_restore_seconds": 0.4195906329987338,
+        "total_seconds": 3.4026787109978613,
+        "bytes": 20411016,
+        "snapshot_sha256": "3726c3e227bf73c859f148388752f23608cff576a02f32f33ef0645d834ec8ac",
+        "snapshot_matches_reference": true,
+        "restored_snapshot_matches": true,
+        "final_snapshot_matches_reference": true
+      },
+      "amortized_with_checkpoint_seconds_per_tick": 0.6415462058565546,
+      "python_p50_ratio": 3.027289064420546
+    },
+    {
+      "name": "numpy",
+      "workers": 2,
+      "prepare_seconds": 1.0781582700001309,
+      "initial_conversion_seconds": 1.0414659419984673,
+      "status": "correct",
+      "reason": null,
+      "frame_samples": [
+        {
+          "command_validate_seconds": 0.06400941999891074,
+          "command_apply_seconds": 0.07181529799709097,
+          "state_update_seconds": 0.06761740900401492,
+          "compute_sync_seconds": 0.10938368299684953,
+          "result_apply_seconds": 0.18083794999984093,
+          "runner_overhead_seconds": 3.497000579955056e-05,
+          "total_seconds": 0.49369873000250664,
+          "mutation": {
+            "growth_seconds": 0.046015619998797774,
+            "growth_events": 1,
+            "free_slot_allocations": 6249,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12500,
+          "tick": 1,
+          "phase": "first"
+        },
+        {
+          "command_validate_seconds": 0.02357062900409801,
+          "command_apply_seconds": 0.014994400000432506,
+          "state_update_seconds": 0.00694672399549745,
+          "compute_sync_seconds": 0.005955405002168845,
+          "result_apply_seconds": 0.09791185399808455,
+          "runner_overhead_seconds": 7.595997885800898e-06,
+          "total_seconds": 0.14938660799816716,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 2,
+          "phase": "warmup"
+        },
+        {
+          "command_validate_seconds": 0.034397629999148194,
+          "command_apply_seconds": 0.02085244700720068,
+          "state_update_seconds": 0.007298231997992843,
+          "compute_sync_seconds": 0.00459281999792438,
+          "result_apply_seconds": 0.11666461500135483,
+          "runner_overhead_seconds": 7.741997251287103e-06,
+          "total_seconds": 0.18381348600087222,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 3,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.028137753004557453,
+          "command_apply_seconds": 0.01559794700006023,
+          "state_update_seconds": 0.007466406997991726,
+          "compute_sync_seconds": 0.006163232996186707,
+          "result_apply_seconds": 0.1071612060040934,
+          "runner_overhead_seconds": 7.01200042385608e-06,
+          "total_seconds": 0.16453355800331337,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 4,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.029567789999418892,
+          "command_apply_seconds": 0.018786143999022897,
+          "state_update_seconds": 0.006563508002727758,
+          "compute_sync_seconds": 0.002752418993622996,
+          "result_apply_seconds": 0.08069550200161757,
+          "runner_overhead_seconds": 7.831004040781409e-06,
+          "total_seconds": 0.1383731940004509,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 5,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.02196670899866149,
+          "command_apply_seconds": 0.017596010999113787,
+          "state_update_seconds": 0.007668182995985262,
+          "compute_sync_seconds": 0.005729330005124211,
+          "result_apply_seconds": 0.10974226400139742,
+          "runner_overhead_seconds": 9.639996278565377e-06,
+          "total_seconds": 0.16271213699656073,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 6,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.014006126999447588,
+          "command_apply_seconds": 0.009468015996390022,
+          "state_update_seconds": 0.0037851560045965016,
+          "compute_sync_seconds": 0.002556806997745298,
+          "result_apply_seconds": 0.04731238599924836,
+          "runner_overhead_seconds": 8.002003596629947e-06,
+          "total_seconds": 0.0771364940010244,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 7,
+          "phase": "steady"
+        }
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.18381348600087222,
+          0.16453355800331337,
+          0.1383731940004509,
+          0.16271213699656073,
+          0.0771364940010244
+        ],
+        "count": 5,
+        "p50_seconds": 0.16271213699656073,
+        "p95_seconds": 0.18381348600087222,
+        "max_seconds": 0.18381348600087222,
+        "p95_method": "nearest_rank"
+      },
+      "steady_components": {
+        "command_validate_seconds": {
+          "samples_seconds": [
+            0.034397629999148194,
+            0.028137753004557453,
+            0.029567789999418892,
+            0.02196670899866149,
+            0.014006126999447588
+          ],
+          "count": 5,
+          "p50_seconds": 0.028137753004557453,
+          "p95_seconds": 0.034397629999148194,
+          "max_seconds": 0.034397629999148194,
+          "p95_method": "nearest_rank"
+        },
+        "command_apply_seconds": {
+          "samples_seconds": [
+            0.02085244700720068,
+            0.01559794700006023,
+            0.018786143999022897,
+            0.017596010999113787,
+            0.009468015996390022
+          ],
+          "count": 5,
+          "p50_seconds": 0.017596010999113787,
+          "p95_seconds": 0.02085244700720068,
+          "max_seconds": 0.02085244700720068,
+          "p95_method": "nearest_rank"
+        },
+        "state_update_seconds": {
+          "samples_seconds": [
+            0.007298231997992843,
+            0.007466406997991726,
+            0.006563508002727758,
+            0.007668182995985262,
+            0.0037851560045965016
+          ],
+          "count": 5,
+          "p50_seconds": 0.007298231997992843,
+          "p95_seconds": 0.007668182995985262,
+          "max_seconds": 0.007668182995985262,
+          "p95_method": "nearest_rank"
+        },
+        "compute_sync_seconds": {
+          "samples_seconds": [
+            0.00459281999792438,
+            0.006163232996186707,
+            0.002752418993622996,
+            0.005729330005124211,
+            0.002556806997745298
+          ],
+          "count": 5,
+          "p50_seconds": 0.00459281999792438,
+          "p95_seconds": 0.006163232996186707,
+          "max_seconds": 0.006163232996186707,
+          "p95_method": "nearest_rank"
+        },
+        "result_apply_seconds": {
+          "samples_seconds": [
+            0.11666461500135483,
+            0.1071612060040934,
+            0.08069550200161757,
+            0.10974226400139742,
+            0.04731238599924836
+          ],
+          "count": 5,
+          "p50_seconds": 0.1071612060040934,
+          "p95_seconds": 0.11666461500135483,
+          "max_seconds": 0.11666461500135483,
+          "p95_method": "nearest_rank"
+        },
+        "runner_overhead_seconds": {
+          "samples_seconds": [
+            7.741997251287103e-06,
+            7.01200042385608e-06,
+            7.831004040781409e-06,
+            9.639996278565377e-06,
+            8.002003596629947e-06
+          ],
+          "count": 5,
+          "p50_seconds": 7.831004040781409e-06,
+          "p95_seconds": 9.639996278565377e-06,
+          "max_seconds": 9.639996278565377e-06,
+          "p95_method": "nearest_rank"
+        }
+      },
+      "verification": {
+        "planned_runs": 7,
+        "completed_runs": 7,
+        "verified_runs": 7,
+        "checked_rows": 1443747,
+        "first_failure": null,
+        "actual_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ],
+        "expected_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ]
+      },
+      "first_with_prepare_seconds": 1.5718570000026375,
+      "amortized_seconds_per_tick": 0.34968749671471805,
+      "amortized_with_import_seconds_per_tick": 0.35792554328613085,
+      "final_capacity": 400000,
+      "numeric_buffer_estimate_bytes": 32400000,
+      "checkpoint": {
+        "status": "correct",
+        "resume_samples": [
+          {
+            "command_validate_seconds": 0.026580325997201726,
+            "command_apply_seconds": 0.020393318998685572,
+            "state_update_seconds": 0.05418070800078567,
+            "compute_sync_seconds": 0.008886720002919901,
+            "result_apply_seconds": 0.12845868300064467,
+            "runner_overhead_seconds": 8.873001206666231e-06,
+            "total_seconds": 0.2385086290014442,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 8,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5",
+            "actual_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5"
+          },
+          {
+            "command_validate_seconds": 0.03661404299782589,
+            "command_apply_seconds": 0.01831650199892465,
+            "state_update_seconds": 0.005148135001945775,
+            "compute_sync_seconds": 0.0031122200016397983,
+            "result_apply_seconds": 0.1610964680003235,
+            "runner_overhead_seconds": 8.9230015873909e-06,
+            "total_seconds": 0.22429629100224702,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3126,
+              "capacity": 400000,
+              "active_rows": 206250
+            },
+            "command_count": 12501,
+            "tick": 9,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206250,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88",
+            "actual_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88"
+          },
+          {
+            "command_validate_seconds": 0.03171993599971756,
+            "command_apply_seconds": 0.01645460500003537,
+            "state_update_seconds": 0.006522117997519672,
+            "compute_sync_seconds": 0.00808595700073056,
+            "result_apply_seconds": 0.11285528499865904,
+            "runner_overhead_seconds": 7.848000677768141e-06,
+            "total_seconds": 0.17564574899733998,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 10,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4",
+            "actual_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4"
+          }
+        ],
+        "resume_ticks": 3,
+        "verified_resume_ticks": 3,
+        "first_failure": null,
+        "state_export_seconds": 0.5806795550015522,
+        "json_encode_seconds": 1.0050881589995697,
+        "json_decode_validate_seconds": 1.1357355740037747,
+        "state_restore_seconds": 0.5115486239956226,
+        "total_seconds": 3.2330519120005192,
+        "bytes": 20411016,
+        "snapshot_sha256": "3726c3e227bf73c859f148388752f23608cff576a02f32f33ef0645d834ec8ac",
+        "snapshot_matches_reference": true,
+        "restored_snapshot_matches": true,
+        "final_snapshot_matches_reference": true
+      },
+      "amortized_with_checkpoint_seconds_per_tick": 0.8115520555719351,
+      "python_p50_ratio": 1.521911810471672
+    },
+    {
+      "name": "numpy",
+      "workers": 4,
+      "prepare_seconds": 0.4632810690018232,
+      "initial_conversion_seconds": 0.4432470959945931,
+      "status": "correct",
+      "reason": null,
+      "frame_samples": [
+        {
+          "command_validate_seconds": 0.017907221998029854,
+          "command_apply_seconds": 0.019992626999737695,
+          "state_update_seconds": 0.0031673070043325424,
+          "compute_sync_seconds": 0.032150979997823015,
+          "result_apply_seconds": 0.04371859900129493,
+          "runner_overhead_seconds": 6.44200190436095e-06,
+          "total_seconds": 0.1169431770031224,
+          "mutation": {
+            "growth_seconds": 0.007410832004097756,
+            "growth_events": 1,
+            "free_slot_allocations": 6249,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12500,
+          "tick": 1,
+          "phase": "first"
+        },
+        {
+          "command_validate_seconds": 0.016141981999680866,
+          "command_apply_seconds": 0.010783862002426758,
+          "state_update_seconds": 0.0037389179997262545,
+          "compute_sync_seconds": 0.002861269000277389,
+          "result_apply_seconds": 0.051405418998911045,
+          "runner_overhead_seconds": 0.00011232799442950636,
+          "total_seconds": 0.08504377799545182,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 2,
+          "phase": "warmup"
+        },
+        {
+          "command_validate_seconds": 0.015794586994161364,
+          "command_apply_seconds": 0.009751575998961926,
+          "state_update_seconds": 0.0035957290019723587,
+          "compute_sync_seconds": 0.001628445999813266,
+          "result_apply_seconds": 0.06760074500198243,
+          "runner_overhead_seconds": 7.482005457859486e-06,
+          "total_seconds": 0.0983785650023492,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 3,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.015255553000315558,
+          "command_apply_seconds": 0.009061919001396745,
+          "state_update_seconds": 0.0034207369972136803,
+          "compute_sync_seconds": 0.0021114589981152676,
+          "result_apply_seconds": 0.047646865001297556,
+          "runner_overhead_seconds": 5.7960060075856745e-06,
+          "total_seconds": 0.07750232900434639,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 4,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.013795920000120532,
+          "command_apply_seconds": 0.008935105004638899,
+          "state_update_seconds": 0.0051710099942283705,
+          "compute_sync_seconds": 0.001585273006639909,
+          "result_apply_seconds": 0.049804767993919086,
+          "runner_overhead_seconds": 7.0829992182552814e-06,
+          "total_seconds": 0.07929915899876505,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 5,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.05245897200074978,
+          "command_apply_seconds": 0.03700459999527084,
+          "state_update_seconds": 0.015632761002052575,
+          "compute_sync_seconds": 0.0032627780019538477,
+          "result_apply_seconds": 0.15963144900160842,
+          "runner_overhead_seconds": 9.039002179633826e-06,
+          "total_seconds": 0.2679995990038151,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3124,
+            "capacity": 400000,
+            "active_rows": 206249
+          },
+          "command_count": 12499,
+          "tick": 6,
+          "phase": "steady"
+        },
+        {
+          "command_validate_seconds": 0.04557087700231932,
+          "command_apply_seconds": 0.022033713998098392,
+          "state_update_seconds": 0.00834388400107855,
+          "compute_sync_seconds": 0.0048905520015978254,
+          "result_apply_seconds": 0.15180759099894203,
+          "runner_overhead_seconds": 9.609997505322099e-06,
+          "total_seconds": 0.23265622799954144,
+          "mutation": {
+            "growth_seconds": 0.0,
+            "growth_events": 0,
+            "free_slot_allocations": 3126,
+            "capacity": 400000,
+            "active_rows": 206250
+          },
+          "command_count": 12501,
+          "tick": 7,
+          "phase": "steady"
+        }
+      ],
+      "steady": {
+        "samples_seconds": [
+          0.0983785650023492,
+          0.07750232900434639,
+          0.07929915899876505,
+          0.2679995990038151,
+          0.23265622799954144
+        ],
+        "count": 5,
+        "p50_seconds": 0.0983785650023492,
+        "p95_seconds": 0.2679995990038151,
+        "max_seconds": 0.2679995990038151,
+        "p95_method": "nearest_rank"
+      },
+      "steady_components": {
+        "command_validate_seconds": {
+          "samples_seconds": [
+            0.015794586994161364,
+            0.015255553000315558,
+            0.013795920000120532,
+            0.05245897200074978,
+            0.04557087700231932
+          ],
+          "count": 5,
+          "p50_seconds": 0.015794586994161364,
+          "p95_seconds": 0.05245897200074978,
+          "max_seconds": 0.05245897200074978,
+          "p95_method": "nearest_rank"
+        },
+        "command_apply_seconds": {
+          "samples_seconds": [
+            0.009751575998961926,
+            0.009061919001396745,
+            0.008935105004638899,
+            0.03700459999527084,
+            0.022033713998098392
+          ],
+          "count": 5,
+          "p50_seconds": 0.009751575998961926,
+          "p95_seconds": 0.03700459999527084,
+          "max_seconds": 0.03700459999527084,
+          "p95_method": "nearest_rank"
+        },
+        "state_update_seconds": {
+          "samples_seconds": [
+            0.0035957290019723587,
+            0.0034207369972136803,
+            0.0051710099942283705,
+            0.015632761002052575,
+            0.00834388400107855
+          ],
+          "count": 5,
+          "p50_seconds": 0.0051710099942283705,
+          "p95_seconds": 0.015632761002052575,
+          "max_seconds": 0.015632761002052575,
+          "p95_method": "nearest_rank"
+        },
+        "compute_sync_seconds": {
+          "samples_seconds": [
+            0.001628445999813266,
+            0.0021114589981152676,
+            0.001585273006639909,
+            0.0032627780019538477,
+            0.0048905520015978254
+          ],
+          "count": 5,
+          "p50_seconds": 0.0021114589981152676,
+          "p95_seconds": 0.0048905520015978254,
+          "max_seconds": 0.0048905520015978254,
+          "p95_method": "nearest_rank"
+        },
+        "result_apply_seconds": {
+          "samples_seconds": [
+            0.06760074500198243,
+            0.047646865001297556,
+            0.049804767993919086,
+            0.15963144900160842,
+            0.15180759099894203
+          ],
+          "count": 5,
+          "p50_seconds": 0.06760074500198243,
+          "p95_seconds": 0.15963144900160842,
+          "max_seconds": 0.15963144900160842,
+          "p95_method": "nearest_rank"
+        },
+        "runner_overhead_seconds": {
+          "samples_seconds": [
+            7.482005457859486e-06,
+            5.7960060075856745e-06,
+            7.0829992182552814e-06,
+            9.039002179633826e-06,
+            9.609997505322099e-06
+          ],
+          "count": 5,
+          "p50_seconds": 7.482005457859486e-06,
+          "p95_seconds": 9.609997505322099e-06,
+          "max_seconds": 9.609997505322099e-06,
+          "p95_method": "nearest_rank"
+        }
+      },
+      "verification": {
+        "planned_runs": 7,
+        "completed_runs": 7,
+        "verified_runs": 7,
+        "checked_rows": 1443747,
+        "first_failure": null,
+        "actual_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ],
+        "expected_frame_digests_sha256": [
+          "f405007655a97fc3755908522f2ab5ecb3dfe4ea4bbe15c7cbdae883f7e4258d",
+          "ca71a8a7cb398a5a25fa91497082a0bb5d592f06bb6cc92ae7a01163b078ecf6",
+          "4ff0550bf36f6b18961270910766e9eea3a95fa2a6315e04a9ea7a186f8c4ae3",
+          "c2af71b52c99bb2c4b6b448a6e0778a8e80d40504b02dfdb746ae26f9559bbc7",
+          "7e41521ecbfc3408a7ce442a9bfdfea76d685e9413d6b45fa5138ff280b892e5",
+          "ca175832143ebfc0caa9eb7c6ba3273404d9fdbead327d72be6ab4247fa71a27",
+          "a8c354ebce485d4959963ff7710b568e357976fb5f3551c9be5fffee50c1273d"
+        ]
+      },
+      "first_with_prepare_seconds": 0.5802242460049456,
+      "amortized_seconds_per_tick": 0.2030148434298878,
+      "amortized_with_import_seconds_per_tick": 0.2112528900013006,
+      "final_capacity": 400000,
+      "numeric_buffer_estimate_bytes": 32400000,
+      "checkpoint": {
+        "status": "correct",
+        "resume_samples": [
+          {
+            "command_validate_seconds": 0.014759411998966243,
+            "command_apply_seconds": 0.010295862004568335,
+            "state_update_seconds": 0.03727394999441458,
+            "compute_sync_seconds": 0.003834512004686985,
+            "result_apply_seconds": 0.04957304299750831,
+            "runner_overhead_seconds": 6.026995833963156e-06,
+            "total_seconds": 0.11574280599597842,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 8,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5",
+            "actual_digest_sha256": "5201af1fe7a3a5a543c8a79fb89ec457c4ecf60b8e6dbe5e15353f0a08c6eed5"
+          },
+          {
+            "command_validate_seconds": 0.014849175000563264,
+            "command_apply_seconds": 0.009160173001873773,
+            "state_update_seconds": 0.003443130997766275,
+            "compute_sync_seconds": 0.0024374459972023033,
+            "result_apply_seconds": 0.05263935500261141,
+            "runner_overhead_seconds": 7.732000085525215e-06,
+            "total_seconds": 0.08253701200010255,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3126,
+              "capacity": 400000,
+              "active_rows": 206250
+            },
+            "command_count": 12501,
+            "tick": 9,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206250,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88",
+            "actual_digest_sha256": "daa190fb6ec5316f4390a8902641dd0f049e3b093fcec2e53153e7bab21c8a88"
+          },
+          {
+            "command_validate_seconds": 0.014146911002171692,
+            "command_apply_seconds": 0.00906513199879555,
+            "state_update_seconds": 0.0034403530007693917,
+            "compute_sync_seconds": 0.002352923998842016,
+            "result_apply_seconds": 0.056555656003183685,
+            "runner_overhead_seconds": 5.6549979490228e-06,
+            "total_seconds": 0.08556663100171136,
+            "mutation": {
+              "growth_seconds": 0.0,
+              "growth_events": 0,
+              "free_slot_allocations": 3124,
+              "capacity": 400000,
+              "active_rows": 206249
+            },
+            "command_count": 12499,
+            "tick": 10,
+            "comparison": {
+              "ok": true,
+              "checked_rows": 206249,
+              "numeric_rule": "exact_float64",
+              "identity_rule": "exact_integer",
+              "mask_rule": "exact_boolean"
+            },
+            "expected_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4",
+            "actual_digest_sha256": "7c26d7a3b66a521f2f27492112028c9d3cd01194359a846eb2fda987fc9488c4"
+          }
+        ],
+        "resume_ticks": 3,
+        "verified_resume_ticks": 3,
+        "first_failure": null,
+        "state_export_seconds": 0.4327325049962383,
+        "json_encode_seconds": 0.5118182989972411,
+        "json_decode_validate_seconds": 0.5113455080063432,
+        "state_restore_seconds": 0.1871966939943377,
+        "total_seconds": 1.6430930059941602,
+        "bytes": 20411016,
+        "snapshot_sha256": "3726c3e227bf73c859f148388752f23608cff576a02f32f33ef0645d834ec8ac",
+        "snapshot_matches_reference": true,
+        "restored_snapshot_matches": true,
+        "final_snapshot_matches_reference": true
+      },
+      "amortized_with_checkpoint_seconds_per_tick": 0.43774241571476785,
+      "python_p50_ratio": 2.51714916756752
+    }
+  ],
+  "status": "correct"
+}

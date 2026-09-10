@@ -44,6 +44,8 @@ docs/P_02_PROBE_ja.md
 docs/P_02_VERIFICATION_ja.md
 docs/P_03_PROBE_ja.md
 docs/P_03_VERIFICATION_ja.md
+docs/P_04_PROBE_ja.md
+docs/P_04_VERIFICATION_ja.md
 docs/RELEASE_ja.md
 docs/ROADMAP_ja.md
 docs/SAVE_COMPATIBILITY_RESEARCH_ja.md
@@ -120,6 +122,8 @@ docs/verification/M1-03-20260910/result.json
 docs/verification/M1-04-20260910/after-check-project.txt
 docs/verification/M1-04-20260910/before-check-project.json
 docs/verification/M1-04-20260910/before-check-project.txt
+docs/verification/M1-04-20260910/github-ci.json
+docs/verification/M1-04-20260910/github-java-comparison.json
 docs/verification/M1-04-20260910/local-java.json
 docs/verification/M1-04-20260910/previous-main-save.json
 docs/verification/M1-04-20260910/regression-after.txt
@@ -152,6 +156,13 @@ docs/verification/P-03-20260910/github-result.json
 docs/verification/P-03-20260910/pc-20000.json
 docs/verification/P-03-20260910/pc-200000.json
 docs/verification/P-03-20260910/scope.json
+docs/verification/P-04-20260910/after-check-project.json
+docs/verification/P-04-20260910/after-check-project.txt
+docs/verification/P-04-20260910/commands.json
+docs/verification/P-04-20260910/pc-20000.json
+docs/verification/P-04-20260910/pc-200000.json
+docs/verification/P-04-20260910/scope.json
+docs/verification/P-04-20260910/summary.json
 docs/verification/P02-error-records-20260910/after-check-project.txt
 docs/verification/P02-error-records-20260910/before-check-project.txt
 docs/verification/P02-error-records-20260910/regression-before.txt
@@ -201,6 +212,7 @@ tests/test_conveyor_cache.py
 tests/test_conveyor_transfers.py
 tests/test_drill_dump.py
 tests/test_drill_offload.py
+tests/test_dynamic_state_probe.py
 tests/test_engine.py
 tests/test_parallel_probe.py
 tests/test_placement_controls.py
@@ -217,6 +229,7 @@ tools/check_dump_reference.py
 tools/check_offload_reference.py
 tools/check_project.py
 tools/pythonista_array_state_probe.py
+tools/pythonista_dynamic_state_probe.py
 tools/pythonista_parallel_probe.py
 tools/release_files.txt
 tools/verify_handoff.py

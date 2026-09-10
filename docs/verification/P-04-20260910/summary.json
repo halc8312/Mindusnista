@@ -1,0 +1,309 @@
+{
+  "source_sha256": "beae51b2ea4ee22890977048fd8a4ba87938c70d5f3058b174ebab1d33612ddf",
+  "measurements": [
+    {
+      "initial_rows": 20000,
+      "name": "python",
+      "workers": 1,
+      "p50_ms": 20.459,
+      "p95_ms": 36.921,
+      "prepare_ms": 53.521,
+      "checkpoint_ms": 123.014,
+      "checkpoint_bytes": 1979817,
+      "capacity": 40000,
+      "active_rows": [
+        20625,
+        20624,
+        20625,
+        20624,
+        20625,
+        20624,
+        20625
+      ],
+      "growth_events": 1,
+      "all_commands": 8737,
+      "amortized_ms": 31.949,
+      "with_checkpoint_ms": 49.523,
+      "components_ms": {
+        "command_validate_seconds": 1.526,
+        "command_apply_seconds": 0.461,
+        "state_update_seconds": 2.735,
+        "compute_sync_seconds": 3.591,
+        "result_apply_seconds": 12.66,
+        "runner_overhead_seconds": 0.004
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 7.148,
+        "json_encode_seconds": 48.984,
+        "json_decode_validate_seconds": 55.59,
+        "state_restore_seconds": 11.292
+      }
+    },
+    {
+      "initial_rows": 20000,
+      "name": "numpy",
+      "workers": 1,
+      "p50_ms": 6.989,
+      "p95_ms": 24.51,
+      "prepare_ms": 42.861,
+      "checkpoint_ms": 134.61,
+      "checkpoint_bytes": 1979817,
+      "capacity": 40000,
+      "active_rows": [
+        20625,
+        20624,
+        20625,
+        20624,
+        20625,
+        20624,
+        20625
+      ],
+      "growth_events": 1,
+      "all_commands": 8737,
+      "amortized_ms": 16.787,
+      "with_checkpoint_ms": 36.017,
+      "components_ms": {
+        "command_validate_seconds": 1.549,
+        "command_apply_seconds": 0.89,
+        "state_update_seconds": 0.263,
+        "compute_sync_seconds": 0.676,
+        "result_apply_seconds": 3.47,
+        "runner_overhead_seconds": 0.005
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 15.579,
+        "json_encode_seconds": 45.308,
+        "json_decode_validate_seconds": 50.249,
+        "state_restore_seconds": 23.474
+      }
+    },
+    {
+      "initial_rows": 20000,
+      "name": "numpy",
+      "workers": 2,
+      "p50_ms": 6.787,
+      "p95_ms": 7.386,
+      "prepare_ms": 37.225,
+      "checkpoint_ms": 130.618,
+      "checkpoint_bytes": 1979817,
+      "capacity": 40000,
+      "active_rows": [
+        20625,
+        20624,
+        20625,
+        20624,
+        20625,
+        20624,
+        20625
+      ],
+      "growth_events": 1,
+      "all_commands": 8737,
+      "amortized_ms": 12.698,
+      "with_checkpoint_ms": 31.358,
+      "components_ms": {
+        "command_validate_seconds": 1.445,
+        "command_apply_seconds": 0.9,
+        "state_update_seconds": 0.457,
+        "compute_sync_seconds": 0.54,
+        "result_apply_seconds": 3.202,
+        "runner_overhead_seconds": 0.005
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 15.478,
+        "json_encode_seconds": 45.017,
+        "json_decode_validate_seconds": 51.357,
+        "state_restore_seconds": 18.766
+      }
+    },
+    {
+      "initial_rows": 20000,
+      "name": "numpy",
+      "workers": 4,
+      "p50_ms": 8.758,
+      "p95_ms": 11.011,
+      "prepare_ms": 38.656,
+      "checkpoint_ms": 154.757,
+      "checkpoint_bytes": 1979817,
+      "capacity": 40000,
+      "active_rows": [
+        20625,
+        20624,
+        20625,
+        20624,
+        20625,
+        20624,
+        20625
+      ],
+      "growth_events": 1,
+      "all_commands": 8737,
+      "amortized_ms": 14.692,
+      "with_checkpoint_ms": 36.8,
+      "components_ms": {
+        "command_validate_seconds": 1.577,
+        "command_apply_seconds": 0.967,
+        "state_update_seconds": 0.304,
+        "compute_sync_seconds": 2.287,
+        "result_apply_seconds": 3.108,
+        "runner_overhead_seconds": 0.005
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 29.941,
+        "json_encode_seconds": 54.093,
+        "json_decode_validate_seconds": 54.967,
+        "state_restore_seconds": 15.755
+      }
+    },
+    {
+      "initial_rows": 200000,
+      "name": "python",
+      "workers": 1,
+      "p50_ms": 247.634,
+      "p95_ms": 277.331,
+      "prepare_ms": 674.586,
+      "checkpoint_ms": 2382.167,
+      "checkpoint_bytes": 20411016,
+      "capacity": 400000,
+      "active_rows": [
+        206250,
+        206249,
+        206250,
+        206249,
+        206250,
+        206249,
+        206250
+      ],
+      "growth_events": 1,
+      "all_commands": 87500,
+      "amortized_ms": 389.102,
+      "with_checkpoint_ms": 729.411,
+      "components_ms": {
+        "command_validate_seconds": 16.313,
+        "command_apply_seconds": 32.884,
+        "state_update_seconds": 22.132,
+        "compute_sync_seconds": 36.031,
+        "result_apply_seconds": 130.602,
+        "runner_overhead_seconds": 0.006
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 264.864,
+        "json_encode_seconds": 558.883,
+        "json_decode_validate_seconds": 817.609,
+        "state_restore_seconds": 740.811
+      }
+    },
+    {
+      "initial_rows": 200000,
+      "name": "numpy",
+      "workers": 1,
+      "p50_ms": 81.8,
+      "p95_ms": 95.785,
+      "prepare_ms": 456.272,
+      "checkpoint_ms": 3402.679,
+      "checkpoint_bytes": 20411016,
+      "capacity": 400000,
+      "active_rows": [
+        206250,
+        206249,
+        206250,
+        206249,
+        206250,
+        206249,
+        206250
+      ],
+      "growth_events": 1,
+      "all_commands": 87500,
+      "amortized_ms": 155.449,
+      "with_checkpoint_ms": 641.546,
+      "components_ms": {
+        "command_validate_seconds": 13.936,
+        "command_apply_seconds": 9.066,
+        "state_update_seconds": 3.47,
+        "compute_sync_seconds": 4.252,
+        "result_apply_seconds": 50.955,
+        "runner_overhead_seconds": 0.007
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 843.991,
+        "json_encode_seconds": 1054.809,
+        "json_decode_validate_seconds": 1084.288,
+        "state_restore_seconds": 419.591
+      }
+    },
+    {
+      "initial_rows": 200000,
+      "name": "numpy",
+      "workers": 2,
+      "p50_ms": 162.712,
+      "p95_ms": 183.813,
+      "prepare_ms": 1078.158,
+      "checkpoint_ms": 3233.052,
+      "checkpoint_bytes": 20411016,
+      "capacity": 400000,
+      "active_rows": [
+        206250,
+        206249,
+        206250,
+        206249,
+        206250,
+        206249,
+        206250
+      ],
+      "growth_events": 1,
+      "all_commands": 87500,
+      "amortized_ms": 349.687,
+      "with_checkpoint_ms": 811.552,
+      "components_ms": {
+        "command_validate_seconds": 28.138,
+        "command_apply_seconds": 17.596,
+        "state_update_seconds": 7.298,
+        "compute_sync_seconds": 4.593,
+        "result_apply_seconds": 107.161,
+        "runner_overhead_seconds": 0.008
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 580.68,
+        "json_encode_seconds": 1005.088,
+        "json_decode_validate_seconds": 1135.736,
+        "state_restore_seconds": 511.549
+      }
+    },
+    {
+      "initial_rows": 200000,
+      "name": "numpy",
+      "workers": 4,
+      "p50_ms": 98.379,
+      "p95_ms": 268.0,
+      "prepare_ms": 463.281,
+      "checkpoint_ms": 1643.093,
+      "checkpoint_bytes": 20411016,
+      "capacity": 400000,
+      "active_rows": [
+        206250,
+        206249,
+        206250,
+        206249,
+        206250,
+        206249,
+        206250
+      ],
+      "growth_events": 1,
+      "all_commands": 87500,
+      "amortized_ms": 203.015,
+      "with_checkpoint_ms": 437.742,
+      "components_ms": {
+        "command_validate_seconds": 15.795,
+        "command_apply_seconds": 9.752,
+        "state_update_seconds": 5.171,
+        "compute_sync_seconds": 2.111,
+        "result_apply_seconds": 67.601,
+        "runner_overhead_seconds": 0.007
+      },
+      "checkpoint_components_ms": {
+        "state_export_seconds": 432.733,
+        "json_encode_seconds": 511.818,
+        "json_decode_validate_seconds": 511.346,
+        "state_restore_seconds": 187.197
+      }
+    }
+  ]
+}

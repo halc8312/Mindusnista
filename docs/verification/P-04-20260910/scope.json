@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-09-10T08:34:00.218788+00:00",
+  "base_sha": "aaba3be78e51925c08e27a10f41cbfa31df08189",
+  "game_and_prior_probes_unchanged": {
+    "mindustry_pythonista.py": "bfd9606bb178016c2324e40378109dde32569c517fa25f256868d0751ab10fca",
+    "src/mindusnista/app.py": "9c075ff36eacc2aeef8b22262d5a982d553ea32950938fdd80e4b62b5003af17",
+    "src/mindusnista/kernels.py": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+    "tools/pythonista_array_state_probe.py": "e65a7d79866c20f91c8abdd00edb133bf6b34585ab17dd10227e388b855efb4c",
+    "tools/pythonista_parallel_probe.py": "711a30cae82f7422de8f8b85afa49fc16cba023a34ce1b82bcd1dfa2b15aba1b"
+  },
+  "measured_source_sha256": "beae51b2ea4ee22890977048fd8a4ba87938c70d5f3058b174ebab1d33612ddf",
+  "measurements_use_final_reviewed_source": true,
+  "independent_tests": 22,
+  "independent_review": "completed; no blocking findings",
+  "device_test": "not_run",
+  "game_acceleration_adoption": false
+}
