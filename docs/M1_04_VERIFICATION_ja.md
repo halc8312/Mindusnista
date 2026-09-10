@@ -59,3 +59,15 @@ Pythonistaの実機、全原作工場、float32全体、Java int32オーバー�
 campaign production、任意MOD・副作用付き受入、近隣形成・timer位相・schedulerは未確認／未対応。
 大きい完了数の算術検査をiPhone性能へ換算しない。0.1.2の実機成功は未報告。
 次はM1-05で、実際の受取処理も含むドリル・ベルト・分配器の連続tick抽出比較を進める。
+
+## GitHub統合後の追記
+
+[PR #13](https://github.com/halc8312/Mindusnista/pull/13)、head
+`34867747a52ae985e5234ea5f3b45bd50d568d4b`を、マージ
+`aaba3be78e51925c08e27a10f41cbfa31df08189`として統合・読み戻し済み。
+[CI](https://github.com/halc8312/Mindusnista/actions/runs/34455436007)のPython 3.10.21 / 3.13.15で
+各287本とself-testが成功、失敗・エラー・skip各0。JDK17ではコンベア20ケース59更新、
+dump14ケース49呼出し、生産offload22ケース44呼出しの抽出比較がすべて不一致0。
+[CI記録](verification/M1-04-20260910/github-ci.json)、
+[生産offloadの全比較記録](verification/M1-04-20260910/github-java-comparison.json)を保存した。
+配布は221ファイル・全bytes一致と再生成2回を検査。実機未確認の判定は変わらない。

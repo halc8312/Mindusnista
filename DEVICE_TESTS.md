@@ -81,3 +81,8 @@ P-03（2026-09-10）: `tools/pythonista_array_state_probe.py`を別に用意。�
 全件一致・保存復元後の一致・機種/iOS/Pythonista/NumPy版を記録する。[条件と手順](docs/P_03_PROBE_ja.md)。
 実機は未実施。短いモデルのPC時間をFPSへ換算せず、初期取込・保存復元・持続時間・メモリも別々に確認する。
 ゲーム本体を置き換えるファイルではなく、原作msavや既存ゲーム保存は扱わない。
+
+P-04（2026-09-10）: `tools/pythonista_dynamic_state_probe.py`を別に用意。
+生成・削除・操作命令を含む全結果、保存復元と続行、機種/iOS/Pythonista/NumPy版を記録する。
+[手順と測定境界](docs/P_04_PROBE_ja.md)。実機未実施。引数なしは初期20,000件。
+ゲームや原作msavを読み書きするファイルではない。PC中央値を実機FPSへ換算しない。

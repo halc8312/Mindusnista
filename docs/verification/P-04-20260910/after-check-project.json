@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-09-10T08:40:35.377829+00:00",
+  "command": "python tools/check_project.py",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "exit_code": 0,
+  "tests": 309,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "self_test": "passed",
+  "python310_syntax": "passed; local runtime3.12.14",
+  "base_sha": "aaba3be78e51925c08e27a10f41cbfa31df08189",
+  "device_test": "not_run",
+  "log_note": "Initial redirected log ended after unittest OK; captured rerun confirmed self-test and final completion, exit0."
+}
