@@ -1,0 +1,30 @@
+test_cli_exclusive_json_output_and_existing_file_untouched (test_parallel_probe.ParallelProbeTests.test_cli_exclusive_json_output_and_existing_file_untouched) ... ok
+test_cli_invalid_counts_fail_before_output (test_parallel_probe.ParallelProbeTests.test_cli_invalid_counts_fail_before_output) ... ok
+test_cli_reports_delayed_output_failure_before_success (test_parallel_probe.ParallelProbeTests.test_cli_reports_delayed_output_failure_before_success) ... ok
+test_comparison_rejects_length_mask_distance_and_nonfinite (test_parallel_probe.ParallelProbeTests.test_comparison_rejects_length_mask_distance_and_nonfinite) ... ok
+test_each_phase_is_checked_and_mismatch_is_retained (test_parallel_probe.ParallelProbeTests.test_each_phase_is_checked_and_mismatch_is_retained) ... ok
+test_fixed_seed_prefix_and_threshold_edges (test_parallel_probe.ParallelProbeTests.test_fixed_seed_prefix_and_threshold_edges) ... ok
+test_mismatch_gets_no_speedup_claim (test_parallel_probe.ParallelProbeTests.test_mismatch_gets_no_speedup_claim) ... ok
+test_missing_numpy_is_not_successful_numpy_execution (test_parallel_probe.ParallelProbeTests.test_missing_numpy_is_not_successful_numpy_execution) ... ok
+test_partitions_cover_once_in_order_and_balance (test_parallel_probe.ParallelProbeTests.test_partitions_cover_once_in_order_and_balance) ... ok
+test_real_numpy_all_worker_counts_and_small_uneven_inputs (test_parallel_probe.ParallelProbeTests.test_real_numpy_all_worker_counts_and_small_uneven_inputs) ... ok
+test_standalone_cli_json_and_no_implicit_files (test_parallel_probe.ParallelProbeTests.test_standalone_cli_json_and_no_implicit_files) ... ok
+test_cleanup_failure_is_recorded_and_removes_speed_claim (test_resident_probe.ResidentProbeTests.test_cleanup_failure_is_recorded_and_removes_speed_claim) ... ok
+test_error_retains_completed_measurements (test_resident_probe.ResidentProbeTests.test_error_retains_completed_measurements) ... ok
+test_frame_inputs_change_without_mutating_seed_rows (test_resident_probe.ResidentProbeTests.test_frame_inputs_change_without_mutating_seed_rows) ... ok
+test_invalid_measurement_arguments_fail (test_resident_probe.ResidentProbeTests.test_invalid_measurement_arguments_fail) ... ok
+test_mismatching_backend_never_gets_a_speed_ratio (test_resident_probe.ResidentProbeTests.test_mismatching_backend_never_gets_a_speed_ratio) ... ok
+test_missing_numpy_marks_both_families_unexecuted (test_resident_probe.ResidentProbeTests.test_missing_numpy_marks_both_families_unexecuted) ... ok
+test_prepare_amortization_and_equivalent_reference_digests (test_resident_probe.ResidentProbeTests.test_prepare_amortization_and_equivalent_reference_digests) ... ok
+test_python_frame_result_uses_current_input_and_full_lists (test_resident_probe.ResidentProbeTests.test_python_frame_result_uses_current_input_and_full_lists) ... ok
+test_real_numpy_all_rows_workers_and_changing_inputs (test_resident_probe.ResidentProbeTests.test_real_numpy_all_rows_workers_and_changing_inputs) ... ok
+test_resident_cli_is_standalone_and_exclusive (test_resident_probe.ResidentProbeTests.test_resident_cli_is_standalone_and_exclusive) ... ok
+test_resident_cli_retains_delayed_output_failure_handling (test_resident_probe.ResidentProbeTests.test_resident_cli_retains_delayed_output_failure_handling) ... ok
+test_retained_buffers_keep_identity_and_worker_regions_do_not_overlap (test_resident_probe.ResidentProbeTests.test_retained_buffers_keep_identity_and_worker_regions_do_not_overlap) ... ok
+test_stale_result_is_detected_on_each_changed_frame (test_resident_probe.ResidentProbeTests.test_stale_result_is_detected_on_each_changed_frame) ... ok
+test_timing_intervals_add_up_and_all_phases_checked (test_resident_probe.ResidentProbeTests.test_timing_intervals_add_up_and_all_phases_checked) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.954s
+
+OK

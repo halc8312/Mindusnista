@@ -35,6 +35,8 @@ docs/NEXT_TASK_ja.md
 docs/PARALLEL_RESEARCH_ja.md
 docs/P_01_PROBE_ja.md
 docs/P_01_VERIFICATION_ja.md
+docs/P_02_PROBE_ja.md
+docs/P_02_VERIFICATION_ja.md
 docs/RELEASE_ja.md
 docs/ROADMAP_ja.md
 docs/SAVE_COMPATIBILITY_RESEARCH_ja.md
@@ -96,6 +98,8 @@ docs/verification/M1-02-20260910/before-check-project.json
 docs/verification/M1-02-20260910/before-check-project.txt
 docs/verification/M1-02-20260910/cache-after.txt
 docs/verification/M1-02-20260910/cache-before.txt
+docs/verification/M1-02-20260910/github-ci.json
+docs/verification/M1-02-20260910/github-java-comparison.json
 docs/verification/M1-02-20260910/legacy-migration.json
 docs/verification/M1-02-20260910/local-reference.json
 docs/verification/M1-02-20260910/scope.json
@@ -107,6 +111,13 @@ docs/verification/P-01-20260910/individual-tests.txt
 docs/verification/P-01-20260910/numpy-probe-20000.json
 docs/verification/P-01-20260910/numpy-probe-200000.json
 docs/verification/P-01-20260910/scope.json
+docs/verification/P-02-20260910/after-check-project.json
+docs/verification/P-02-20260910/after-check-project.txt
+docs/verification/P-02-20260910/measurement_summary.json
+docs/verification/P-02-20260910/probe-tests.txt
+docs/verification/P-02-20260910/resident-20000.json
+docs/verification/P-02-20260910/resident-200000.json
+docs/verification/P-02-20260910/scope.json
 docs/verification/UI-01-20260909/after-check-project.json
 docs/verification/UI-01-20260909/after-check-project.txt
 docs/verification/UI-01-20260909/before-check-project.json
@@ -150,6 +161,7 @@ tests/test_parallel_probe.py
 tests/test_placement_controls.py
 tests/test_pythonista_adapter.py
 tests/test_release_packaging.py
+tests/test_resident_probe.py
 tests/test_rotation_controls.py
 tests/test_single_file_build.py
 tests/test_startup_regressions.py

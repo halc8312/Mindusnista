@@ -73,3 +73,13 @@ GitHub CIのJDK17で比較を実行し、対象headの結果を読み戻してPR
 抽出コードは原作エンジンではない。原作scheduler、チーム、効率、sleep、stack API、原作シリアライズ、
 全体の採掘・分配器・描画は未比較。1,504件の独立計算比較とも別の検査である。
 Pythonista実機、超大規模性能、原作全体互換は未確認。次はM1-03で更新順とoffload/dumpの統合境界を追う。
+
+## PR #8 の統合確認
+
+[PR #8](https://github.com/halc8312/Mindusnista/pull/8) をマージし、main
+`16846db4e8a6bf683a734452619b6b954e772139` と実装
+`623d3e480d2b2d7590a0fe00efc72b2d649c9245` をGitHubから読み戻した。
+[CIの記録](verification/M1-02-20260910/github-ci.json) と
+[Java全比較出力](verification/M1-02-20260910/github-java-comparison.json) をP-02統合時に保存した。
+CIのCPython 3.10.21 / 3.13.15で各211本とself-test成功。3.10側のJDK17で20ケース・59更新、不一致0。
+3.13のJava stepは設定通り対象外。ローカルのJava未実行、実機未実施という記録はそのまま維持する。
