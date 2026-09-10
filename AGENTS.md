@@ -55,6 +55,11 @@ Prioritize integrated transport/mining parity before multiplying provisional con
 A source-derived calculation, source-derived constant, approximation and unimplemented feature are different.
 Do not claim full compatibility from extracted equations, matching visuals or a test-count number.
 The full goal includes content, rules, campaign, logic, files, network, media and MODs; assess each separately.
+User requirements include very large factories/battles, original iOS/Steam save exchange (including campaign
+state), and effects faithful to the original. Read `docs/FULL_PORT_REQUIREMENTS_ja.md`. Do not meet performance
+gates by truncating valid game state, imposing smaller game limits, or silently reducing effects/features.
+Audit inherited scaffold limits; replace them with tested data structures and original rules. Native/NumPy/GPU
+acceleration is a research path, not demonstrated Pythonista performance until measured on the target device.
 Do not drop a difficult goal silently, promise full compatibility without tests, or relabel a prototype complete.
 If a broad task does not fit one iteration, implement and verify a smaller coherent slice and record the next step.
 

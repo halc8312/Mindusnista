@@ -114,3 +114,12 @@ docs/verification/UI-01-20260909/after-check-project.txt
 docs/verification/UI-01-20260909/ci-python-3.10.21.txt
 docs/verification/UI-01-20260909/ci-python-3.13.15.txt
 docs/verification/UI-01-20260909/github-ci-implementation.json
+docs/ARCH_01_VERIFICATION_ja.md
+docs/FULL_PORT_REQUIREMENTS_ja.md
+docs/PARALLEL_RESEARCH_ja.md
+docs/SAVE_COMPATIBILITY_RESEARCH_ja.md
+docs/verification/ARCH-01-20260910/after-check-project.json
+docs/verification/ARCH-01-20260910/after-check-project.txt
+docs/verification/ARCH-01-20260910/before-check-project.json
+docs/verification/ARCH-01-20260910/before-check-project.txt
+docs/verification/ARCH-01-20260910/scope.json

@@ -9,6 +9,12 @@
 
 # Primary references
 
+2026-09-10: [v159.7 tag ref](https://api.github.com/repos/Anuken/Mindustry/git/ref/tags/v159.7)
+を取得し、完全コミット `c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c` を確認。
+保存形式の固定コミット参照は [原作セーブ調査](docs/SAVE_COMPATIBILITY_RESEARCH_ja.md)、
+Pythonista/NumPy/CPython/Apple の API 根拠は [並列化調査](docs/PARALLEL_RESEARCH_ja.md) に記録。
+これらの調査は実機の性能、原作データの往復、完全互換性の実証ではない。
+
 Checked on 2026-09-09. Implementation reference is pinned to **v159.7**, not an unpinned `master`.
 The original complete Java files are not bundled; the isolated modified reference in `reference/` documents its extracted scope.
 
