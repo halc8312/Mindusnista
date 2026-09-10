@@ -1,0 +1,571 @@
+{
+  "schema": 1,
+  "upstream": {
+    "tag": "v159.7",
+    "commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+    "sources": [
+      "core/src/mindustry/entities/comp/BuildingComp.java",
+      "core/src/mindustry/world/blocks/production/Drill.java",
+      "core/src/mindustry/content/Blocks.java",
+      "core/src/mindustry/content/Items.java"
+    ]
+  },
+  "conditions": {
+    "has_items": true,
+    "can_dump": true,
+    "item_ids": [
+      "copper",
+      "lead"
+    ],
+    "neighbor_order": "explicit_fixture_order",
+    "receiver": "scripted_item_set_and_total_capacity_without_rejection_side_effects",
+    "calls": "direct_offload_or_explicit_drill_tick_with_timer_boundary",
+    "delta": 1,
+    "efficiency": 1,
+    "optional_efficiency": 0,
+    "initial_warmup": 1,
+    "drill_delay": 650,
+    "capacity": 10,
+    "progress_scope": "integer_exact_at_active_boundaries",
+    "tick_attempt_scope": "all_periodic_dump_attempts_and_first_offload_only",
+    "event_scope": "consecutive_offload_calls_collapsed_to_one_category",
+    "mined_scope": "adapter_tick_production_count_not_original_campaign_accounting"
+  },
+  "excluded": [
+    "original engine / scheduler / proximity construction / changing proximity during a scan",
+    "original receiver implementations / team / campaign produced or unlock accounting",
+    "real timer phase / variable delta / liquid boost / efficiency / effects / drill speed diagnostics",
+    "warmup floating point parity outside integer-exact active boundaries",
+    "repeated rejected offload attempt counts after the first production call (batched port tail)",
+    "Pythonista / device performance / full original-game compatibility"
+  ],
+  "cases": [
+    {
+      "name": "offload_no_neighbors",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [],
+      "calls": [
+        "copper",
+        "lead",
+        "copper"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_full_no_neighbors",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 10
+      },
+      "neighbors": [],
+      "calls": [
+        "lead",
+        "lead"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_all_rejected",
+      "dominant": "copper",
+      "cursor": 1,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "three",
+          "accepts": [],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_rejected_oversized_cursor",
+      "dominant": "copper",
+      "cursor": 17,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "three",
+          "accepts": [],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_first_receiver",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead",
+        "copper"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_after_rejection",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "copper"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "three",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_capacity_exhaustion",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead",
+        "copper",
+        "lead"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "offload_reversed_neighbor_order",
+      "dominant": "copper",
+      "cursor": 4,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "lead",
+        "copper"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    },
+    {
+      "name": "tick_one_without_neighbors",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [],
+      "calls": [
+        "tick",
+        "tick"
+      ],
+      "progress": 649,
+      "ore_count": 1
+    },
+    {
+      "name": "tick_three_from_nine",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 9
+      },
+      "neighbors": [],
+      "calls": [
+        "tick",
+        "tick"
+      ],
+      "progress": 1949,
+      "ore_count": 1
+    },
+    {
+      "name": "tick_four_ore_remainder",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [],
+      "calls": [
+        "tick",
+        "tick"
+      ],
+      "progress": 649,
+      "ore_count": 4
+    },
+    {
+      "name": "tick_three_some_fallback",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 9
+      },
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        }
+      ],
+      "calls": [
+        "tick"
+      ],
+      "progress": 1946,
+      "ore_count": 4
+    },
+    {
+      "name": "dump_before_batch_capacity",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 10
+      },
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 2
+        }
+      ],
+      "calls": [
+        "dump_tick",
+        "tick"
+      ],
+      "progress": 1299,
+      "ore_count": 1
+    },
+    {
+      "name": "dump_rejection_blocks_production",
+      "dominant": "lead",
+      "cursor": 0,
+      "inventory": {
+        "lead": 10
+      },
+      "neighbors": [
+        {
+          "name": "copper_only",
+          "accepts": [
+            "copper"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "dump_tick"
+      ],
+      "progress": 1950,
+      "ore_count": 1
+    },
+    {
+      "name": "dump_other_item_frees_capacity",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "lead": 10
+      },
+      "neighbors": [
+        {
+          "name": "lead_only",
+          "accepts": [
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "dump_tick"
+      ],
+      "progress": 649,
+      "ore_count": 1
+    },
+    {
+      "name": "no_dominant_periodic_only",
+      "dominant": null,
+      "cursor": 0,
+      "inventory": {
+        "copper": 2
+      },
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "dump_tick",
+        "dump_tick",
+        "dump_tick"
+      ],
+      "progress": 649,
+      "ore_count": 0
+    },
+    {
+      "name": "lead_batch_rejects_copper_receiver",
+      "dominant": "lead",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "copper_only",
+          "accepts": [
+            "copper"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "tick"
+      ],
+      "progress": 1949,
+      "ore_count": 1
+    },
+    {
+      "name": "full_guard_preserves_progress",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 10
+      },
+      "neighbors": [],
+      "calls": [
+        "tick"
+      ],
+      "progress": 1950,
+      "ore_count": 1
+    },
+    {
+      "name": "batch_round_robin",
+      "dominant": "copper",
+      "cursor": 1,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "tick"
+      ],
+      "progress": 2599,
+      "ore_count": 1
+    },
+    {
+      "name": "dump_fills_first_offload_uses_second",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {
+        "copper": 1
+      },
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 2
+        }
+      ],
+      "calls": [
+        "dump_tick"
+      ],
+      "progress": 649,
+      "ore_count": 1
+    },
+    {
+      "name": "direct_then_tick_mixed_items",
+      "dominant": "copper",
+      "cursor": 0,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        },
+        {
+          "name": "two",
+          "accepts": [
+            "lead"
+          ],
+          "capacity": 2
+        }
+      ],
+      "calls": [
+        "lead",
+        "tick",
+        "copper",
+        "dump_tick"
+      ],
+      "progress": 649,
+      "ore_count": 1
+    },
+    {
+      "name": "empty_dump_preserves_oversized_cursor",
+      "dominant": "copper",
+      "cursor": 17,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "one",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "two",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "three",
+          "accepts": [],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "tick",
+        "dump_tick"
+      ],
+      "progress": 0,
+      "ore_count": 1
+    }
+  ]
+}

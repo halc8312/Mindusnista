@@ -1,0 +1,177 @@
+test_all_rejection_normalizes_cursor_and_stores_one_item (test_drill_offload.DrillOffloadTests.test_all_rejection_normalizes_cursor_and_stores_one_item) ... FAIL
+test_batch_completions_are_not_lost_at_capacity_boundary (test_drill_offload.DrillOffloadTests.test_batch_completions_are_not_lost_at_capacity_boundary) ... FAIL
+test_batch_delivers_until_receiver_full_then_preserves_remainder (test_drill_offload.DrillOffloadTests.test_batch_delivers_until_receiver_full_then_preserves_remainder) ... FAIL
+test_capacity_guard_before_batch_retains_progress (test_drill_offload.DrillOffloadTests.test_capacity_guard_before_batch_retains_progress) ... ok
+test_cursor_advances_before_each_real_receiver_attempt (test_drill_offload.DrillOffloadTests.test_cursor_advances_before_each_real_receiver_attempt) ... FAIL
+test_drill_overflow_inventory_round_trips_without_new_size_ceiling (test_drill_offload.DrillOffloadTests.test_drill_overflow_inventory_round_trips_without_new_size_ceiling) ... ERROR
+test_inventory_type_and_other_block_capacity_checks_remain (test_drill_offload.DrillOffloadTests.test_inventory_type_and_other_block_capacity_checks_remain) ... ok
+test_large_blocked_batch_preserves_every_item_without_repeated_scans (test_drill_offload.DrillOffloadTests.test_large_blocked_batch_preserves_every_item_without_repeated_scans) ... FAIL
+test_no_neighbor_keeps_produced_item_and_cursor (test_drill_offload.DrillOffloadTests.test_no_neighbor_keeps_produced_item_and_cursor) ... FAIL
+test_offload_fallback_has_no_individual_capacity_guard (test_drill_offload.DrillOffloadTests.test_offload_fallback_has_no_individual_capacity_guard) ... FAIL
+test_offload_sends_new_item_without_removing_existing_inventory (test_drill_offload.DrillOffloadTests.test_offload_sends_new_item_without_removing_existing_inventory) ... ok
+test_periodic_dump_precedes_capacity_check_and_new_production (test_drill_offload.DrillOffloadTests.test_periodic_dump_precedes_capacity_check_and_new_production) ... FAIL
+test_preexisting_schema_one_progress_resumes_through_overflow (test_drill_offload.DrillOffloadTests.test_preexisting_schema_one_progress_resumes_through_overflow) ... FAIL
+test_real_drill_belt_router_explicit_order_and_save_resume (test_drill_offload.DrillOffloadTests.test_real_drill_belt_router_explicit_order_and_save_resume) ... ok
+test_remainder_is_applied_after_production_delivery (test_drill_offload.DrillOffloadTests.test_remainder_is_applied_after_production_delivery) ... FAIL
+
+======================================================================
+ERROR: test_drill_overflow_inventory_round_trips_without_new_size_ceiling (test_drill_offload.DrillOffloadTests.test_drill_overflow_inventory_round_trips_without_new_size_ceiling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 193, in test_drill_overflow_inventory_round_trips_without_new_size_ceiling
+    restored = m.World.from_dict(data)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/mindustry_pythonista.py", line 902, in from_dict
+    integer(value, "inventory", 1, 10)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/mindustry_pythonista.py", line 108, in integer
+    raise ValueError("%s must be an integer between %d and %d" % (name, lo, hi))
+ValueError: inventory must be an integer between 1 and 10
+
+======================================================================
+FAIL: test_all_rejection_normalizes_cursor_and_stores_one_item (test_drill_offload.DrillOffloadTests.test_all_rejection_normalizes_cursor_and_stores_one_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 45, in test_all_rejection_normalizes_cursor_and_stores_one_item
+    self.assertEqual((drill.cursor, drill.inventory), (1, {"lead": 1}))
+AssertionError: Tuples differ: (7, {}) != (1, {'lead': 1})
+
+First differing element 0:
+7
+1
+
+- (7, {})
++ (1, {'lead': 1})
+
+======================================================================
+FAIL: test_batch_completions_are_not_lost_at_capacity_boundary (test_drill_offload.DrillOffloadTests.test_batch_completions_are_not_lost_at_capacity_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 84, in test_batch_completions_are_not_lost_at_capacity_boundary
+    self.assertEqual(drill.inventory, {"copper": 12})
+AssertionError: {'copper': 10} != {'copper': 12}
+- {'copper': 10}
+?             ^
+
++ {'copper': 12}
+?             ^
+
+
+======================================================================
+FAIL: test_batch_delivers_until_receiver_full_then_preserves_remainder (test_drill_offload.DrillOffloadTests.test_batch_delivers_until_receiver_full_then_preserves_remainder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 95, in test_batch_delivers_until_receiver_full_then_preserves_remainder
+    self.assertEqual(drill.inventory, {"copper": 9, "lead": 2})
+AssertionError: {'copper': 9, 'lead': 1} != {'copper': 9, 'lead': 2}
+- {'copper': 9, 'lead': 1}
+?                       ^
+
++ {'copper': 9, 'lead': 2}
+?                       ^
+
+
+======================================================================
+FAIL: test_cursor_advances_before_each_real_receiver_attempt (test_drill_offload.DrillOffloadTests.test_cursor_advances_before_each_real_receiver_attempt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 61, in test_cursor_advances_before_each_real_receiver_attempt
+    self.assertEqual(attempts, [(wall.id, 1), (router.id, 2)])
+AssertionError: Lists differ: [(3, 0), (4, 0)] != [(3, 1), (4, 2)]
+
+First differing element 0:
+(3, 0)
+(3, 1)
+
+- [(3, 0), (4, 0)]
+?      ^       ^
+
++ [(3, 1), (4, 2)]
+?      ^       ^
+
+
+======================================================================
+FAIL: test_large_blocked_batch_preserves_every_item_without_repeated_scans (test_drill_offload.DrillOffloadTests.test_large_blocked_batch_preserves_every_item_without_repeated_scans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 164, in test_large_blocked_batch_preserves_every_item_without_repeated_scans
+    self.assertEqual(drill.inventory, {"copper": 9 + expected_amount})
+AssertionError: {'copper': 10} != {'copper': 1538461547}
+- {'copper': 10}
++ {'copper': 1538461547}
+
+======================================================================
+FAIL: test_no_neighbor_keeps_produced_item_and_cursor (test_drill_offload.DrillOffloadTests.test_no_neighbor_keeps_produced_item_and_cursor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 36, in test_no_neighbor_keeps_produced_item_and_cursor
+    self.assertEqual(drill.inventory, {"lead": 2, "copper": 1})
+AssertionError: {'lead': 2} != {'lead': 2, 'copper': 1}
+- {'lead': 2}
++ {'copper': 1, 'lead': 2}
+
+======================================================================
+FAIL: test_offload_fallback_has_no_individual_capacity_guard (test_drill_offload.DrillOffloadTests.test_offload_fallback_has_no_individual_capacity_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 77, in test_offload_fallback_has_no_individual_capacity_guard
+    self.assertEqual(drill.inventory, {"copper": 11})
+AssertionError: {'copper': 10} != {'copper': 11}
+- {'copper': 10}
+?             ^
+
++ {'copper': 11}
+?             ^
+
+
+======================================================================
+FAIL: test_periodic_dump_precedes_capacity_check_and_new_production (test_drill_offload.DrillOffloadTests.test_periodic_dump_precedes_capacity_check_and_new_production)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 126, in test_periodic_dump_precedes_capacity_check_and_new_production
+    self.assertEqual(events[:2], [("dump", "lead", 1949), ("offload", "lead", 1953)])
+AssertionError: Lists differ: [('dump', 'lead', 1949), ('offload', 'lead', 3.0)] != [('dump', 'lead', 1949), ('offload', 'lead', 1953)]
+
+First differing element 1:
+('offload', 'lead', 3.0)
+('offload', 'lead', 1953)
+
+- [('dump', 'lead', 1949), ('offload', 'lead', 3.0)]
+?                                               --
+
++ [('dump', 'lead', 1949), ('offload', 'lead', 1953)]
+?                                              +++
+
+
+======================================================================
+FAIL: test_preexisting_schema_one_progress_resumes_through_overflow (test_drill_offload.DrillOffloadTests.test_preexisting_schema_one_progress_resumes_through_overflow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 178, in test_preexisting_schema_one_progress_resumes_through_overflow
+    self.assertEqual(resumed.buildings[drill.id].inventory, {"copper": 12})
+AssertionError: {'copper': 10} != {'copper': 12}
+- {'copper': 10}
+?             ^
+
++ {'copper': 12}
+?             ^
+
+
+======================================================================
+FAIL: test_remainder_is_applied_after_production_delivery (test_drill_offload.DrillOffloadTests.test_remainder_is_applied_after_production_delivery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M14/tests/test_drill_offload.py", line 145, in test_remainder_is_applied_after_production_delivery
+    self.assertEqual(observed, [1303, 1303])
+AssertionError: Lists differ: [3.0, 3.0] != [1303, 1303]
+
+First differing element 0:
+3.0
+1303
+
+- [3.0, 3.0]
++ [1303, 1303]
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.012s
+
+FAILED (failures=10, errors=1)

@@ -1,0 +1,1554 @@
+{
+  "status": "unavailable_toolchain",
+  "started_at": "2026-09-10T08:24:00.063152+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+  "reference_kind": "source-extracted Java offload/dump/dry drill branch with scripted receivers; not original engine",
+  "exact_fields": [
+    "call",
+    "result",
+    "cursor",
+    "progress",
+    "mined",
+    "inventory",
+    "receipts",
+    "events",
+    "offload_progress",
+    "dump_attempts",
+    "offload_attempts"
+  ],
+  "device_test": "not run",
+  "java_comparison": "not run",
+  "conditions": {
+    "has_items": true,
+    "can_dump": true,
+    "item_ids": [
+      "copper",
+      "lead"
+    ],
+    "neighbor_order": "explicit_fixture_order",
+    "receiver": "scripted_item_set_and_total_capacity_without_rejection_side_effects",
+    "calls": "direct_offload_or_explicit_drill_tick_with_timer_boundary",
+    "delta": 1,
+    "efficiency": 1,
+    "optional_efficiency": 0,
+    "initial_warmup": 1,
+    "drill_delay": 650,
+    "capacity": 10,
+    "progress_scope": "integer_exact_at_active_boundaries",
+    "tick_attempt_scope": "all_periodic_dump_attempts_and_first_offload_only",
+    "event_scope": "consecutive_offload_calls_collapsed_to_one_category",
+    "mined_scope": "adapter_tick_production_count_not_original_campaign_accounting"
+  },
+  "excluded": [
+    "original engine / scheduler / proximity construction / changing proximity during a scan",
+    "original receiver implementations / team / campaign produced or unlock accounting",
+    "real timer phase / variable delta / liquid boost / efficiency / effects / drill speed diagnostics",
+    "warmup floating point parity outside integer-exact active boundaries",
+    "repeated rejected offload attempt counts after the first production call (batched port tail)",
+    "Pythonista / device performance / full original-game compatibility"
+  ],
+  "case_count": 22,
+  "call_count": 44,
+  "sha256": {
+    "fixtures": "fbfa6075e57f6d881126a185c4062eec0c0e05c3a0d794188a35ab0c76d48247",
+    "java_source": "b8f42c172ade89f6fa67d0c2704208eeab5094b2eccaac2652943c48886f75a0",
+    "python_runtime": "bfd9606bb178016c2324e40378109dde32569c517fa25f256868d0751ab10fca"
+  },
+  "python_traces": [
+    {
+      "name": "offload_no_neighbors",
+      "frames": [
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {}
+        },
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {}
+        },
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 2,
+            "lead": 1
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "offload_full_no_neighbors",
+      "frames": [
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 10,
+            "lead": 1
+          },
+          "receipts": {}
+        },
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 10,
+            "lead": 2
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "offload_all_rejected",
+      "frames": [
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 2
+            },
+            {
+              "neighbor": "three",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 2
+            },
+            {
+              "neighbor": "three",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "offload_rejected_oversized_cursor",
+      "frames": [
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "three",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 2
+            }
+          ],
+          "cursor": 2,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "three",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "two",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 2
+            }
+          ],
+          "cursor": 2,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "offload_first_receiver",
+      "frames": [
+        {
+          "call": "copper",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        },
+        {
+          "call": "copper",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "offload_after_rejection",
+      "frames": [
+        {
+          "call": "copper",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 2
+            }
+          ],
+          "cursor": 2,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 1,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "three",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 1,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "offload_capacity_exhaustion",
+      "frames": [
+        {
+          "call": "copper",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        },
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        },
+        {
+          "call": "lead",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "two",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "offload_reversed_neighbor_order",
+      "frames": [
+        {
+          "call": "lead",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "second",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "second": {
+              "copper": 0,
+              "lead": 1
+            },
+            "first": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "copper",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "first",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "second": {
+              "copper": 0,
+              "lead": 1
+            },
+            "first": {
+              "copper": 1,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "tick_one_without_neighbors",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 650.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {}
+        },
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 1.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "tick_three_from_nine",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 1950.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 3,
+          "inventory": {
+            "copper": 12,
+            "lead": 0
+          },
+          "receipts": {}
+        },
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 3,
+          "inventory": {
+            "copper": 12,
+            "lead": 0
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "tick_four_ore_remainder",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 653.0,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 3.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {}
+        },
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 7.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "tick_three_some_fallback",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 1950.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 3,
+          "inventory": {
+            "copper": 11,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dump_before_batch_capacity",
+      "frames": [
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump",
+            "offload"
+          ],
+          "offload_progress": 1300.0,
+          "dump_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 2,
+          "inventory": {
+            "copper": 10,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 2,
+          "inventory": {
+            "copper": 10,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dump_rejection_blocks_production",
+      "frames": [
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [
+            {
+              "neighbor": "copper_only",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 1950.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 10
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dump_other_item_frees_capacity",
+      "frames": [
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump",
+            "offload"
+          ],
+          "offload_progress": 650.0,
+          "dump_attempts": [
+            {
+              "neighbor": "lead_only",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [
+            {
+              "neighbor": "lead_only",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 9
+          },
+          "receipts": {
+            "lead_only": {
+              "copper": 0,
+              "lead": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "no_dominant_periodic_only",
+      "frames": [
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 649.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 649.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 649.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "lead_batch_rejects_copper_receiver",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 1950.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "copper_only",
+              "item": "lead",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 3,
+          "inventory": {
+            "copper": 0,
+            "lead": 3
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "full_guard_preserves_progress",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 0,
+          "progress": 1950.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 10,
+            "lead": 0
+          },
+          "receipts": {}
+        }
+      ]
+    },
+    {
+      "name": "batch_round_robin",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 2600.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 4,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 2,
+              "lead": 0
+            },
+            "two": {
+              "copper": 2,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dump_fills_first_offload_uses_second",
+      "frames": [
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump",
+            "offload"
+          ],
+          "offload_progress": 650.0,
+          "dump_attempts": [
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": true,
+              "cursor_before": 0
+            }
+          ],
+          "cursor": 0,
+          "progress": 0.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 1,
+              "lead": 0
+            },
+            "two": {
+              "copper": 1,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "direct_then_tick_mixed_items",
+      "frames": [
+        {
+          "call": "lead",
+          "result": true,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 649.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "one",
+              "item": "lead",
+              "accepted": true,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 649.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 1
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "tick",
+          "result": null,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 650.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 1
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "copper",
+          "result": false,
+          "events": [
+            "offload"
+          ],
+          "offload_progress": 0.0,
+          "dump_attempts": [],
+          "offload_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            },
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            }
+          ],
+          "cursor": 1,
+          "progress": 0.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 1
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [
+            {
+              "neighbor": "two",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 1
+            },
+            {
+              "neighbor": "one",
+              "item": "copper",
+              "accepted": false,
+              "cursor_before": 0
+            }
+          ],
+          "offload_attempts": [],
+          "cursor": 1,
+          "progress": 1.0,
+          "mined": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 1
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty_dump_preserves_oversized_cursor",
+      "frames": [
+        {
+          "call": "tick",
+          "result": null,
+          "events": [],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 17,
+          "progress": 1.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        },
+        {
+          "call": "dump_tick",
+          "result": null,
+          "events": [
+            "dump"
+          ],
+          "offload_progress": null,
+          "dump_attempts": [],
+          "offload_attempts": [],
+          "cursor": 17,
+          "progress": 2.0,
+          "mined": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "one": {
+              "copper": 0,
+              "lead": 0
+            },
+            "two": {
+              "copper": 0,
+              "lead": 0
+            },
+            "three": {
+              "copper": 0,
+              "lead": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "python_trace_status": "generated; prefixes, scripted receipts and production conservation checked",
+  "toolchain": {
+    "javac": {
+      "available": false,
+      "error": "executable not found"
+    },
+    "java": {
+      "available": false,
+      "path": "/usr/bin/java",
+      "exit_code": 127,
+      "stdout": "",
+      "stderr": "/usr/bin/java: error while loading shared libraries: libjli.so: cannot open shared object file: No such file or directory"
+    }
+  },
+  "error": "A working javac and java are required; Java comparison was not executed."
+}
