@@ -46,6 +46,9 @@ docs/P_03_PROBE_ja.md
 docs/P_03_VERIFICATION_ja.md
 docs/P_04_PROBE_ja.md
 docs/P_04_VERIFICATION_ja.md
+docs/P_05_PROFILE_ja.md
+docs/P_05_TARGETING_ja.md
+docs/P_05_VERIFICATION_ja.md
 docs/RELEASE_ja.md
 docs/ROADMAP_ja.md
 docs/SAVE_COMPATIBILITY_RESEARCH_ja.md
@@ -173,6 +176,16 @@ docs/verification/P-04-20260910/pc-20000.json
 docs/verification/P-04-20260910/pc-200000.json
 docs/verification/P-04-20260910/scope.json
 docs/verification/P-04-20260910/summary.json
+docs/verification/P-05-20260910/PR15_CI_GITHUB.json
+docs/verification/P-05-20260910/after-check-project.json
+docs/verification/P-05-20260910/after-check-project.txt
+docs/verification/P-05-20260910/commands.json
+docs/verification/P-05-20260910/pilot-standard.json
+docs/verification/P-05-20260910/review.md
+docs/verification/P-05-20260910/scope.json
+docs/verification/P-05-20260910/summary.json
+docs/verification/P-05-20260910/target-selection-standard.json
+docs/verification/P-05-20260910/world-profile-standard.json
 docs/verification/P02-error-records-20260910/after-check-project.txt
 docs/verification/P02-error-records-20260910/before-check-project.txt
 docs/verification/P02-error-records-20260910/regression-before.txt
@@ -235,6 +248,8 @@ tests/test_resident_probe.py
 tests/test_rotation_controls.py
 tests/test_single_file_build.py
 tests/test_startup_regressions.py
+tests/test_target_selection.py
+tests/test_world_profile.py
 tools/build_release.py
 tools/build_single_file.py
 tools/check_conveyor_reference.py
@@ -242,6 +257,8 @@ tools/check_dump_reference.py
 tools/check_integrated_transport.py
 tools/check_offload_reference.py
 tools/check_project.py
+tools/check_target_selection.py
+tools/profile_world.py
 tools/pythonista_array_state_probe.py
 tools/pythonista_dynamic_state_probe.py
 tools/pythonista_parallel_probe.py

@@ -1,0 +1,40 @@
+[
+  {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/profile_world.py",
+      "--preset",
+      "standard",
+      "--scenario",
+      "all",
+      "--ticks",
+      "60",
+      "--warmups",
+      "5",
+      "--output",
+      "docs/verification/P-05-20260910/world-profile-standard.json"
+    ],
+    "exit_code": 0,
+    "stdout": "World profile: passed; docs/verification/P-05-20260910/world-profile-standard.json\n"
+  },
+  {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_target_selection.py",
+      "--preset",
+      "standard",
+      "--scenario",
+      "all",
+      "--ticks",
+      "60",
+      "--warmups",
+      "5",
+      "--repeats",
+      "3",
+      "--output",
+      "docs/verification/P-05-20260910/target-selection-standard.json"
+    ],
+    "exit_code": 0,
+    "stdout": "Target selection comparison: passed; docs/verification/P-05-20260910/target-selection-standard.json\n"
+  }
+]

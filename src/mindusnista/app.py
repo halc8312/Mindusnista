@@ -625,11 +625,18 @@ class World:
         if b.ammo <= 0 or not self.enemies:
             return
         x, y = self.center(b)
-        targets = [e for e in self.enemies.values()
-                   if e.hp > 0 and (e.x-x)**2 + (e.y-y)**2 <= spec["range"]**2]
-        if not targets:
+        range_squared = spec["range"]**2
+        e = None
+        best_key = None
+        for enemy in self.enemies.values():
+            if enemy.hp > 0:
+                distance = (enemy.x-x)**2 + (enemy.y-y)**2
+                if distance <= range_squared:
+                    key = (distance, enemy.id)
+                    if best_key is None or key < best_key:
+                        e, best_key = enemy, key
+        if e is None:
             return
-        e = min(targets, key=lambda enemy: ((enemy.x-x)**2 + (enemy.y-y)**2, enemy.id))
         # Scaffold aiming: no upstream intercept prediction, recoil, or coolant.
         desired = math.atan2(e.y-y, e.x-x)
         difference = (desired - b.angle + math.pi) % (2*math.pi) - math.pi
