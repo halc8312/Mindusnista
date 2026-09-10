@@ -13,6 +13,10 @@ ARCH-01: 超大規模・高負荷、原作 iOS/Steam のセーブ共有、エフ
 [並列化](docs/PARALLEL_RESEARCH_ja.md) と [セーブ共有](docs/SAVE_COMPATIBILITY_RESEARCH_ja.md) の
 先行検証を計画しましたが、加速バックエンド・原作 codec・大規模実機性能は未検証です。
 
+P-01: Python/NumPyの距離比較器を実装。固定入力の全結果はPCで一致したが、今回の変換・反映込みでは
+NumPyが遅い結果だった。ゲーム本体への加速導入・Accelerate・Metal・端末性能は未実証。
+この開発ツール追加でゲームの互換性・規模・効果の到達判定は変わらない。[P-01記録](docs/P_01_PROBE_ja.md)。
+
 M0-01 基準版移入では本体を変更せず、この台帳の互換性判定を維持しました。
 M0-01 当時の PC 検査と保存状況は [M0-01 検証記録](docs/M0_01_VERIFICATION_ja.md) を参照。
 

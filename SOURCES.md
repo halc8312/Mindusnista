@@ -52,3 +52,10 @@ https://omz-software.com/pythonista/docs-3.4/py3/ios/scene.html
 Official Scene.setup/update/did_change_size/pause/resume/stop documentation.
 Consulted 2026-09-09. This documentation does not identify the device-specific
 initial exception from the reported missing-_failed traceback.
+
+## P-01 開発専用CIのNumPy条件
+
+Python 3.10には1.26.4（公式対応3.9～3.12）、3.13には2.3.5（3.11～3.14）を指定。
+[1.26.4公式ノート](https://github.com/numpy/numpy/blob/v1.26.4/doc/source/release/1.26.4-notes.rst)、
+[2.3.5公式ノート](https://github.com/numpy/numpy/blob/v2.3.5/doc/source/release/2.3.5-notes.rst)。
+2026-09-10取得。これは開発CIの条件で、Pythonista同梱版の推定ではない。

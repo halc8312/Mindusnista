@@ -53,3 +53,7 @@ PC 側の検査結果は [UI-01 検証記録](docs/UI_01_VERIFICATION_ja.md) に
 
 詳細は [完全移植の要件](docs/FULL_PORT_REQUIREMENTS_ja.md) と各調査資料を参照。
 端末・版を記録し、機能・規模・エフェクトを削って合格にしない。現行の暫定上限は残っている。
+
+P-01 比較器を用意済み: `tools/pythonista_parallel_probe.py` 一つをPythonistaで実行する。
+最初は既定の20,000件で起動と全件一致を確認し、機種・iOS・Pythonista/NumPy版と結果JSONを記録する。
+今回のPC実行をこの表の実機結果には転記しない。ゲーム本体を置き換えるファイルではない。
