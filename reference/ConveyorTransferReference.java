@@ -11,12 +11,13 @@
  * units, stack APIs, serialization and the entity scheduler are omitted.
  * Belts are size 1, on the same team, with delta = efficiency = timeScale = 1.
  * Each U record explicitly updates one belt. Cached minitem/mid and mutable
- * len are retained; the caller supplies initial minitem and mid starts at 0.
- * The initial fixtures are primed states, not constructor-only states.
+ * len are retained; the caller supplies initial minitem and mid. Fixtures
+ * include primed caches, stale caches and constructor caches after arrivals.
+ * Seed arrays are ordered by y, but transfer-generated array order is kept.
  * lastInserted remains its upstream default 0 in these extracted methods.
  *
  * Development-only, JDK 17; not required by the Pythonista game.
- * stdin TSV: C name speed; B name x y rotation minitem count
+ * stdin TSV: C name speed; B name x y rotation minitem mid count
  *            [item y x]...; U name; E. One JSON trace line per case.
  */
 import java.io.BufferedReader;
@@ -54,15 +55,17 @@ public class ConveyorTransferReference {
             y = Integer.parseInt(fields[3]);
             rotation = Integer.parseInt(fields[4]);
             minitem = Float.parseFloat(fields[5]);
-            len = Integer.parseInt(fields[6]);
+            mid = Integer.parseInt(fields[6]);
+            len = Integer.parseInt(fields[7]);
             if(rotation < 0 || rotation > 3 || len < 0 || len > capacity ||
-                    fields.length != 7 + 3 * len){
+                    mid < 0 || mid > Math.min(len, 1) || !Float.isFinite(minitem) || minitem < 0 || minitem > 1 ||
+                    fields.length != 8 + 3 * len){
                 throw new IllegalArgumentException("invalid belt record");
             }
             for(int i = 0; i < len; i++){
-                ids[i] = identifier(fields[7 + i * 3]);
-                ys[i] = Float.parseFloat(fields[8 + i * 3]);
-                xs[i] = Float.parseFloat(fields[9 + i * 3]);
+                ids[i] = identifier(fields[8 + i * 3]);
+                ys[i] = Float.parseFloat(fields[9 + i * 3]);
+                xs[i] = Float.parseFloat(fields[10 + i * 3]);
             }
         }
 

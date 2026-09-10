@@ -151,6 +151,10 @@ class WorldTests(unittest.TestCase):
             source = w.place('router',10-dx,10-dy,free=True)
             self.assertTrue(w.receive(target,source,'copper'))
             self.assertEqual(target.belt[0].y,0)
+            # v159.7 handleItem does not refresh minitem; the next update does.
+            self.assertTrue(w.receive(target,source,'lead'))
+            self.assertEqual([p.item for p in target.belt], ['lead','copper'])
+            w._tick_conveyor(target)
             self.assertFalse(w.receive(target,source,'copper'))
 
     def test_side_input_and_front_rejection(self):
@@ -161,6 +165,10 @@ class WorldTests(unittest.TestCase):
         self.assertTrue(self.w.receive(target,side,'copper'))
         self.assertEqual(target.belt[0].y,.5)
         self.assertEqual(target.belt[0].x,-1)
+        # Both arrivals see the same previous-update cache, until updateTile.
+        self.assertTrue(self.w.receive(target,side,'lead'))
+        self.assertEqual([p.item for p in target.belt], ['lead','copper'])
+        self.w._tick_conveyor(target)
         self.assertFalse(self.w.receive(target,side,'lead'))
 
     def test_nonadjacent_input_is_rejected(self):

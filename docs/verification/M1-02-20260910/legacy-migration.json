@@ -1,0 +1,9 @@
+{
+  "legacy_commit": "787aabd28593519c996ed79a6aa8ea3cdb741ba4",
+  "legacy_runtime_sha256": "c37c01df10a7db379796b7457d409a33588efdf9a56d4d4044c5b6a445a80048",
+  "old_runtime_ticks": 500,
+  "legacy_data_preserved_without_tick": true,
+  "new_runtime_resume_ticks": 500,
+  "new_runtime_resume_digest_equal": true,
+  "note": "Generated development demo only; no user save accessed. This does not assert old/new gameplay equivalence after ticking."
+}

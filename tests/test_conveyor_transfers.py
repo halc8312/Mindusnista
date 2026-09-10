@@ -19,6 +19,7 @@ def pair(rotation=0, target_rotation=None):
     target = world.place("conveyor", 10 + dx, 10 + dy,
                          rotation if target_rotation is None else target_rotation, free=True)
     source.belt = [m.BeltItem("copper", .58, .6), m.BeltItem("lead", .99, .6)]
+    source.conveyor_minitem = .58
     return world, source, target
 
 
@@ -40,6 +41,7 @@ class ConveyorTransferTests(unittest.TestCase):
     def test_rejected_handoff_keeps_head_and_follower_spacing(self):
         world, source, target = pair(target_rotation=1)
         target.belt = [m.BeltItem("lead", y) for y in (.2, .6, 1)]
+        target.conveyor_minitem = .2
         before = [(p.item, p.y, p.x) for p in target.belt]
         world._tick_conveyor(source)
         self.assertEqual([p.item for p in source.belt], ["copper", "lead"])
@@ -51,6 +53,8 @@ class ConveyorTransferTests(unittest.TestCase):
         world, source, target = pair()
         source.belt = [m.BeltItem("copper", .39), m.BeltItem("lead", .79)]
         target.belt = [m.BeltItem("copper", .2)]
+        # Explicitly seed a cache from a prior target update, not its constructor.
+        target.conveyor_minitem = .2
         world._tick_conveyor(source)
         self.assertEqual(len(source.belt) + len(target.belt), 3)
         self.assertAlmostEqual(source.belt[0].y, .4)

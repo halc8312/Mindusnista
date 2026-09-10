@@ -1,0 +1,300 @@
+test_cache_does_not_relax_item_coordinate_or_capacity_validation (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_cache_does_not_relax_item_coordinate_or_capacity_validation) ... ok
+test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance) ... FAIL
+test_legacy_unsorted_cargo_is_still_rejected (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_legacy_unsorted_cargo_is_still_rejected) ... ok
+test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) ...
+  test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=2, key='conveyor_mid') ... ERROR
+  test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=3, key='conveyor_minitem') ... ERROR
+  test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=3, key='conveyor_mid') ... ERROR
+test_old_empty_conveyor_and_other_buildings_get_neutral_cache (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_empty_conveyor_and_other_buildings_get_neutral_cache) ... ERROR
+test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) ...
+  test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) (middle=0.5) ... ERROR
+  test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) (middle=0.500001) ... ERROR
+test_old_schema_one_migration_preserves_state_and_does_not_tick (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_schema_one_migration_preserves_state_and_does_not_tick) ... ERROR
+test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) ...
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=None) ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=True) ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value='1') ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=nan) ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=inf) ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=-0.1) ... ERROR
+  test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=1.1) ... ERROR
+test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) ... ERROR
+test_saved_stale_cache_is_preserved_without_recomputation (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_saved_stale_cache_is_preserved_without_recomputation) ... ERROR
+test_aligned_backpressure_reads_target_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_aligned_backpressure_reads_target_cache) ... FAIL
+test_cache_tracks_only_items_remaining_after_pass (tests.test_conveyor_cache.ConveyorCacheTests.test_cache_tracks_only_items_remaining_after_pass) ... ERROR
+test_cached_minimum_can_reject_despite_open_positions (tests.test_conveyor_cache.ConveyorCacheTests.test_cached_minimum_can_reject_despite_open_positions) ... FAIL
+test_empty_update_resets_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_empty_update_resets_cache) ... ERROR
+test_multiple_rear_arrivals_insert_at_zero_until_capacity (tests.test_conveyor_cache.ConveyorCacheTests.test_multiple_rear_arrivals_insert_at_zero_until_capacity) ... FAIL
+test_opposite_sides_insert_before_earlier_arrival (tests.test_conveyor_cache.ConveyorCacheTests.test_opposite_sides_insert_before_earlier_arrival) ... FAIL
+test_rear_then_side_uses_previous_update_cache_and_keeps_array_order (tests.test_conveyor_cache.ConveyorCacheTests.test_rear_then_side_uses_previous_update_cache_and_keeps_array_order) ... FAIL
+test_side_input_uses_cached_mid_without_sorting (tests.test_conveyor_cache.ConveyorCacheTests.test_side_input_uses_cached_mid_without_sorting) ... FAIL
+test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) ...
+  test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) (middle=0.4) ... ERROR
+  test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) (middle=0.5) ... ERROR
+
+======================================================================
+ERROR: test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=2, key='conveyor_mid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 204, in test_mid_cannot_exceed_length_or_appear_on_nonconveyor
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_mid'
+
+======================================================================
+ERROR: test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=3, key='conveyor_minitem')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 204, in test_mid_cannot_exceed_length_or_appear_on_nonconveyor
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_mid_cannot_exceed_length_or_appear_on_nonconveyor (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_mid_cannot_exceed_length_or_appear_on_nonconveyor) (uid=3, key='conveyor_mid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 204, in test_mid_cannot_exceed_length_or_appear_on_nonconveyor
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_mid'
+
+======================================================================
+ERROR: test_old_empty_conveyor_and_other_buildings_get_neutral_cache (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_empty_conveyor_and_other_buildings_get_neutral_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 164, in test_old_empty_conveyor_and_other_buildings_get_neutral_cache
+    self.assertEqual((building.conveyor_minitem, building.conveyor_mid), (1, 0))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_minitem'
+
+======================================================================
+ERROR: test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) (middle=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 157, in test_old_migration_mid_threshold_does_not_move_cargo
+    self.assertEqual(restored.buildings[target.id].conveyor_mid, expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_mid'
+
+======================================================================
+ERROR: test_old_migration_mid_threshold_does_not_move_cargo (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_migration_mid_threshold_does_not_move_cargo) (middle=0.500001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 157, in test_old_migration_mid_threshold_does_not_move_cargo
+    self.assertEqual(restored.buildings[target.id].conveyor_mid, expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_mid'
+
+======================================================================
+ERROR: test_old_schema_one_migration_preserves_state_and_does_not_tick (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_old_schema_one_migration_preserves_state_and_does_not_tick)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 142, in test_old_schema_one_migration_preserves_state_and_does_not_tick
+    self.assertEqual((restored.buildings[target.id].conveyor_minitem,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value='1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=-0.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input) (key='conveyor_minitem', value=1.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 188, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    m.World.from_dict(data)
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/mindustry_pythonista.py", line 849, in from_dict
+    b = Building(**r)
+        ^^^^^^^^^^^^^
+TypeError: Building.__init__() got an unexpected keyword argument 'conveyor_minitem'
+
+======================================================================
+ERROR: test_partial_or_invalid_cache_is_rejected_without_mutating_input (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_partial_or_invalid_cache_is_rejected_without_mutating_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 191, in test_partial_or_invalid_cache_is_rejected_without_mutating_input
+    next(b for b in data["buildings"] if b["id"] == target.id).pop(key)
+KeyError: 'conveyor_minitem'
+
+======================================================================
+ERROR: test_saved_stale_cache_is_preserved_without_recomputation (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_saved_stale_cache_is_preserved_without_recomputation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 171, in test_saved_stale_cache_is_preserved_without_recomputation
+    self.assertEqual(restored.buildings[target.id].conveyor_minitem, .2)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_minitem'
+
+======================================================================
+ERROR: test_cache_tracks_only_items_remaining_after_pass (tests.test_conveyor_cache.ConveyorCacheTests.test_cache_tracks_only_items_remaining_after_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 109, in test_cache_tracks_only_items_remaining_after_pass
+    self.assertEqual((target.conveyor_minitem, target.conveyor_mid), (1, 0))
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_minitem'
+
+======================================================================
+ERROR: test_empty_update_resets_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_empty_update_resets_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 83, in test_empty_update_resets_cache
+    self.assertEqual((target.conveyor_minitem, target.conveyor_mid), (1, 0))
+                                               ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_mid'. Did you mean: 'conveyor_minitem'?
+
+======================================================================
+ERROR: test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) (middle=0.4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 91, in test_update_computes_mid_with_strict_half_threshold
+    self.assertEqual(target.conveyor_mid, expected)
+                     ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_mid'
+
+======================================================================
+ERROR: test_update_computes_mid_with_strict_half_threshold (tests.test_conveyor_cache.ConveyorCacheTests.test_update_computes_mid_with_strict_half_threshold) (middle=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 91, in test_update_computes_mid_with_strict_half_threshold
+    self.assertEqual(target.conveyor_mid, expected)
+                     ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Building' object has no attribute 'conveyor_mid'
+
+======================================================================
+FAIL: test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance (tests.test_conveyor_cache.ConveyorCacheSaveTests.test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 124, in test_disk_resume_preserves_unsorted_arrivals_and_next_acceptance
+    self.assertTrue(world.receive(target, opposite, "copper"))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_aligned_backpressure_reads_target_cache (tests.test_conveyor_cache.ConveyorCacheTests.test_aligned_backpressure_reads_target_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 74, in test_aligned_backpressure_reads_target_cache
+    self.assertFalse(target.belt)
+AssertionError: [BeltItem(item='lead', y=0.6, x=0.508)] is not false
+
+======================================================================
+FAIL: test_cached_minimum_can_reject_despite_open_positions (tests.test_conveyor_cache.ConveyorCacheTests.test_cached_minimum_can_reject_despite_open_positions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 62, in test_cached_minimum_can_reject_despite_open_positions
+    self.assertFalse(world.accepts(target, rear, "lead"))
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_multiple_rear_arrivals_insert_at_zero_until_capacity (tests.test_conveyor_cache.ConveyorCacheTests.test_multiple_rear_arrivals_insert_at_zero_until_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 45, in test_multiple_rear_arrivals_insert_at_zero_until_capacity
+    self.assertTrue(world.receive(target, rear, item))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_opposite_sides_insert_before_earlier_arrival (tests.test_conveyor_cache.ConveyorCacheTests.test_opposite_sides_insert_before_earlier_arrival)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 55, in test_opposite_sides_insert_before_earlier_arrival
+    self.assertTrue(world.receive(target, opposite, "lead"))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_rear_then_side_uses_previous_update_cache_and_keeps_array_order (tests.test_conveyor_cache.ConveyorCacheTests.test_rear_then_side_uses_previous_update_cache_and_keeps_array_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 38, in test_rear_then_side_uses_previous_update_cache_and_keeps_array_order
+    self.assertTrue(world.receive(target, side, "lead"))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_side_input_uses_cached_mid_without_sorting (tests.test_conveyor_cache.ConveyorCacheTests.test_side_input_uses_cached_mid_without_sorting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_cache.py", line 100, in test_side_input_uses_cached_mid_without_sorting
+    self.assertEqual([(p.item, p.y) for p in target.belt], [("copper", .8), ("lead", .5)])
+AssertionError: Lists differ: [('lead', 0.5), ('copper', 0.8)] != [('copper', 0.8), ('lead', 0.5)]
+
+First differing element 0:
+('lead', 0.5)
+('copper', 0.8)
+
+- [('lead', 0.5), ('copper', 0.8)]
++ [('copper', 0.8), ('lead', 0.5)]
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.040s
+
+FAILED (failures=7, errors=20)

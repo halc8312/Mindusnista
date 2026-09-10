@@ -1,0 +1,25 @@
+{
+  "base_commit": "787aabd28593519c996ed79a6aa8ea3cdb741ba4",
+  "runtime_files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "7c2540326cac87a59f3d92d77b591bb515c3b739d12a977e0e283a4800bf505c",
+      "identical_to_base": false
+    },
+    {
+      "path": "src/mindusnista/app.py",
+      "sha256": "8cc20c357f6fda863f7a620a75030c69c13af7ac11c7ffb395a9734fc782ae2b",
+      "identical_to_base": false
+    },
+    {
+      "path": "src/mindusnista/kernels.py",
+      "sha256": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+      "identical_to_base": true
+    }
+  ],
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "device_tests": "not_run",
+  "upstream": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+  "legacy_save_policy": "Both cache fields absent: preserve sorted cargo and derive without ticking. Present: preserve exact cache and order. Older apps cannot read new fields."
+}
