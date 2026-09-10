@@ -1,0 +1,34 @@
+{
+  "task": "P-02",
+  "base_commit": "787aabd28593519c996ed79a6aa8ea3cdb741ba4",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "probe_sha256": "216a89e0d1bdd39287338db7259927f11ab94e26b1dde7cbc2b82d6c46f348f3",
+  "runtime_sha256": "c37c01df10a7db379796b7457d409a33588efdf9a56d4d4044c5b6a445a80048",
+  "reports": {
+    "resident-20000.json": {
+      "sha256": "8a769cef65dd52429ceee37f2069d2ae406010bf032c9e55e3bf31c55133ec52",
+      "command": "python tools/pythonista_parallel_probe.py --resident --count 20000 --warmups 2 --repeats 7 --output ../evidence/P-02/resident-20000.json",
+      "exit_code": 0,
+      "status": "correct",
+      "verified_runs_per_backend": 10,
+      "changed_rows_per_frame": 20000,
+      "backend_count": 7
+    },
+    "resident-200000.json": {
+      "sha256": "905d3ebd78d55f62c9107eee0b882e01078a9810da981269563f870e3794d89e",
+      "command": "python tools/pythonista_parallel_probe.py --resident --count 200000 --warmups 2 --repeats 11 --output ../evidence/P-02/resident-200000.json",
+      "exit_code": 0,
+      "status": "correct",
+      "verified_runs_per_backend": 14,
+      "changed_rows_per_frame": 200000,
+      "backend_count": 7
+    }
+  },
+  "limitations": [
+    "synthetic float64; original float32 unverified",
+    "Pythonista device unexecuted",
+    "peak process memory unmeasured",
+    "shared PC load and frequency not controlled"
+  ]
+}

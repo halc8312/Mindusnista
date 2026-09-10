@@ -1,0 +1,27 @@
+{
+  "head_sha": "623d3e480d2b2d7590a0fe00efc72b2d649c9245",
+  "merge_sha": "16846db4e8a6bf683a734452619b6b954e772139",
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/8",
+  "run_url": "https://github.com/halc8312/Mindusnista/actions/runs/34436913554",
+  "jobs": [
+    {
+      "id": 102743802499,
+      "name": "tests (3.10)",
+      "conclusion": "success",
+      "tests": 211,
+      "unittest_skips": 0,
+      "self_test": "passed",
+      "java_comparison": "20 cases, 59 updates, zero mismatches"
+    },
+    {
+      "id": 102743802724,
+      "name": "tests (3.13)",
+      "conclusion": "success",
+      "tests": 211,
+      "unittest_skips": 0,
+      "self_test": "passed",
+      "java_comparison": "not scheduled on 3.13"
+    }
+  ],
+  "device_tests": "not_run"
+}

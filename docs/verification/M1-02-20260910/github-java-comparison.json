@@ -1,0 +1,4782 @@
+{
+  "cache_absolute_tolerance": 0.000002,
+  "cache_comparison": "minitem and mid are retained and compared; lastInserted is the extracted default 0 on both sides.",
+  "case_count": 20,
+  "conditions": {
+    "block_size": 1,
+    "cache_state": "explicit_per_belt",
+    "delta": 1,
+    "efficiency": 1,
+    "initial_item_order": "nondecreasing_y",
+    "initial_last_inserted": 0,
+    "initial_mid": "Optional per-belt integer cache; omitted means 0. Capacity-3 updates produce 0 or 1.",
+    "initial_minitem": "Explicit per-belt update-time cache; may differ from current item positions after arrivals. Artificial cache-reset seeds are described per case.",
+    "last_inserted": "The extracted methods leave upstream lastInserted at 0; the Python trace records the same fixed value.",
+    "team": "same",
+    "time_scale": 1,
+    "trace_item_order": "Preserve the live array order, including non-monotonic y produced by consecutive receives; never sort a trace.",
+    "updates": "Each name updates exactly one belt once; no implicit world tick or scheduler."
+  },
+  "device_test": "not run",
+  "exact_fields": [
+    "case",
+    "update",
+    "belt",
+    "count",
+    "item identity and order",
+    "cache.mid",
+    "cache.lastInserted"
+  ],
+  "excluded": [
+    "Rendering, teams, units, sleep/clog, stack APIs, serialization and original entity scheduling.",
+    "ItemModule is represented only by the live item-array prefix, not the original module.",
+    "Direct external handleItem events and real-world generation of artificially dense seed arrays; cases explicitly list belt update order.",
+    "Original engine execution, full-game compatibility and Pythonista device testing."
+  ],
+  "fixture_schema": 2,
+  "java_comparison": "executed",
+  "java_traces": [
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_east"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_north"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_west"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_south"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.416,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "source_then_target"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.58
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.58
+                },
+                {
+                  "item": "lead",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "target_then_source"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.2,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.2,
+                  "y": 0.4
+                },
+                {
+                  "item": "lead",
+                  "x": 0.4,
+                  "y": 0.8
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.046
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.108,
+                  "y": 0.046
+                },
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0.446
+                },
+                {
+                  "item": "lead",
+                  "x": 0.308,
+                  "y": 0.846
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.046
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.108,
+                  "y": 0.046
+                },
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0.446
+                },
+                {
+                  "item": "lead",
+                  "x": 0.308,
+                  "y": 0.846
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "blocked_full_turn"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.7
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.208,
+                  "y": 0.7
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.2,
+                  "y": 0.1
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.7
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.208,
+                  "y": 0.7
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.146
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.108,
+                  "y": 0.146
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.746
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.116000004,
+                  "y": 0.746
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.146
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.108,
+                  "y": 0.146
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_next_spacing"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.82
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.4,
+                  "y": 0.82
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.308,
+                  "y": 0.866
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "turn_side_insert"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "headon_rejected"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "side_then_rear"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.6,
+                  "y": 0.99
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.046
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.816,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.092
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.724,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.232,
+                  "y": 0.138
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "rear_then_side_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.092
+                },
+                {
+                  "item": "lead",
+                  "x": -0.816,
+                  "y": 0.592
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.232,
+                  "y": 0.138
+                },
+                {
+                  "item": "lead",
+                  "x": -0.724,
+                  "y": 0.638
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "side_then_rear_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "N"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.816,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.816,
+                  "y": 0.592
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.724,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.724,
+                  "y": 0.638
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "opposed_sides_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.2,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.2,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.108,
+                  "y": 0.046
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.092
+                },
+                {
+                  "item": "lead",
+                  "x": -0.816,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.016000003,
+                  "y": 0.092
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.099999994
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.232,
+                  "y": 0.099999994
+                },
+                {
+                  "item": "lead",
+                  "x": -0.724,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.138
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "constructor_cache_after_arrival"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.58
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.58
+                },
+                {
+                  "item": "lead",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.672
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.672
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.672
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.672
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.416,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.646
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.646
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.416,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.646
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.646
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.324,
+                  "y": 0.092
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "updated_target_receives_then_source_reuses_cache"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "empty_cache_reset"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.008000001,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": -0.008000001,
+                  "y": 0.446
+                },
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0.946
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.492
+                },
+                {
+                  "item": "copper",
+                  "x": 0.016000003,
+                  "y": 0.992
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.13799998
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.13799998
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.538
+                },
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 1
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "update_generates_mid_one"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.208,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.016000003,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.116000004,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.416,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.024000004,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.324,
+                  "y": 0.092
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "dense_seed_repeated_rear_pass"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.008,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": -0.008,
+                  "y": 0.446
+                },
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0.946
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.492
+                },
+                {
+                  "item": "copper",
+                  "x": 0.016000003,
+                  "y": 0.992
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.13799998
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.13799998
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.538
+                },
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 1
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "seeded_mid_one_refresh"
+    }
+  ],
+  "mismatch_count": 0,
+  "mismatches": [],
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "position_absolute_tolerance": 0.000002,
+  "python": "3.10.21 (main, Aug 13 2026, 02:42:48) [GCC 13.3.0]",
+  "python_trace_status": "generated; shape and cargo conservation checked",
+  "python_traces": [
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_east"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_north"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_west"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_south"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "source_then_target"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.58
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.58
+                },
+                {
+                  "item": "lead",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "target_then_source"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.2,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.2,
+                  "y": 0.4
+                },
+                {
+                  "item": "lead",
+                  "x": 0.4,
+                  "y": 0.8
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.045999999999999985
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.10800000000000001,
+                  "y": 0.045999999999999985
+                },
+                {
+                  "item": "copper",
+                  "x": 0.10800000000000001,
+                  "y": 0.446
+                },
+                {
+                  "item": "lead",
+                  "x": 0.30800000000000005,
+                  "y": 0.8460000000000001
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.045999999999999985
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.10800000000000001,
+                  "y": 0.045999999999999985
+                },
+                {
+                  "item": "copper",
+                  "x": 0.10800000000000001,
+                  "y": 0.446
+                },
+                {
+                  "item": "lead",
+                  "x": 0.30800000000000005,
+                  "y": 0.8460000000000001
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "blocked_full_turn"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.7
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.208,
+                  "y": 0.7
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.2,
+                  "y": 0.1
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.7
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.208,
+                  "y": 0.7
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.14600000000000002
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.10800000000000001,
+                  "y": 0.14600000000000002
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.746
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.11599999999999999,
+                  "y": 0.746
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.14600000000000002
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.10800000000000001,
+                  "y": 0.14600000000000002
+                }
+              ]
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "aligned_next_spacing"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.82
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.4,
+                  "y": 0.82
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.30800000000000005,
+                  "y": 0.866
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "turn_side_insert"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 1
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        }
+      ],
+      "name": "headon_rejected"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "side_then_rear"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.6,
+                  "y": 0.99
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.8160000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.092
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -0.7240000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "copper",
+                  "x": 0.23200000000000007,
+                  "y": 0.138
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "rear_then_side_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.092
+                },
+                {
+                  "item": "lead",
+                  "x": -0.8160000000000001,
+                  "y": 0.5920000000000001
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.23200000000000007,
+                  "y": 0.138
+                },
+                {
+                  "item": "lead",
+                  "x": -0.7240000000000001,
+                  "y": 0.6380000000000001
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "side_then_rear_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "N"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.546
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.8160000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.8160000000000001,
+                  "y": 0.5920000000000001
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.5
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.7240000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": -0.7240000000000001,
+                  "y": 0.6380000000000001
+                }
+              ]
+            },
+            "N": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "opposed_sides_follow"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.99
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.2,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "S"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -1,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.2,
+                  "y": 0
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                },
+                {
+                  "item": "lead",
+                  "x": -0.908,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.10800000000000001,
+                  "y": 0.046
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.092
+                },
+                {
+                  "item": "lead",
+                  "x": -0.8160000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0.016000000000000014,
+                  "y": 0.092
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.09999999999999998
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.23200000000000007,
+                  "y": 0.09999999999999998
+                },
+                {
+                  "item": "lead",
+                  "x": -0.7240000000000001,
+                  "y": 0.5
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.138
+                }
+              ]
+            },
+            "S": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "constructor_cache_after_arrival"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.58
+              },
+              "count": 2,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.6,
+                  "y": 0.58
+                },
+                {
+                  "item": "lead",
+                  "x": 0.6,
+                  "y": 0.99
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.626
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0.626
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.672
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.672
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.672
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.672
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.6459999999999999
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.6459999999999999
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.046
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.6459999999999999
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.6459999999999999
+                }
+              ]
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.092
+              },
+              "count": 1,
+              "items": [
+                {
+                  "item": "lead",
+                  "x": 0.32400000000000007,
+                  "y": 0.092
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "updated_target_receives_then_source_reuses_cache"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "empty_cache_reset"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.008000000000000007,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": -0.008000000000000007,
+                  "y": 0.446
+                },
+                {
+                  "item": "copper",
+                  "x": 0.10800000000000001,
+                  "y": 0.9460000000000001
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.492
+                },
+                {
+                  "item": "copper",
+                  "x": 0.016000000000000014,
+                  "y": 0.9920000000000001
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.138
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.538
+                },
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 1
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "update_generates_mid_one"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.10800000000000001,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.208,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.508,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.016000000000000014,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.11599999999999999,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.41600000000000004,
+                  "y": 0.046
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "item": "lead",
+                  "x": -0.023999999999999994,
+                  "y": 0
+                },
+                {
+                  "item": "copper",
+                  "x": 0.32400000000000007,
+                  "y": 0.092
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "dense_seed_repeated_rear_pass"
+    },
+    {
+      "frames": [
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0.008,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": -0.008,
+                  "y": 0.446
+                },
+                {
+                  "item": "copper",
+                  "x": 0.108,
+                  "y": 0.946
+                }
+              ]
+            }
+          },
+          "update": "A"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 1,
+                "minitem": 0.1
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.1
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.492
+                },
+                {
+                  "item": "copper",
+                  "x": 0.016,
+                  "y": 0.992
+                }
+              ]
+            }
+          },
+          "update": "B"
+        },
+        {
+          "belts": {
+            "A": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 1
+              },
+              "count": 0,
+              "items": []
+            },
+            "B": {
+              "cache": {
+                "lastInserted": 0,
+                "mid": 0,
+                "minitem": 0.138
+              },
+              "count": 3,
+              "items": [
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 0.138
+                },
+                {
+                  "item": "lead",
+                  "x": 0,
+                  "y": 0.538
+                },
+                {
+                  "item": "copper",
+                  "x": 0,
+                  "y": 1
+                }
+              ]
+            }
+          },
+          "update": "B"
+        }
+      ],
+      "name": "seeded_mid_one_refresh"
+    }
+  ],
+  "reference_kind": "source-extracted Java float conveyor transfers; not the original engine",
+  "sha256": {
+    "fixtures": "8a40b60eed9479c7144471208fc7f73531bb44d5a9d6de6dd68e8c322236d4df",
+    "java_source": "5c491c4249dd2671ee9d0a60adab8140152915887432522c03bb6a4baf00a87b",
+    "python_runtime": "7c2540326cac87a59f3d92d77b591bb515c3b739d12a977e0e283a4800bf505c"
+  },
+  "started_at": "2026-09-10T04:22:35.432414+00:00",
+  "status": "passed",
+  "toolchain": {
+    "java": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64/bin/java",
+      "stderr": "openjdk version \"17.0.20.1\" 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+      "stdout": ""
+    },
+    "javac": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64/bin/javac",
+      "stderr": "",
+      "stdout": "javac 17.0.20.1"
+    }
+  },
+  "update_count": 59,
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c"
+}
