@@ -31,6 +31,8 @@ docs/M0_02_VERIFICATION_ja.md
 docs/M0_03_VERIFICATION_ja.md
 docs/M1_01_VERIFICATION_ja.md
 docs/M1_02_VERIFICATION_ja.md
+docs/M1_03_RULES_ja.md
+docs/M1_03_VERIFICATION_ja.md
 docs/NEXT_TASK_ja.md
 docs/PARALLEL_RESEARCH_ja.md
 docs/P_01_PROBE_ja.md
@@ -104,6 +106,11 @@ docs/verification/M1-02-20260910/github-java-comparison.json
 docs/verification/M1-02-20260910/legacy-migration.json
 docs/verification/M1-02-20260910/local-reference.json
 docs/verification/M1-02-20260910/scope.json
+docs/verification/M1-03-20260910/after-check-project.txt
+docs/verification/M1-03-20260910/before-check-project.txt
+docs/verification/M1-03-20260910/local-java.json
+docs/verification/M1-03-20260910/regression-before.txt
+docs/verification/M1-03-20260910/result.json
 docs/verification/P-01-20260910/after-check-project.json
 docs/verification/P-01-20260910/after-check-project.txt
 docs/verification/P-01-20260910/delayed-output-after-fix.txt
@@ -150,7 +157,9 @@ prompts/02_CONTINUE_WORK_ja.txt
 prompts/03_DEVICE_BUG_ja.txt
 reference/ConveyorKernelReference.java
 reference/ConveyorTransferReference.java
+reference/DrillDumpReference.java
 reference/conveyor_transfer_scenarios.json
+reference/drill_dump_scenarios.json
 reference/java_fixtures.json
 rotation-controls.patch
 self-test-results.txt
@@ -161,6 +170,7 @@ test-results.txt
 tests/pythonista_stub.py
 tests/test_conveyor_cache.py
 tests/test_conveyor_transfers.py
+tests/test_drill_dump.py
 tests/test_engine.py
 tests/test_parallel_probe.py
 tests/test_placement_controls.py
@@ -173,6 +183,7 @@ tests/test_startup_regressions.py
 tools/build_release.py
 tools/build_single_file.py
 tools/check_conveyor_reference.py
+tools/check_dump_reference.py
 tools/check_project.py
 tools/pythonista_parallel_probe.py
 tools/release_files.txt

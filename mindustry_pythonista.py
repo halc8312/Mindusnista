@@ -526,17 +526,37 @@ class World:
                 return True
         return False
 
+    def dump(self, b: Building, item: Optional[str] = None) -> bool:
+        """Dump one stored item, following BuildingComp.dump at v159.7.
+
+        Current inventory-bearing blocks use inherited canDump=true. The
+        proximity list and scheduler remain the port's existing scaffolding.
+        """
+        if not b.inventory or (item is not None and not b.inventory.get(item, 0)):
+            return False
+        neighbors = self.neighbors(b)
+        if not neighbors:
+            return False
+        start = b.cursor
+        candidates = ITEMS if item is None else (item,)
+        for offset in range(len(neighbors)):
+            target = neighbors[(start + offset) % len(neighbors)]
+            for candidate in candidates:
+                if b.inventory.get(candidate, 0) and self.receive(target, b, candidate):
+                    b.inventory[candidate] -= 1
+                    if b.inventory[candidate] == 0:
+                        del b.inventory[candidate]
+                    b.cursor = (b.cursor + 1) % len(neighbors)
+                    return True
+            b.cursor = (b.cursor + 1) % len(neighbors)
+        return False
+
     def _tick_drill(self, b: Building) -> None:
         item, count = self.mine_info(b)
         b.dump_ticks += 1
         if b.dump_ticks >= 5:
             b.dump_ticks = 0
-            for old_item in list(b.inventory):
-                if b.inventory[old_item] and self.offload(b, old_item):
-                    b.inventory[old_item] -= 1
-                    if b.inventory[old_item] == 0:
-                        del b.inventory[old_item]
-                    break
+            self.dump(b, item if item is not None and b.inventory.get(item, 0) else None)
         if item is None:
             return
         spec = self.content[b.kind]

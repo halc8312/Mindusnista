@@ -1,0 +1,437 @@
+{
+  "schema": 1,
+  "upstream": {
+    "tag": "v159.7",
+    "commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+    "sources": [
+      "core/src/mindustry/entities/comp/BuildingComp.java",
+      "core/src/mindustry/world/blocks/production/Drill.java",
+      "core/src/mindustry/content/Items.java"
+    ]
+  },
+  "conditions": {
+    "has_items": true,
+    "can_dump": true,
+    "item_ids": [
+      "copper",
+      "lead"
+    ],
+    "neighbor_order": "explicit_fixture_order",
+    "receiver": "scripted_item_set_and_total_capacity",
+    "calls": "explicit_dump_or_periodic_drill_boundary",
+    "inventory_limit": 10
+  },
+  "excluded": [
+    "original engine / scheduler / proximity construction",
+    "original receiver implementations / team handling",
+    "production offload / actual timer phase / efficiency / mining",
+    "Pythonista / device performance"
+  ],
+  "cases": [
+    {
+      "name": "dominant_over_insertion",
+      "dominant": "lead",
+      "cursor": 0,
+      "inventory": {
+        "copper": 2,
+        "lead": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "drill",
+        "drill",
+        "drill",
+        "drill",
+        "drill"
+      ]
+    },
+    {
+      "name": "dominant_rejected_no_fallback",
+      "dominant": "lead",
+      "cursor": 0,
+      "inventory": {
+        "lead": 1,
+        "copper": 1
+      },
+      "neighbors": [
+        {
+          "name": "copper_only",
+          "accepts": [
+            "copper"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "drill",
+        "drill"
+      ]
+    },
+    {
+      "name": "dominant_absent_fallback",
+      "dominant": "lead",
+      "cursor": 0,
+      "inventory": {
+        "copper": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "drill",
+        "drill",
+        "drill"
+      ]
+    },
+    {
+      "name": "fallback_content_order",
+      "dominant": null,
+      "cursor": 0,
+      "inventory": {
+        "lead": 2,
+        "copper": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "drill",
+        "drill",
+        "drill",
+        "drill",
+        "drill"
+      ]
+    },
+    {
+      "name": "neighbor_before_item",
+      "dominant": null,
+      "cursor": 0,
+      "inventory": {
+        "lead": 2,
+        "copper": 1
+      },
+      "neighbors": [
+        {
+          "name": "lead_only",
+          "accepts": [
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "both",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "any",
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "first_rejects_then_accepts_item",
+      "dominant": null,
+      "cursor": 0,
+      "inventory": {
+        "lead": 1,
+        "copper": 1
+      },
+      "neighbors": [
+        {
+          "name": "copper_only",
+          "accepts": [
+            "copper"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "both",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "specified_absent_guard",
+      "dominant": null,
+      "cursor": 17,
+      "inventory": {
+        "lead": 1
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "copper",
+        "lead",
+        "copper"
+      ]
+    },
+    {
+      "name": "empty_guard",
+      "dominant": null,
+      "cursor": 17,
+      "inventory": {},
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "drill",
+        "copper"
+      ]
+    },
+    {
+      "name": "no_neighbors_guard",
+      "dominant": null,
+      "cursor": 17,
+      "inventory": {
+        "lead": 1
+      },
+      "neighbors": [],
+      "calls": [
+        "any",
+        "lead",
+        "drill"
+      ]
+    },
+    {
+      "name": "oversized_cursor_all_reject",
+      "dominant": null,
+      "cursor": 7,
+      "inventory": {
+        "copper": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "normal_cursor_all_reject",
+      "dominant": null,
+      "cursor": 1,
+      "inventory": {
+        "lead": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "third",
+          "accepts": [],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "fixed_start_after_rejection",
+      "dominant": null,
+      "cursor": 1,
+      "inventory": {
+        "lead": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [],
+          "capacity": 10
+        },
+        {
+          "name": "third",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "any",
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "capacity_then_round_robin",
+      "dominant": null,
+      "cursor": 0,
+      "inventory": {
+        "lead": 3,
+        "copper": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 1
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 2
+        }
+      ],
+      "calls": [
+        "any",
+        "any",
+        "any",
+        "any",
+        "any",
+        "any"
+      ]
+    },
+    {
+      "name": "specified_item_rotation",
+      "dominant": null,
+      "cursor": 1,
+      "inventory": {
+        "copper": 3,
+        "lead": 2
+      },
+      "neighbors": [
+        {
+          "name": "first",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        },
+        {
+          "name": "second",
+          "accepts": [
+            "copper",
+            "lead"
+          ],
+          "capacity": 10
+        }
+      ],
+      "calls": [
+        "lead",
+        "copper",
+        "lead",
+        "copper",
+        "any"
+      ]
+    }
+  ]
+}
