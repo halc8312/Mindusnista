@@ -1,0 +1,47 @@
+test_cleanup_failure_is_recorded_and_removes_speed_claim (tests.test_resident_probe.ResidentProbeTests.test_cleanup_failure_is_recorded_and_removes_speed_claim) ... ok
+test_comparison_exception_does_not_add_unrecorded_frame_digest (tests.test_resident_probe.ResidentProbeTests.test_comparison_exception_does_not_add_unrecorded_frame_digest) ... FAIL
+test_error_retains_completed_measurements (tests.test_resident_probe.ResidentProbeTests.test_error_retains_completed_measurements) ... ok
+test_frame_inputs_change_without_mutating_seed_rows (tests.test_resident_probe.ResidentProbeTests.test_frame_inputs_change_without_mutating_seed_rows) ... ok
+test_invalid_measurement_arguments_fail (tests.test_resident_probe.ResidentProbeTests.test_invalid_measurement_arguments_fail) ... ok
+test_mismatching_backend_never_gets_a_speed_ratio (tests.test_resident_probe.ResidentProbeTests.test_mismatching_backend_never_gets_a_speed_ratio) ... ok
+test_missing_numpy_marks_both_families_unexecuted (tests.test_resident_probe.ResidentProbeTests.test_missing_numpy_marks_both_families_unexecuted) ... ok
+test_prepare_amortization_and_equivalent_reference_digests (tests.test_resident_probe.ResidentProbeTests.test_prepare_amortization_and_equivalent_reference_digests) ... ok
+test_python_frame_result_uses_current_input_and_full_lists (tests.test_resident_probe.ResidentProbeTests.test_python_frame_result_uses_current_input_and_full_lists) ... ok
+test_real_numpy_all_rows_workers_and_changing_inputs (tests.test_resident_probe.ResidentProbeTests.test_real_numpy_all_rows_workers_and_changing_inputs) ... ok
+test_resident_cli_is_standalone_and_exclusive (tests.test_resident_probe.ResidentProbeTests.test_resident_cli_is_standalone_and_exclusive) ... ok
+test_resident_cli_retains_delayed_output_failure_handling (tests.test_resident_probe.ResidentProbeTests.test_resident_cli_retains_delayed_output_failure_handling) ... ok
+test_retained_buffers_keep_identity_and_worker_regions_do_not_overlap (tests.test_resident_probe.ResidentProbeTests.test_retained_buffers_keep_identity_and_worker_regions_do_not_overlap) ... ok
+test_stale_result_is_detected_on_each_changed_frame (tests.test_resident_probe.ResidentProbeTests.test_stale_result_is_detected_on_each_changed_frame) ... ok
+test_timing_intervals_add_up_and_all_phases_checked (tests.test_resident_probe.ResidentProbeTests.test_timing_intervals_add_up_and_all_phases_checked) ... ok
+test_worker_exception_keeps_digest_and_sample_frames_aligned (tests.test_resident_probe.ResidentProbeTests.test_worker_exception_keeps_digest_and_sample_frames_aligned) ...
+  test_worker_exception_keeps_digest_and_sample_frames_aligned (tests.test_resident_probe.ResidentProbeTests.test_worker_exception_keeps_digest_and_sample_frames_aligned) (failed_frame=1) ... FAIL
+  test_worker_exception_keeps_digest_and_sample_frames_aligned (tests.test_resident_probe.ResidentProbeTests.test_worker_exception_keeps_digest_and_sample_frames_aligned) (failed_frame=3) ... FAIL
+
+======================================================================
+FAIL: test_comparison_exception_does_not_add_unrecorded_frame_digest (tests.test_resident_probe.ResidentProbeTests.test_comparison_exception_does_not_add_unrecorded_frame_digest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_resident_probe.py", line 130, in test_comparison_exception_does_not_add_unrecorded_frame_digest
+    self.assertEqual(len(item["verification"]["expected_frame_digests_sha256"]), 2)
+AssertionError: 3 != 2
+
+======================================================================
+FAIL: test_worker_exception_keeps_digest_and_sample_frames_aligned (tests.test_resident_probe.ResidentProbeTests.test_worker_exception_keeps_digest_and_sample_frames_aligned) (failed_frame=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_resident_probe.py", line 105, in test_worker_exception_keeps_digest_and_sample_frames_aligned
+    self.assertEqual(len(digests), len(samples))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_worker_exception_keeps_digest_and_sample_frames_aligned (tests.test_resident_probe.ResidentProbeTests.test_worker_exception_keeps_digest_and_sample_frames_aligned) (failed_frame=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_resident_probe.py", line 105, in test_worker_exception_keeps_digest_and_sample_frames_aligned
+    self.assertEqual(len(digests), len(samples))
+AssertionError: 3 != 2
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.522s
+
+FAILED (failures=3)

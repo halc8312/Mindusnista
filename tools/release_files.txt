@@ -35,6 +35,7 @@ docs/NEXT_TASK_ja.md
 docs/PARALLEL_RESEARCH_ja.md
 docs/P_01_PROBE_ja.md
 docs/P_01_VERIFICATION_ja.md
+docs/P_02_ERROR_RECORDS_ja.md
 docs/P_02_PROBE_ja.md
 docs/P_02_VERIFICATION_ja.md
 docs/RELEASE_ja.md
@@ -118,6 +119,10 @@ docs/verification/P-02-20260910/probe-tests.txt
 docs/verification/P-02-20260910/resident-20000.json
 docs/verification/P-02-20260910/resident-200000.json
 docs/verification/P-02-20260910/scope.json
+docs/verification/P02-error-records-20260910/after-check-project.txt
+docs/verification/P02-error-records-20260910/before-check-project.txt
+docs/verification/P02-error-records-20260910/regression-before.txt
+docs/verification/P02-error-records-20260910/result.json
 docs/verification/UI-01-20260909/after-check-project.json
 docs/verification/UI-01-20260909/after-check-project.txt
 docs/verification/UI-01-20260909/before-check-project.json
