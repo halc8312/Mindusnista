@@ -89,6 +89,48 @@ class ResidentProbeTests(unittest.TestCase):
         self.assertEqual(item["verification"]["first_failure"]["frame_index"], 3)
         self.assertEqual(item["verification"]["planned_runs"], 4)
 
+    def test_worker_exception_keeps_digest_and_sample_frames_aligned(self):
+        data = probe.make_dataset(9)
+        for failed_frame in (1, 3):
+            with self.subTest(failed_frame=failed_frame):
+                class FailedRunner(probe.PythonFrameRunner):
+                    def run_frame(self, frame):
+                        if frame == failed_frame:
+                            raise RuntimeError("worker failed")
+                        return super().run_frame(frame)
+
+                item = probe.measure_frames(FailedRunner(data), data, 0, 3)
+                samples = item["frame_samples"]
+                digests = item["verification"]["expected_frame_digests_sha256"]
+                self.assertEqual(len(digests), len(samples))
+                self.assertEqual(len(samples), failed_frame - 1)
+                for sample, digest in zip(samples, digests):
+                    rows = list(data)
+                    probe.update_frame(rows, data, sample["frame_index"])
+                    self.assertEqual(digest, probe.result_digest(probe.python_kernel(rows)))
+                self.assertEqual(item["verification"]["first_failure"]["frame_index"], failed_frame)
+                self.assertEqual(item["status"], "error")
+
+    def test_comparison_exception_does_not_add_unrecorded_frame_digest(self):
+        data = probe.make_dataset(9)
+        comparisons = 0
+        original = probe.compare_results
+
+        def compare(expected, actual):
+            nonlocal comparisons
+            comparisons += 1
+            if comparisons == 3:
+                raise ValueError("invalid worker result")
+            return original(expected, actual)
+
+        with patch.object(probe, "compare_results", side_effect=compare):
+            item = probe.measure_frames(probe.PythonFrameRunner(data), data, 0, 3)
+        self.assertEqual(item["status"], "error")
+        self.assertEqual(len(item["frame_samples"]), 2)
+        self.assertEqual(len(item["verification"]["expected_frame_digests_sha256"]), 2)
+        self.assertEqual(item["verification"]["verified_runs"], 2)
+        self.assertEqual(item["verification"]["first_failure"]["frame_index"], 3)
+
     def test_missing_numpy_marks_both_families_unexecuted(self):
         with patch.object(probe.importlib, "import_module", side_effect=ImportError("absent")):
             report = probe.run_resident_probe(9, warmups=0, repeats=1)

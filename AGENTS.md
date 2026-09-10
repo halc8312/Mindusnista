@@ -65,6 +65,10 @@ If a broad task does not fit one iteration, implement and verify a smaller coher
 
 ## Finish each task
 
+The user has authorized proactive implementation, testing, PR creation and merging during active work.
+Continue routine development without requesting another "continue" or merge confirmation. Ask only when
+concrete missing information or permissions prevent progress; do not claim unattended work after a turn ends.
+
 Update affected `PORT_STATUS.md`, `DEVICE_TESTS.md`, `README_ja.md`, `docs/NEXT_TASK_ja.md` and test/task records.
 Return the changed files, test commands/results, remaining limitations, and the iPhone file when it changes.
 With write access, commit on a task branch, create/update a PR, and read back its metadata and commit SHA.

@@ -119,3 +119,6 @@ NumPy 不在時、実 NumPy を使う4本は skip して未実行とする。
 Pythonista 実機での操作・NumPy 同梱版・性能・メモリ・発熱は未確認。
 原作 Java float32、実ゲームの仕事量・順序・状態構造、Accelerate、Metal、ゲームへの加速導入も未検証。
 性能・機能・エフェクトの完成要件は [完全移植の要件](FULL_PORT_REQUIREMENTS_ja.md) のまま維持する。
+
+2026-09-10追記: 途中例外時に、digestを実際に記録されたframe標本と1対1で保存するよう修正した。
+[回帰と検証](P_02_ERROR_RECORDS_ja.md)。成功測定の数値処理・時間区間は変更していない。

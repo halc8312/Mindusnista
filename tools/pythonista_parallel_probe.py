@@ -416,7 +416,7 @@ def measure_frames(runner, base, warmups, repeats):
         update_frame(reference_rows, base, frame_index)
         expected = python_kernel(reference_rows)
         reference_seconds += time.perf_counter() - started
-        digests.append(result_digest(expected))
+        expected_digest = result_digest(expected)
         try:
             called = time.perf_counter()
             actual, timings = runner.run_frame(frame_index)
@@ -429,6 +429,9 @@ def measure_frames(runner, base, warmups, repeats):
             sample = dict(timings, frame_index=frame_index,
                           phase="first" if index == 0 else "warmup" if index <= warmups else "steady")
             samples.append(sample)
+            # One digest per recorded sample, including numeric mismatches.
+            # Raised frames never acquire a digest without a sample.
+            digests.append(expected_digest)
             if comparison["ok"]:
                 verified += 1
             elif first_failure is None:
