@@ -1,0 +1,55 @@
+{
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/14",
+  "head_sha": "8edc217b9077f2fade0b41187a08bc361ef056eb",
+  "merge_sha": "9f466b9f43fd80c172f6e6a7de9db60fac7c004d",
+  "tree_sha": "b830777011ce7deb9cef6701fbb4bce125f9a5ef",
+  "ci_url": "https://github.com/halc8312/Mindusnista/actions/runs/34456578932",
+  "ci_conclusion": "success",
+  "jobs": [
+    {
+      "name": "tests (3.10)",
+      "conclusion": "success",
+      "tests": 309,
+      "self_test": "passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "tests (3.13)",
+      "conclusion": "success",
+      "tests": 309,
+      "self_test": "passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "main_and_pr_read_back": true,
+  "date": "2026-09-10",
+  "repository": "https://github.com/halc8312/Mindusnista",
+  "device_test": "not_run",
+  "extracted_java": [
+    {
+      "kind": "source-extracted Java float conveyor transfers; not the original engine",
+      "status": "passed",
+      "cases": 20,
+      "updates": 59,
+      "mismatches": 0
+    },
+    {
+      "kind": "source-extracted Java dump and drill selector with scripted receivers; not the original engine",
+      "status": "passed",
+      "cases": 14,
+      "calls": 49,
+      "mismatches": 0
+    },
+    {
+      "kind": "source-extracted Java offload/dump/dry drill branch with scripted receivers; not original engine",
+      "status": "passed",
+      "cases": 22,
+      "calls": 44,
+      "mismatches": 0
+    }
+  ]
+}

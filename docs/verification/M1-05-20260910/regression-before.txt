@@ -1,0 +1,80 @@
+test_delayed_first_router_does_not_fall_through_to_conveyor (test_integrated_transport.RouterIntegrationTests.test_delayed_first_router_does_not_fall_through_to_conveyor) ... FAIL
+test_legacy_cursor_is_preserved_but_not_the_router_selector (test_integrated_transport.RouterIntegrationTests.test_legacy_cursor_is_preserved_but_not_the_router_selector) ... FAIL
+test_normal_source_is_allowed_as_output (test_integrated_transport.RouterIntegrationTests.test_normal_source_is_allowed_as_output) ... ok
+test_placement_rotation_selects_first_neighbor (test_integrated_transport.RouterIntegrationTests.test_placement_rotation_selects_first_neighbor) ... FAIL
+test_rejection_and_empty_router_do_not_advance_rotation (test_integrated_transport.RouterIntegrationTests.test_rejection_and_empty_router_do_not_advance_rotation) ... ok
+test_schema_one_round_trip_preserves_both_fields_and_continuation (test_integrated_transport.RouterIntegrationTests.test_schema_one_round_trip_preserves_both_fields_and_continuation) ... ok
+test_success_advances_rotation_before_real_receiver_handles_item (test_integrated_transport.RouterIntegrationTests.test_success_advances_rotation_before_real_receiver_handles_item) ... FAIL
+
+======================================================================
+FAIL: test_delayed_first_router_does_not_fall_through_to_conveyor (test_integrated_transport.RouterIntegrationTests.test_delayed_first_router_does_not_fall_through_to_conveyor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M15/tests/test_integrated_transport.py", line 73, in test_delayed_first_router_does_not_fall_through_to_conveyor
+    self.assertEqual((router.inventory, target.inventory, router.rotation), ({}, {"copper": 1}, 1))
+AssertionError: Tuples differ: ({}, {'copper': 1}, 0) != ({}, {'copper': 1}, 1)
+
+First differing element 2:
+0
+1
+
+- ({}, {'copper': 1}, 0)
+?                     ^
+
++ ({}, {'copper': 1}, 1)
+?                     ^
+
+
+======================================================================
+FAIL: test_legacy_cursor_is_preserved_but_not_the_router_selector (test_integrated_transport.RouterIntegrationTests.test_legacy_cursor_is_preserved_but_not_the_router_selector)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M15/tests/test_integrated_transport.py", line 40, in test_legacy_cursor_is_preserved_but_not_the_router_selector
+    self.assertEqual([p.item for p in east.belt], ["lead"])
+AssertionError: Lists differ: [] != ['lead']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'lead'
+
+- []
++ ['lead']
+
+======================================================================
+FAIL: test_placement_rotation_selects_first_neighbor (test_integrated_transport.RouterIntegrationTests.test_placement_rotation_selects_first_neighbor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M15/tests/test_integrated_transport.py", line 31, in test_placement_rotation_selects_first_neighbor
+    self.assertEqual([p.item for p in north.belt], ["copper"])
+AssertionError: Lists differ: [] != ['copper']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'copper'
+
+- []
++ ['copper']
+
+======================================================================
+FAIL: test_success_advances_rotation_before_real_receiver_handles_item (test_integrated_transport.RouterIntegrationTests.test_success_advances_rotation_before_real_receiver_handles_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista-M15/tests/test_integrated_transport.py", line 59, in test_success_advances_rotation_before_real_receiver_handles_item
+    self.assertEqual(observed, [(2, 0)])
+AssertionError: Lists differ: [(0, 0)] != [(2, 0)]
+
+First differing element 0:
+(0, 0)
+(2, 0)
+
+- [(0, 0)]
+?   ^
+
++ [(2, 0)]
+?   ^
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+FAILED (failures=4)
