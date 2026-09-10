@@ -29,3 +29,13 @@ CIにはJDK17でこの比較を実行するstepを追加した。対象headの�
 旧保存の読込時点では在庫・cursor等を変更せず、その後の定期搬出が新しい規則で進む。
 旧版と新版のゲーム進行が同じという保証ではない。原作msavの共有やPythonista実機の成功とも区別する。
 次のM1-04は生産offloadの受入・在庫復帰・cursorと更新順の比較を扱う。
+
+## PR #11の統合確認
+
+[PR #11](https://github.com/halc8312/Mindusnista/pull/11)の実装
+`07de0523ebbc5976d23bdd3de8860183444bcf7d`とマージ
+`cebaa2b1584ab1dbd1a4e228a2ad663d9c57ce93`をGitHubから読み戻した。
+[CI記録](verification/M1-03-20260910/github-ci.json)と
+[dumpのJava全比較出力](verification/M1-03-20260910/github-java-comparison.json)をP-03統合時に保存した。
+CPython3.10.21 / 3.13.15で各245本＋self-test成功。3.10側のJDK17でdump14ケース49呼出し、
+コンベア20ケース59更新がいずれも不一致0。ローカルJavaと実機の未実行記録はそのまま維持する。

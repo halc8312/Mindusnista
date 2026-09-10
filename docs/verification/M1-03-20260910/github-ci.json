@@ -1,0 +1,36 @@
+{
+  "pr_url": "https://github.com/halc8312/Mindusnista/pull/11",
+  "head_sha": "07de0523ebbc5976d23bdd3de8860183444bcf7d",
+  "merge_sha": "cebaa2b1584ab1dbd1a4e228a2ad663d9c57ce93",
+  "run_url": "https://github.com/halc8312/Mindusnista/actions/runs/34439126051",
+  "jobs": [
+    {
+      "id": 102750261976,
+      "name": "tests (3.10)",
+      "conclusion": "success",
+      "tests": 245,
+      "unittest_skips": 0,
+      "self_test": "passed"
+    },
+    {
+      "id": 102750262094,
+      "name": "tests (3.13)",
+      "conclusion": "success",
+      "tests": 245,
+      "unittest_skips": 0,
+      "self_test": "passed"
+    }
+  ],
+  "dump_reference": {
+    "cases": 14,
+    "calls": 49,
+    "mismatches": 0
+  },
+  "conveyor_reference": {
+    "cases": 20,
+    "updates": 59,
+    "mismatches": 0
+  },
+  "java_job": "Python 3.10 / JDK17 only",
+  "pythonista_device_tests": "not_run"
+}

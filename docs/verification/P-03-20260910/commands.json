@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/pythonista_array_state_probe.py",
+      "--count",
+      "20000",
+      "--warmups",
+      "1",
+      "--repeats",
+      "5",
+      "--output",
+      "../evidence/P-03/final/pc-20000.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/pythonista_array_state_probe.py",
+      "--count",
+      "200000",
+      "--warmups",
+      "1",
+      "--repeats",
+      "5",
+      "--output",
+      "../evidence/P-03/final/pc-200000.json"
+    ],
+    "returncode": 0
+  }
+]

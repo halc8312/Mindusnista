@@ -40,6 +40,8 @@ docs/P_01_VERIFICATION_ja.md
 docs/P_02_ERROR_RECORDS_ja.md
 docs/P_02_PROBE_ja.md
 docs/P_02_VERIFICATION_ja.md
+docs/P_03_PROBE_ja.md
+docs/P_03_VERIFICATION_ja.md
 docs/RELEASE_ja.md
 docs/ROADMAP_ja.md
 docs/SAVE_COMPATIBILITY_RESEARCH_ja.md
@@ -108,6 +110,8 @@ docs/verification/M1-02-20260910/local-reference.json
 docs/verification/M1-02-20260910/scope.json
 docs/verification/M1-03-20260910/after-check-project.txt
 docs/verification/M1-03-20260910/before-check-project.txt
+docs/verification/M1-03-20260910/github-ci.json
+docs/verification/M1-03-20260910/github-java-comparison.json
 docs/verification/M1-03-20260910/local-java.json
 docs/verification/M1-03-20260910/regression-before.txt
 docs/verification/M1-03-20260910/result.json
@@ -126,6 +130,14 @@ docs/verification/P-02-20260910/probe-tests.txt
 docs/verification/P-02-20260910/resident-20000.json
 docs/verification/P-02-20260910/resident-200000.json
 docs/verification/P-02-20260910/scope.json
+docs/verification/P-03-20260910/after-check-project.json
+docs/verification/P-03-20260910/after-check-project.txt
+docs/verification/P-03-20260910/after-comparison-record-fix.txt
+docs/verification/P-03-20260910/before-comparison-record-fix.txt
+docs/verification/P-03-20260910/commands.json
+docs/verification/P-03-20260910/pc-20000.json
+docs/verification/P-03-20260910/pc-200000.json
+docs/verification/P-03-20260910/scope.json
 docs/verification/P02-error-records-20260910/after-check-project.txt
 docs/verification/P02-error-records-20260910/before-check-project.txt
 docs/verification/P02-error-records-20260910/regression-before.txt
@@ -168,6 +180,7 @@ src/mindusnista/app.py
 src/mindusnista/kernels.py
 test-results.txt
 tests/pythonista_stub.py
+tests/test_array_state_probe.py
 tests/test_conveyor_cache.py
 tests/test_conveyor_transfers.py
 tests/test_drill_dump.py
@@ -185,6 +198,7 @@ tools/build_single_file.py
 tools/check_conveyor_reference.py
 tools/check_dump_reference.py
 tools/check_project.py
+tools/pythonista_array_state_probe.py
 tools/pythonista_parallel_probe.py
 tools/release_files.txt
 tools/verify_handoff.py
