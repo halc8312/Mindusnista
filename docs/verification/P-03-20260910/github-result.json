@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-10",
+  "repository": "https://github.com/halc8312/Mindusnista",
+  "main_sha": "004f2ec4fb6a205f4be5a49d0cb4119f52c5ed24",
+  "tree_sha": "572f04a7b8830a9cb5ac5d0a39d784df34095a86",
+  "github_saved": true,
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "upstream": {
+    "tag": "v159.7",
+    "commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c"
+  },
+  "pull_requests": [
+    {
+      "number": 10,
+      "url": "https://github.com/halc8312/Mindusnista/pull/10",
+      "head_sha": "6eb4354adf24c0d76120ec96ce1f3244fc3fe7d1",
+      "merge_sha": "6e0c924a6543be815b7fd904c40765a8f445da19",
+      "ci_url": "https://github.com/halc8312/Mindusnista/actions/runs/34438300967",
+      "unittest_count": 227
+    },
+    {
+      "number": 11,
+      "url": "https://github.com/halc8312/Mindusnista/pull/11",
+      "head_sha": "07de0523ebbc5976d23bdd3de8860183444bcf7d",
+      "merge_sha": "cebaa2b1584ab1dbd1a4e228a2ad663d9c57ce93",
+      "ci_url": "https://github.com/halc8312/Mindusnista/actions/runs/34439126051",
+      "unittest_count": 245
+    },
+    {
+      "number": 12,
+      "url": "https://github.com/halc8312/Mindusnista/pull/12",
+      "head_sha": "cc60713cfc530349ed14f84294955f9a4d80a237",
+      "merge_sha": "004f2ec4fb6a205f4be5a49d0cb4119f52c5ed24",
+      "ci_url": "https://github.com/halc8312/Mindusnista/actions/runs/34439807867",
+      "unittest_count": 265
+    }
+  ],
+  "final_tests": {
+    "local": {
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "unittest_count": 265,
+      "self_test": "passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "ci": [
+      {
+        "job": "tests (3.10)",
+        "conclusion": "success",
+        "unittest_count": 265,
+        "self_test": "passed",
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      },
+      {
+        "job": "tests (3.13)",
+        "conclusion": "success",
+        "unittest_count": 265,
+        "self_test": "passed",
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      }
+    ],
+    "extracted_java": [
+      {
+        "kind": "source-extracted Java float conveyor transfers; not the original engine",
+        "status": "passed",
+        "cases": 20,
+        "updates": 59,
+        "mismatches": 0
+      },
+      {
+        "kind": "source-extracted Java dump and drill selector with scripted receivers; not the original engine",
+        "status": "passed",
+        "cases": 14,
+        "calls": 49,
+        "mismatches": 0
+      }
+    ],
+    "package_files": 203,
+    "archive_sha256": "a6e62daa6eabeb7451001c7a01970c7786b7cded5a9682f05e8e8d0461744525",
+    "runtime_sha256": "c57d87212141f5bde52d40cd6d080c1258aa47b439c504ee944c7d56e613b3c0"
+  },
+  "device": {
+    "status": "not_run",
+    "known_user_report": "0.1.1 startup only",
+    "version_0_1_2": "unreported",
+    "scope": "PC tests and extracted Java calculations do not establish Pythonista device success or full original compatibility"
+  },
+  "performance": {
+    "scope": "Independent persistent float64 state model, all 200000 ordered results returned each tick; not game FPS.",
+    "python_p50_ms": 74.904,
+    "numpy_4_p50_ms": 15.43,
+    "numpy_4_memory_json_checkpoint_restore_ms": 1400.563,
+    "source_sha256": "e65a7d79866c20f91c8abdd00edb133bf6b34585ab17dd10227e388b855efb4c"
+  },
+  "next": [
+    "M1-04 production offload and explicit update order comparison",
+    "P-04 generated/deleted state and external commands",
+    "S-01 original msav read-only diagnostics and fixtures",
+    "R-01 effects and batched rendering comparison"
+  ]
+}

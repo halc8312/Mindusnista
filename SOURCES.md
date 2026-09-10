@@ -14,6 +14,11 @@ M1-01（2026-09-10）: 上記固定版の Conveyor.java の更新と引渡しを
 公差、cached minitem / mid 等の残差は [M1-01 検証記録](docs/M1_01_VERIFICATION_ja.md) を参照。
 原作本体を起動した oracle ではありません。
 
+M1-03 / M1-04（2026-09-10）: 固定コミットのBuildingComp、Drill、ItemModuleを確認し、
+定期dumpと生産offloadの限定した条件をJavaへ抽出・改変しました。
+[dumpの範囲](docs/M1_03_RULES_ja.md)、[生産と保存の範囲](docs/M1_04_RULES_ja.md)を参照。
+近隣順・受取先・タイマー境界は明示した試験アダプターであり、原作エンジンの実行ではありません。
+
 2026-09-10: [v159.7 tag ref](https://api.github.com/repos/Anuken/Mindustry/git/ref/tags/v159.7)
 を取得し、完全コミット `c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c` を確認。
 保存形式の固定コミット参照は [原作セーブ調査](docs/SAVE_COMPATIBILITY_RESEARCH_ja.md)、

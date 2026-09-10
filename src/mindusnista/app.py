@@ -475,14 +475,20 @@ class World:
         return True
 
     def offload(self, b: Building, item: str) -> bool:
+        """Offer one produced item, keeping it locally if every neighbor rejects.
+
+        BuildingComp.offload advances cdump before each acceptance check.
+        The bool is a port-only observation of external delivery; both outcomes
+        preserve the item. Campaign produced()/unlock accounting is not ported.
+        """
         neighbors = self.neighbors(b)
-        if not neighbors:
-            return False
+        start = b.cursor
         for offset in range(len(neighbors)):
-            index = (b.cursor + offset) % len(neighbors)
-            if self.receive(neighbors[index], b, item):
-                b.cursor = (index + 1) % len(neighbors)
+            b.cursor = (b.cursor + 1) % len(neighbors)
+            target = neighbors[(start + offset) % len(neighbors)]
+            if self.receive(target, b, item):
                 return True
+        b.inventory[item] = b.inventory.get(item, 0) + 1
         return False
 
     def dump(self, b: Building, item: Optional[str] = None) -> bool:
@@ -528,13 +534,22 @@ class World:
         delay = spec["drill_time"] + spec["hardness_multiplier"] * ITEM_HARDNESS[item]
         if b.progress >= delay:
             amount = int(b.progress / delay)
-            b.progress %= delay
-            for _ in range(amount):
-                if sum(b.inventory.values()) >= spec["capacity"]:
-                    break
+            for index in range(amount):
                 self.stats["mined"] += 1
                 if not self.offload(b, item):
-                    b.inventory[item] = b.inventory.get(item, 0) + 1
+                    # Existing receive() rejection is pure, topology is fixed
+                    # during this synchronous batch, and no tick intervenes.
+                    # All later offers of this item must also fail. Preserve
+                    # their exact cargo/count without replaying a huge backlog
+                    # of identical failed scans. Side-effectful MOD receivers
+                    # would need a different rule before they are supported.
+                    remaining = amount - index - 1
+                    b.inventory[item] += remaining
+                    self.stats["mined"] += remaining
+                    break
+            # Upstream checks capacity before the batch, not after each item;
+            # blocked multi-completions can legitimately exceed itemCapacity.
+            b.progress %= delay
 
     def _tick_conveyor(self, b: Building) -> None:
         b.conveyor_minitem = 1.0
@@ -858,8 +873,15 @@ class World:
             if not isinstance(b.inventory, dict) or not set(b.inventory).issubset(ITEMS):
                 raise ValueError("Unknown inventory item")
             for value in b.inventory.values():
-                integer(value, "inventory", 1, 10)
-            if sum(b.inventory.values()) > w.content[b.kind]["capacity"]:
+                if b.kind == "mechanical-drill":
+                    # A full production batch may overflow drill capacity.
+                    # JSON uses Python integers; original ItemModule int32
+                    # overflow and the .msav codec are separate porting work.
+                    if type(value) is not int or value <= 0:
+                        raise ValueError("Drill inventory must be a positive integer")
+                else:
+                    integer(value, "inventory", 1, 10)
+            if b.kind != "mechanical-drill" and sum(b.inventory.values()) > w.content[b.kind]["capacity"]:
                 raise ValueError("Inventory overflow")
             if b.kind not in ("router", "mechanical-drill") and b.inventory:
                 raise ValueError("Inventory on an unsupported building")

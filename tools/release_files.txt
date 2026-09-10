@@ -33,6 +33,8 @@ docs/M1_01_VERIFICATION_ja.md
 docs/M1_02_VERIFICATION_ja.md
 docs/M1_03_RULES_ja.md
 docs/M1_03_VERIFICATION_ja.md
+docs/M1_04_RULES_ja.md
+docs/M1_04_VERIFICATION_ja.md
 docs/NEXT_TASK_ja.md
 docs/PARALLEL_RESEARCH_ja.md
 docs/P_01_PROBE_ja.md
@@ -115,6 +117,17 @@ docs/verification/M1-03-20260910/github-java-comparison.json
 docs/verification/M1-03-20260910/local-java.json
 docs/verification/M1-03-20260910/regression-before.txt
 docs/verification/M1-03-20260910/result.json
+docs/verification/M1-04-20260910/after-check-project.txt
+docs/verification/M1-04-20260910/before-check-project.json
+docs/verification/M1-04-20260910/before-check-project.txt
+docs/verification/M1-04-20260910/local-java.json
+docs/verification/M1-04-20260910/previous-main-save.json
+docs/verification/M1-04-20260910/regression-after.txt
+docs/verification/M1-04-20260910/regression-before.txt
+docs/verification/M1-04-20260910/result.json
+docs/verification/M1-04-20260910/review-aggregation-result.json
+docs/verification/M1-04-20260910/review-aggregation.py
+docs/verification/M1-04-20260910/source-audit.md
 docs/verification/P-01-20260910/after-check-project.json
 docs/verification/P-01-20260910/after-check-project.txt
 docs/verification/P-01-20260910/delayed-output-after-fix.txt
@@ -135,6 +148,7 @@ docs/verification/P-03-20260910/after-check-project.txt
 docs/verification/P-03-20260910/after-comparison-record-fix.txt
 docs/verification/P-03-20260910/before-comparison-record-fix.txt
 docs/verification/P-03-20260910/commands.json
+docs/verification/P-03-20260910/github-result.json
 docs/verification/P-03-20260910/pc-20000.json
 docs/verification/P-03-20260910/pc-200000.json
 docs/verification/P-03-20260910/scope.json
@@ -170,8 +184,10 @@ prompts/03_DEVICE_BUG_ja.txt
 reference/ConveyorKernelReference.java
 reference/ConveyorTransferReference.java
 reference/DrillDumpReference.java
+reference/DrillOffloadReference.java
 reference/conveyor_transfer_scenarios.json
 reference/drill_dump_scenarios.json
+reference/drill_offload_scenarios.json
 reference/java_fixtures.json
 rotation-controls.patch
 self-test-results.txt
@@ -184,6 +200,7 @@ tests/test_array_state_probe.py
 tests/test_conveyor_cache.py
 tests/test_conveyor_transfers.py
 tests/test_drill_dump.py
+tests/test_drill_offload.py
 tests/test_engine.py
 tests/test_parallel_probe.py
 tests/test_placement_controls.py
@@ -197,6 +214,7 @@ tools/build_release.py
 tools/build_single_file.py
 tools/check_conveyor_reference.py
 tools/check_dump_reference.py
+tools/check_offload_reference.py
 tools/check_project.py
 tools/pythonista_array_state_probe.py
 tools/pythonista_parallel_probe.py

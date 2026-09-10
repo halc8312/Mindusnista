@@ -37,3 +37,14 @@ NumPy4ワーカー15.430ms。NumPy4の初期準備250.870msと、保存復元1,4
 Pythonista実機、原作float32、生成・削除を含む実ゲーム、原作保存互換、ピークメモリ、持続負荷は未確認。
 このモデルでの改善をゲーム本体のFPSへ換算しない。機能・規模・効果の要件を削減する変更はない。
 次はP-04で生成・削除・外部コマンドを扱う状態管理、S-01で原作msavの読取診断を別の単位にする。
+
+## GitHubへ統合後の追記
+
+[PR #12](https://github.com/halc8312/Mindusnista/pull/12)のheadは
+`cc60713cfc530349ed14f84294955f9a4d80a237`、マージは
+`004f2ec4fb6a205f4be5a49d0cb4119f52c5ed24`。PRとmainの実在・tree一致を読み戻した。
+[CI](https://github.com/halc8312/Mindusnista/actions/runs/34439807867)のPython 3.10.21 / NumPy 1.26.4と
+Python 3.13.15 / NumPy 2.3.5で各265本・self-test成功、失敗・エラー・skipなし。
+3.10側のJDK17でコンベア20ケース・59更新、dump14ケース・49呼出しの抽出比較も不一致0。
+203ファイルのmanifest・追跡ファイル・配布ZIPと各bytesの一致を独立検査した。
+実機未実施の判定は変わらない。[保存・CI記録](verification/P-03-20260910/github-result.json)。

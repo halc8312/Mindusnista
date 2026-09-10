@@ -36,7 +36,7 @@ jobs:
         run: python -m pip install "numpy==${{ matrix.numpy-version }}"
       - name: Run headless and mocked UI checks
         run: python tools/check_project.py
-      - name: Set up JDK for extracted conveyor reference
+      - name: Set up JDK for extracted transport references
         if: matrix.python-version == '3.10'
         uses: actions/setup-java@v4
         with:
@@ -48,3 +48,6 @@ jobs:
       - name: Compare extracted Java drill dump selection
         if: matrix.python-version == '3.10'
         run: python tools/check_dump_reference.py
+      - name: Compare extracted Java drill production offload
+        if: matrix.python-version == '3.10'
+        run: python tools/check_offload_reference.py

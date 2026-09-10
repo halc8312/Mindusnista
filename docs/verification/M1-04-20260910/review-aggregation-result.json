@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "seed": 1404,
+  "case_count": 48,
+  "unaggregated_offload_calls": 883,
+  "comparison": "Full World.digest, optimized suffix versus every real offload",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "runtime_sha256": "bfd9606bb178016c2324e40378109dde32569c517fa25f256868d0751ab10fca",
+  "original_engine_run": false,
+  "device_run": false
+}

@@ -1,0 +1,13 @@
+{
+  "command": "python tools/check_project.py",
+  "base_sha": "004f2ec4fb6a205f4be5a49d0cb4119f52c5ed24",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "exit_code": 0,
+  "tests": 265,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "self_test": "passed",
+  "device_test": "not_run"
+}
