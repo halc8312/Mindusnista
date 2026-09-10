@@ -1,0 +1,5 @@
+{
+  "command": "python -m unittest discover -s tests -p test_conveyor_transfers.py -v",
+  "exit_code": 1,
+  "expected": "fail on departure follower movement before fix"
+}

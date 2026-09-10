@@ -1,0 +1,102 @@
+test_aligned_next_belt_retains_backpressure (test_conveyor_transfers.ConveyorTransferTests.test_aligned_next_belt_retains_backpressure) ... ok
+test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) ...
+  test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=0) ... FAIL
+  test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=1) ... FAIL
+  test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=2) ... FAIL
+  test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=3) ... FAIL
+test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) ...
+  test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) (target_first=False) ... FAIL
+  test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) (target_first=True) ... FAIL
+test_facing_belts_keep_their_items (test_conveyor_transfers.ConveyorTransferTests.test_facing_belts_keep_their_items) ... ok
+test_rejected_handoff_keeps_head_and_follower_spacing (test_conveyor_transfers.ConveyorTransferTests.test_rejected_handoff_keeps_head_and_follower_spacing) ... ok
+test_schema_one_roundtrip_continues_after_handoff (test_conveyor_transfers.ConveyorTransferTests.test_schema_one_roundtrip_continues_after_handoff) ... ok
+test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) ...
+  test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=0) ... FAIL
+  test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=1) ... FAIL
+  test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=2) ... FAIL
+  test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=3) ... FAIL
+
+======================================================================
+FAIL: test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 35, in test_departing_head_releases_follower_in_same_update_all_rotations
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 35, in test_departing_head_releases_follower_in_same_update_all_rotations
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 35, in test_departing_head_releases_follower_in_same_update_all_rotations
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) (rotation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 35, in test_departing_head_releases_follower_in_same_update_all_rotations
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) (target_first=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 83, in test_explicit_update_order_controls_arrival_movement
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) (target_first=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 83, in test_explicit_update_order_controls_arrival_movement
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 67, in test_turn_uses_side_entry_position_instead_of_aligned_x
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 67, in test_turn_uses_side_entry_position_instead_of_aligned_x
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 67, in test_turn_uses_side_entry_position_instead_of_aligned_x
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+======================================================================
+FAIL: test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) (rotation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5e4ca4a2a8b2/Mindusnista/tests/test_conveyor_transfers.py", line 67, in test_turn_uses_side_entry_position_instead_of_aligned_x
+    self.assertAlmostEqual(source.belt[0].y, .626)
+AssertionError: 0.6 != 0.626 within 7 places (0.026000000000000023 difference)
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.022s
+
+FAILED (failures=10)

@@ -123,3 +123,17 @@ docs/verification/ARCH-01-20260910/after-check-project.txt
 docs/verification/ARCH-01-20260910/before-check-project.json
 docs/verification/ARCH-01-20260910/before-check-project.txt
 docs/verification/ARCH-01-20260910/scope.json
+reference/ConveyorTransferReference.java
+reference/conveyor_transfer_scenarios.json
+tools/check_conveyor_reference.py
+tests/test_conveyor_transfers.py
+docs/M1_01_VERIFICATION_ja.md
+docs/verification/M1-01-20260910/after-check-project.json
+docs/verification/M1-01-20260910/after-check-project.txt
+docs/verification/M1-01-20260910/before-check-project.json
+docs/verification/M1-01-20260910/before-check-project.txt
+docs/verification/M1-01-20260910/conveyor-reference-local.json
+docs/verification/M1-01-20260910/regression-after.txt
+docs/verification/M1-01-20260910/regression-before.json
+docs/verification/M1-01-20260910/regression-before.txt
+docs/verification/M1-01-20260910/scope.json
