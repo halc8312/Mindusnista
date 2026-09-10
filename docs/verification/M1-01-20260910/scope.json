@@ -1,0 +1,10 @@
+{
+  "base_commit": "3e3cc5cd8019849b7504d5299ea40f3569ae1dc4",
+  "changed_runtime_method": "World._tick_conveyor",
+  "all_other_runtime_ast_equal": true,
+  "version": "0.1.2-dev",
+  "schema": 1,
+  "runtime_sha256": "c37c01df10a7db379796b7457d409a33588efdf9a56d4d4044c5b6a445a80048",
+  "java_local_comparison": "not run: missing javac and libjli.so",
+  "device_tests": "not run"
+}

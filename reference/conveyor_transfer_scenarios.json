@@ -1,0 +1,463 @@
+{
+  "schema": 1,
+  "upstream": {
+    "tag": "v159.7",
+    "commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+    "path": "core/src/mindustry/world/blocks/distribution/Conveyor.java"
+  },
+  "reference_kind": "source-extracted Java float conveyor transfers; not the original engine",
+  "conditions": {
+    "delta": 1,
+    "efficiency": 1,
+    "time_scale": 1,
+    "team": "same",
+    "block_size": 1,
+    "initial_mid": 0,
+    "initial_last_inserted": 0,
+    "initial_minitem": "Explicit per-belt value, primed from seeded item positions; not a constructor-only state.",
+    "updates": "Each name updates exactly one belt once; no implicit world tick or scheduler."
+  },
+  "excluded": [
+    "Rendering, teams, units, sleep/clog, stack APIs, serialization and original entity scheduling.",
+    "ItemModule is represented only by the live item-array prefix, not the original module.",
+    "Rear-before-side simultaneous input: cached minitem differs from current Python acceptance; still an open parity task.",
+    "Original engine execution, full-game compatibility and Pythonista device testing."
+  ],
+  "cases": [
+    {
+      "name": "aligned_east",
+      "description": "Lead passes before the follower moves; aligned x is transferred. Direction east.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A"
+      ]
+    },
+    {
+      "name": "aligned_north",
+      "description": "Lead passes before the follower moves; aligned x is transferred. Direction north.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 1,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 10,
+          "y": 11,
+          "rotation": 1,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A"
+      ]
+    },
+    {
+      "name": "aligned_west",
+      "description": "Lead passes before the follower moves; aligned x is transferred. Direction west.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 2,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 9,
+          "y": 10,
+          "rotation": 2,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A"
+      ]
+    },
+    {
+      "name": "aligned_south",
+      "description": "Lead passes before the follower moves; aligned x is transferred. Direction south.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 3,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 10,
+          "y": 9,
+          "rotation": 3,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A"
+      ]
+    },
+    {
+      "name": "source_then_target",
+      "description": "Explicit source update followed by target update; not an entity-scheduler model.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "name": "target_then_source",
+      "description": "Explicit target update followed by source update; incoming item waits for a later target update.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.58,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.58,
+              "x": 0.6
+            },
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "name": "blocked_full_turn",
+      "description": "A side-facing full target rejects transfer; the source item stays at the exit.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 1,
+          "minitem": 0.0,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.0,
+              "x": -0.2
+            },
+            {
+              "item": "copper",
+              "y": 0.4,
+              "x": 0.2
+            },
+            {
+              "item": "lead",
+              "y": 0.8,
+              "x": 0.4
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "A",
+        "B",
+        "A"
+      ]
+    },
+    {
+      "name": "aligned_next_spacing",
+      "description": "Primed next-belt minitem constrains the source; later updates refresh that cache.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.69,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.69,
+              "x": 0.3
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.1,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.1,
+              "x": -0.2
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "A",
+        "B",
+        "A"
+      ]
+    },
+    {
+      "name": "turn_side_insert",
+      "description": "A right-angle transfer inserts at mid=0, y=0.5; source lateral x is not copied.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 1,
+          "minitem": 0.82,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.82,
+              "x": 0.4
+            }
+          ]
+        }
+      ],
+      "updates": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "name": "headon_rejected",
+      "description": "Two opposed conveyors cannot pass into one another.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 2,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "A",
+        "B",
+        "A"
+      ]
+    },
+    {
+      "name": "side_then_rear",
+      "description": "Side source updates before rear source, then target; both items and insertion order are retained.",
+      "speed": 0.046,
+      "belts": [
+        {
+          "name": "A",
+          "x": 10,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "copper",
+              "y": 0.99,
+              "x": 0.6
+            }
+          ]
+        },
+        {
+          "name": "S",
+          "x": 11,
+          "y": 9,
+          "rotation": 1,
+          "minitem": 0.99,
+          "items": [
+            {
+              "item": "lead",
+              "y": 0.99,
+              "x": -0.6
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "x": 11,
+          "y": 10,
+          "rotation": 0,
+          "minitem": 1.0,
+          "items": []
+        }
+      ],
+      "updates": [
+        "S",
+        "A",
+        "B"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+test_aligned_next_belt_retains_backpressure (test_conveyor_transfers.ConveyorTransferTests.test_aligned_next_belt_retains_backpressure) ... ok
+test_departing_head_releases_follower_in_same_update_all_rotations (test_conveyor_transfers.ConveyorTransferTests.test_departing_head_releases_follower_in_same_update_all_rotations) ... ok
+test_explicit_update_order_controls_arrival_movement (test_conveyor_transfers.ConveyorTransferTests.test_explicit_update_order_controls_arrival_movement) ... ok
+test_facing_belts_keep_their_items (test_conveyor_transfers.ConveyorTransferTests.test_facing_belts_keep_their_items) ... ok
+test_rejected_handoff_keeps_head_and_follower_spacing (test_conveyor_transfers.ConveyorTransferTests.test_rejected_handoff_keeps_head_and_follower_spacing) ... ok
+test_schema_one_roundtrip_continues_after_handoff (test_conveyor_transfers.ConveyorTransferTests.test_schema_one_roundtrip_continues_after_handoff) ... ok
+test_turn_uses_side_entry_position_instead_of_aligned_x (test_conveyor_transfers.ConveyorTransferTests.test_turn_uses_side_entry_position_instead_of_aligned_x) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.019s
+
+OK

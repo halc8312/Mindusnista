@@ -561,17 +561,20 @@ class World:
         target = self.front(b)
         aligned = bool(target and target.kind == "conveyor" and target.rotation == b.rotation)
         next_min = min((p.y for p in target.belt), default=1.0) if aligned else 1.0
-        yy, xx = advance_conveyor_positions([p.y for p in b.belt], [p.x for p in b.belt],
-                                            self.content[b.kind]["speed"], next_min, aligned)
-        for p, new_y, new_x in zip(b.belt, yy, xx):
-            p.y, p.x = new_y, new_x
-        if target:
-            for index in range(len(b.belt) - 1, -1, -1):
-                p = b.belt[index]
-                if p.y >= 1.0 and self.receive(target, b, p.item):
-                    if aligned:
-                        target.belt[0].x = p.x
-                    del b.belt[index]
+        next_max = 1.0 - max(ITEM_SPACE - next_min, 0.0) if aligned else 1.0
+        moved = self.content[b.kind]["speed"]
+        # Conveyor.java v159.7: move, pass and remove each item before updating
+        # its follower. A successful pass changes which item is now the head.
+        # Cached minitem/mid and upstream entity scheduling remain separate work.
+        for index in range(len(b.belt) - 1, -1, -1):
+            p = b.belt[index]
+            next_pos = (100.0 if index == len(b.belt) - 1 else b.belt[index + 1].y) - ITEM_SPACE
+            p.y = min(p.y + clamp(next_pos - p.y, 0.0, moved), next_max)
+            p.x = approach(p.x, 0.0, moved * 2.0)
+            if p.y >= 1.0 and target and self.receive(target, b, p.item):
+                if aligned:
+                    target.belt[0].x = p.x
+                del b.belt[index]
 
     def _tick_router(self, b: Building) -> None:
         if not b.inventory:

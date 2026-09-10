@@ -9,6 +9,11 @@
 
 # Primary references
 
+M1-01（2026-09-10）: 上記固定版の Conveyor.java の更新と引渡しを
+`reference/ConveyorTransferReference.java` へ抽出・改変。fixture の条件、Java float / Python double の
+公差、cached minitem / mid 等の残差は [M1-01 検証記録](docs/M1_01_VERIFICATION_ja.md) を参照。
+原作本体を起動した oracle ではありません。
+
 2026-09-10: [v159.7 tag ref](https://api.github.com/repos/Anuken/Mindustry/git/ref/tags/v159.7)
 を取得し、完全コミット `c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c` を確認。
 保存形式の固定コミット参照は [原作セーブ調査](docs/SAVE_COMPATIBILITY_RESEARCH_ja.md)、
