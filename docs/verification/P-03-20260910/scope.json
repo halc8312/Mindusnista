@@ -1,0 +1,26 @@
+{
+  "base_commit": "cebaa2b1584ab1dbd1a4e228a2ad663d9c57ce93",
+  "runtime_files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "c57d87212141f5bde52d40cd6d080c1258aa47b439c504ee944c7d56e613b3c0",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/app.py",
+      "sha256": "4a7c9f717853ef72258610d03fab09b760f05881bfa513d06704e385bed7bf0a",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/kernels.py",
+      "sha256": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+      "identical_to_base": true
+    }
+  ],
+  "probe_sha256": "e65a7d79866c20f91c8abdd00edb133bf6b34585ab17dd10227e388b855efb4c",
+  "measured_code_identical": true,
+  "version": "0.1.2-dev",
+  "game_save_schema": 1,
+  "pythonista_device_tests": "not_run",
+  "measurement_basis": "Only final/ reports rerun after record pairing fix; excludes preliminary measurements."
+}

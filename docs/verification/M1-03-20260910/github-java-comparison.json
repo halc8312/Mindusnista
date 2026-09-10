@@ -1,0 +1,2852 @@
+{
+  "call_count": 49,
+  "case_count": 14,
+  "conditions": {
+    "calls": "explicit_dump_or_periodic_drill_boundary",
+    "can_dump": true,
+    "has_items": true,
+    "inventory_limit": 10,
+    "item_ids": [
+      "copper",
+      "lead"
+    ],
+    "neighbor_order": "explicit_fixture_order",
+    "receiver": "scripted_item_set_and_total_capacity"
+  },
+  "device_test": "not run",
+  "exact_fields": [
+    "selector",
+    "result",
+    "cursor",
+    "inventory",
+    "receipts",
+    "attempt order and cursor"
+  ],
+  "excluded": [
+    "original engine / scheduler / proximity construction",
+    "original receiver implementations / team handling",
+    "production offload / actual timer phase / efficiency / mining",
+    "Pythonista / device performance"
+  ],
+  "java_comparison": "executed",
+  "java_traces": [
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "dominant_over_insertion"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "lead"
+        }
+      ],
+      "name": "dominant_rejected_no_fallback"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "dominant_absent_fallback"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "fallback_content_order"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "lead_only"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "lead_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "both"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "lead_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "neighbor_before_item"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 0
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "both"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 1
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 1
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "first_rejects_then_accepts_item"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 17,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        }
+      ],
+      "name": "specified_absent_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        }
+      ],
+      "name": "empty_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "lead",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": "lead"
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "no_neighbors_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 7,
+              "item": "copper",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "oversized_cursor_all_reject"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "normal_cursor_all_reject"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "fixed_start_after_rejection"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 3
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 3
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "capacity_then_round_robin"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 3,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "copper",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "copper",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        }
+      ],
+      "name": "specified_item_rotation"
+    }
+  ],
+  "mismatch_count": 0,
+  "mismatches": [],
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.10.21 (main, Aug 13 2026, 02:42:48) [GCC 13.3.0]",
+  "python_trace_status": "generated; shape, scripted receipts and cargo checked",
+  "python_traces": [
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 1
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "dominant_over_insertion"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "copper_only": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "lead"
+        }
+      ],
+      "name": "dominant_rejected_no_fallback"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "dominant_absent_fallback"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 1,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "fallback_content_order"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "lead_only"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "lead_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "both"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "lead_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 1,
+              "lead": 0
+            },
+            "lead_only": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "neighbor_before_item"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "copper_only"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 0
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "both"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 1
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "both": {
+              "copper": 0,
+              "lead": 1
+            },
+            "copper_only": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "first_rejects_then_accepts_item"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 17,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        }
+      ],
+      "name": "specified_absent_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "copper",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": "copper"
+        }
+      ],
+      "name": "empty_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "lead",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": "lead"
+        },
+        {
+          "attempts": [],
+          "call": "drill",
+          "cursor": 17,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {},
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "no_neighbors_guard"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 7,
+              "item": "copper",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "oversized_cursor_all_reject"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "normal_cursor_all_reject"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 2,
+              "item": "lead",
+              "neighbor": "third"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            },
+            "third": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "fixed_start_after_rejection"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "any",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 3
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 3
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 0
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        },
+        {
+          "attempts": [
+            {
+              "accepted": false,
+              "cursor_before": 0,
+              "item": "lead",
+              "neighbor": "first"
+            },
+            {
+              "accepted": false,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 2
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 1
+            }
+          },
+          "result": false,
+          "selected": null
+        }
+      ],
+      "name": "capacity_then_round_robin"
+    },
+    {
+      "frames": [
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 3,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 0,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "copper",
+          "cursor": 1,
+          "inventory": {
+            "copper": 2,
+            "lead": 1
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 1
+            }
+          },
+          "result": true,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "lead",
+              "neighbor": "second"
+            }
+          ],
+          "call": "lead",
+          "cursor": 0,
+          "inventory": {
+            "copper": 2,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 1,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": "lead"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 0,
+              "item": "copper",
+              "neighbor": "first"
+            }
+          ],
+          "call": "copper",
+          "cursor": 1,
+          "inventory": {
+            "copper": 1,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            },
+            "second": {
+              "copper": 0,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": "copper"
+        },
+        {
+          "attempts": [
+            {
+              "accepted": true,
+              "cursor_before": 1,
+              "item": "copper",
+              "neighbor": "second"
+            }
+          ],
+          "call": "any",
+          "cursor": 0,
+          "inventory": {
+            "copper": 0,
+            "lead": 0
+          },
+          "receipts": {
+            "first": {
+              "copper": 2,
+              "lead": 0
+            },
+            "second": {
+              "copper": 1,
+              "lead": 2
+            }
+          },
+          "result": true,
+          "selected": null
+        }
+      ],
+      "name": "specified_item_rotation"
+    }
+  ],
+  "reference_kind": "source-extracted Java dump and drill selector with scripted receivers; not the original engine",
+  "sha256": {
+    "fixtures": "33b5c25e4f048a364c20d0276e9b46bdbb560ddad957c9d595b7538fa5852d25",
+    "java_source": "a3d434cdd720837f0c45e0d6e44842aef05b86bf5ac4f89ec6457dd381ce1407",
+    "python_runtime": "c57d87212141f5bde52d40cd6d080c1258aa47b439c504ee944c7d56e613b3c0"
+  },
+  "started_at": "2026-09-10T04:57:10.282203+00:00",
+  "status": "passed",
+  "toolchain": {
+    "java": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64/bin/java",
+      "stderr": "openjdk version \"17.0.20.1\" 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+      "stdout": ""
+    },
+    "javac": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64/bin/javac",
+      "stderr": "",
+      "stdout": "javac 17.0.20.1"
+    }
+  },
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c"
+}
