@@ -1,0 +1,27 @@
+{
+  "base_commit": "ad2124f29e79d243b9ad6f0292e4abde20ccafd4",
+  "version": "0.1.2-dev",
+  "save_schema": 1,
+  "upstream_tag": "v159.7",
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+  "runtime_files": [
+    {
+      "path": "mindustry_pythonista.py",
+      "sha256": "843a84cc8076491b4666ef59f2c9732dc170d0bf5b0db193faa1406ae8519eff",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/app.py",
+      "sha256": "8f21cbf16eca18beeca25abb15fba31097ab0605785677b067f5d19db2a56103",
+      "identical_to_base": true
+    },
+    {
+      "path": "src/mindusnista/kernels.py",
+      "sha256": "a93093080ed548bedba0fe4a00be484e9cac2d10df5ce05f032a4505feb204b7",
+      "identical_to_base": true
+    }
+  ],
+  "device_tests": "not_run",
+  "native_acceleration": "not_implemented_or_device_verified",
+  "original_save_exchange": "not_implemented_or_tested"
+}
