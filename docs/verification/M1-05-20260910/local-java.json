@@ -1,0 +1,57 @@
+{
+  "status": "error",
+  "comparison": "not_run",
+  "scope": "source_extracted_integrated_methods_not_original_engine",
+  "created_at": "2026-09-10T10:48:29.602377+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "upstream_commit": "c9686eb5d0ae5dd47ee02c40f99f7d5018ccbc8c",
+  "toolchain": {
+    "javac": {
+      "available": false,
+      "error": "executable not found"
+    },
+    "java": {
+      "available": false,
+      "path": "/usr/bin/java",
+      "exit_code": 127,
+      "stdout": "",
+      "stderr": "/usr/bin/java: error while loading shared libraries: libjli.so: cannot open shared object file: No such file or directory"
+    }
+  },
+  "case_count": 14,
+  "update_count": 985,
+  "conditions": {
+    "receiver": "actual_extracted_drill_conveyor_router_methods",
+    "neighbor_order": "complete_explicit_fixture_proximity",
+    "update_order": "explicit_per_building_not_entity_scheduler",
+    "timer": "drill_five_update_counter_not_upstream_time_phase",
+    "delta": 1,
+    "efficiency": 1,
+    "time_scale": 1,
+    "optional_efficiency": 0,
+    "team": "same",
+    "router_speed": 8,
+    "drill_delay": 650,
+    "drill_warmup_speed": 0.015,
+    "drill_capacity": 10,
+    "item_ids": [
+      "copper",
+      "lead"
+    ],
+    "conveyor_last_inserted": 0,
+    "controlled_routers": false,
+    "overflow_gates": false,
+    "topology_changes": false,
+    "float_absolute_tolerance": 2e-05,
+    "discrete_comparison": "exact_including_item_order_transfer_update_and_rotation"
+  },
+  "sha256": {
+    "reference/integrated_transport_scenarios.json": "e2ac32882d9ca9ad2bf6ddf4f19748f4b203b52e47576a8ca51ff5310f1ed67e",
+    "reference/IntegratedTransportReference.java": "6fcd2f8a4586e33980ad9e6c653e766fec634e8ab09c9674efe21515a748b13d",
+    "mindustry_pythonista.py": "e41bdcf73041a72df5b5d140a966d0ac0b2f05c41543d2cab4171e3b6a44e415",
+    "tools/check_integrated_transport.py": "7634fa6368fe4d07ee64ba789ffaf1517ead9cbbfca20e0349e8f0b57050da97"
+  },
+  "python_trace_sha256": "ea130b8873289fefb9eb3ee80a2fa0397668f8fdb5fe8481331e500e464a3b77",
+  "error": "A working JDK is required; comparison was not run."
+}

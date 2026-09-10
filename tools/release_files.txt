@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: GPL-3.0-only
-# Explicit public source package. Update this list when adding release sources.
 .gitattributes
 .github/pull_request_template.md
 .github/workflows/ci.yml
@@ -35,6 +33,8 @@ docs/M1_03_RULES_ja.md
 docs/M1_03_VERIFICATION_ja.md
 docs/M1_04_RULES_ja.md
 docs/M1_04_VERIFICATION_ja.md
+docs/M1_05_RULES_ja.md
+docs/M1_05_VERIFICATION_ja.md
 docs/NEXT_TASK_ja.md
 docs/PARALLEL_RESEARCH_ja.md
 docs/P_01_PROBE_ja.md
@@ -132,6 +132,16 @@ docs/verification/M1-04-20260910/result.json
 docs/verification/M1-04-20260910/review-aggregation-result.json
 docs/verification/M1-04-20260910/review-aggregation.py
 docs/verification/M1-04-20260910/source-audit.md
+docs/verification/M1-05-20260910/PR14_CI_GITHUB.json
+docs/verification/M1-05-20260910/after-check-project.json
+docs/verification/M1-05-20260910/after-check-project.txt
+docs/verification/M1-05-20260910/before-check-project.json
+docs/verification/M1-05-20260910/before-check-project.txt
+docs/verification/M1-05-20260910/local-java.json
+docs/verification/M1-05-20260910/regression-after.txt
+docs/verification/M1-05-20260910/regression-before.txt
+docs/verification/M1-05-20260910/regression-final.txt
+docs/verification/M1-05-20260910/source-audit.md
 docs/verification/P-01-20260910/after-check-project.json
 docs/verification/P-01-20260910/after-check-project.txt
 docs/verification/P-01-20260910/delayed-output-after-fix.txt
@@ -196,9 +206,11 @@ reference/ConveyorKernelReference.java
 reference/ConveyorTransferReference.java
 reference/DrillDumpReference.java
 reference/DrillOffloadReference.java
+reference/IntegratedTransportReference.java
 reference/conveyor_transfer_scenarios.json
 reference/drill_dump_scenarios.json
 reference/drill_offload_scenarios.json
+reference/integrated_transport_scenarios.json
 reference/java_fixtures.json
 rotation-controls.patch
 self-test-results.txt
@@ -214,6 +226,7 @@ tests/test_drill_dump.py
 tests/test_drill_offload.py
 tests/test_dynamic_state_probe.py
 tests/test_engine.py
+tests/test_integrated_transport.py
 tests/test_parallel_probe.py
 tests/test_placement_controls.py
 tests/test_pythonista_adapter.py
@@ -226,6 +239,7 @@ tools/build_release.py
 tools/build_single_file.py
 tools/check_conveyor_reference.py
 tools/check_dump_reference.py
+tools/check_integrated_transport.py
 tools/check_offload_reference.py
 tools/check_project.py
 tools/pythonista_array_state_probe.py

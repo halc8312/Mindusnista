@@ -497,6 +497,10 @@ class World:
     def receive(self, target: Building, source: Building, item: str) -> bool:
         if not self.accepts(target, source, item):
             return False
+        return self._handle_item(target, source, item)
+
+    def _handle_item(self, target: Building, source: Building, item: str) -> bool:
+        """Handle an already accepted single item (Building.handleItem boundary)."""
         if target.kind == "core-shard":
             self.stock[item] += 1
             self.stats["delivered"] += 1
@@ -624,23 +628,37 @@ class World:
             elif p.y < b.conveyor_minitem:
                 b.conveyor_minitem = p.y
 
+    def _router_target(self, b: Building, item: str, advance: bool) -> Optional[Building]:
+        """RouterBuild.getTileTarget's uncontrolled, supported-block path.
+
+        Router rotation is the round-robin pointer; cursor belongs to the
+        inherited dump/offload path and remains saved independently. The
+        overflow-gate input exception awaits that block's implementation.
+        """
+        neighbors = self.neighbors(b)
+        start = b.rotation
+        for offset in range(len(neighbors)):
+            target = neighbors[(start + offset) % len(neighbors)]
+            if advance:
+                b.rotation = (b.rotation + 1) % len(neighbors)
+            if self.accepts(target, b, item):
+                return target
+        return None
+
     def _tick_router(self, b: Building) -> None:
         if not b.inventory:
             return
         item = next(iter(b.inventory))
         b.router_time += 1.0 / self.content[b.kind]["speed"]
-        neighbors = self.neighbors(b)
-        for offset in range(len(neighbors)):
-            index = (b.cursor + offset) % len(neighbors)
-            target = neighbors[index]
-            if self.accepts(target, b, item):
-                # Source rule: delay applies to router/instant-transfer output,
-                # but not normal output (e.g. a conveyor or turret).
-                if b.router_time >= 1.0 or target.kind != "router":
-                    self.receive(target, b, item)
-                    b.inventory.clear()
-                    b.cursor = (index + 1) % len(neighbors)
-                return
+        target = self._router_target(b, item, False)
+        if target is not None and (b.router_time >= 1.0 or target.kind != "router"):
+            # Repeat the scan and advance rotation before handling, as upstream
+            # does. Supported accepts() calls are pure, so the target is stable.
+            self._router_target(b, item, True)
+            self._handle_item(target, b, item)
+            b.inventory[item] -= 1
+            if b.inventory[item] == 0:
+                del b.inventory[item]
 
     def _tick_turret(self, b: Building) -> None:
         spec = self.content[b.kind]
